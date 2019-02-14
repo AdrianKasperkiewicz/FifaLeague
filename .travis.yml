@@ -1,0 +1,11 @@
+matrix:
+  include:
+    - language: csharp
+      mono: none
+      sudo: required
+      dist: xenial
+      dotnet: 2.2
+      before_script:
+      - chmod a+x ./build.sh
+      script:
+      - ./build.sh
