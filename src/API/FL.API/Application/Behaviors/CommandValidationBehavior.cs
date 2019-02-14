@@ -9,12 +9,12 @@ using MediatR;
 
 namespace FL.API.Application.Behaviors
 {
-    public class CommandValidationBehevior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public class CommandValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
     {
         private readonly IEnumerable<IValidator<TRequest>> validators;
 
-        public CommandValidationBehevior(IEnumerable<IValidator<TRequest>> validators)
+        public CommandValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
         {
             this.validators = validators;
         }

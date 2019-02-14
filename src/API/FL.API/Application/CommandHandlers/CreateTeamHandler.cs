@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 using FL.Domain;
 using FluentValidation;
+using FL.Domain.Aggregates.TeamAggregate;
 using MediatR;
 
 namespace FL.API.Application.CommandHandlers
@@ -12,16 +13,16 @@ namespace FL.API.Application.CommandHandlers
     {
         private readonly ITeamRepository repository;
 
-        public CreateTeamHandler()
+        public CreateTeamHandler(ITeamRepository repository)
         {
-           // this.repository = repository;
+           this.repository = repository;
         }
 
         public Task<Guid> Handle(CreateTeamCommand request, CancellationToken cancellationToken)
         {
             var team = new Team(request.Name, request.Email);
 
-           // this.repository.Save(team);
+           this.repository.Save(team);
 
             return Task.FromResult(Guid.NewGuid());
         }

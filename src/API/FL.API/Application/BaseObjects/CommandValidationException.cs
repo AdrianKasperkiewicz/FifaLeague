@@ -8,12 +8,12 @@ namespace FL.API.Application.BaseObjects
 {
     public class CommandValidationException : Exception
     {
-        public CommandValidationException(List<ValidationFailure> errors) 
-            : base(PrapereMessage(errors) )
+        public CommandValidationException(IEnumerable<ValidationFailure> errors) 
+            : base(PrepareMessage(errors) )
         {
         }
 
-        private static string PrapereMessage(List<ValidationFailure> errors)
+        private static string PrepareMessage(IEnumerable<ValidationFailure> errors)
         {
             return string.Join(" ", errors.Select(x => x.ErrorMessage).ToList());
         }

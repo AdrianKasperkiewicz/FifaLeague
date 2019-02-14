@@ -13,7 +13,7 @@ namespace FL.API.Application.IoC
         public static void RegisterFLModule(this IServiceCollection services)
         {
             services.AddMediatR(typeof(CreateTeamCommand).GetTypeInfo().Assembly);
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandValidationBehevior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandValidationBehavior<,>));
 
             services.AddTransient<IValidator<CreateTeamCommand>, CreateTeamCommandValidator>();
 

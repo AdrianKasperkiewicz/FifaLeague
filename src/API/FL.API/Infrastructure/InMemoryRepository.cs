@@ -1,8 +1,10 @@
-﻿using FL.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+using FL.Domain;
+using FL.Domain.Aggregates.TeamAggregate;
 
 namespace FL.API.Infrastructure
 {
@@ -10,14 +12,14 @@ namespace FL.API.Infrastructure
     {
         private readonly List<Team> databaseTeams;
 
-        public InMemoryRepository(List<Team> databaseTeams)
+        public InMemoryRepository()
         {
-            this.databaseTeams = databaseTeams;
+            this.databaseTeams = new List<Team>();
         }
 
-        public Task<Team> Get(Guid Id)
+        public Task<Team> Get(Guid id)
         {
-           return Task.FromResult(this.databaseTeams.FirstOrDefault(x => x.Id == Id));
+           return Task.FromResult(this.databaseTeams.FirstOrDefault(x => x.Id == id));
         }
 
         public Task Save(Team team)
