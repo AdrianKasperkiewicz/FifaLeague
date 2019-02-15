@@ -3,13 +3,10 @@ matrix:
     - language: csharp
       mono: none
       sudo: required
-      dist: xenial
+      os: windows
       addons:
         sonarcloud:
           organization: "pmozola-github"
       dotnet: 2.2
-      before_script:
-      - chmod a+x ./build.ps1
-      - export PATH="$PATH:/home/travis/.dotnet/tools"
       script:
-      - PowerShell -File build.ps1
+      - build.cmd
