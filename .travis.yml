@@ -4,9 +4,5 @@ matrix:
       mono: none
       sudo: required
       os: windows
-      addons:
-        sonarcloud:
-          organization: "pmozola-github"
-      dotnet: 2.2
       script:
       - build.cmd
