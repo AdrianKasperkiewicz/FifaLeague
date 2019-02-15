@@ -5,4 +5,4 @@ matrix:
       sudo: required
       os: windows
       script:
-      - build.cmd
+      - powershell build.ps1
