@@ -4,8 +4,15 @@ matrix:
       mono: none
       sudo: required
       dist: xenial
+      install: true
+      addons:
+        sonarcloud: "https://sonarcloud.io"
+        organization: "pmozola-github"
+        token:
+          secure: "$SONAR_TOKEN"
       dotnet: 2.2
       before_script:
       - chmod a+x ./build.sh
       script:
       - ./build.sh
+      - sonar-scanner
