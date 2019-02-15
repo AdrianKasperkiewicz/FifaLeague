@@ -14,6 +14,6 @@ matrix:
       - chmod a+x ./build.sh
       - export PATH="$PATH:/home/travis/.dotnet/tools"
       script:
-      - SonarScanner.MSBuild.exe begin /k:"pmozola_FifaLeague" /d:sonar.organization="pmozola-github" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="9f60fa7128dc42b1d1c750143dbc19f030de056e"
+      - SonarScanner begin /k:"pmozola_FifaLeague" /d:sonar.organization="pmozola-github" /d:sonar.language="cs" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="9f60fa7128dc42b1d1c750143dbc19f030de056e"
       - ./build.sh
-      - SonarScanner.MSBuild.exe end /d:sonar.login="9f60fa7128dc42b1d1c750143dbc19f030de056e"
+      - SonarScannere end /d:sonar.login="9f60fa7128dc42b1d1c750143dbc19f030de056e"
