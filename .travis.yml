@@ -9,7 +9,7 @@ matrix:
           organization: "pmozola-github"
       dotnet: 2.2
       before_script:
-      - chmod a+x ./build.sh
+      - chmod a+x ./build.ps1
       - export PATH="$PATH:/home/travis/.dotnet/tools"
       script:
       - PowerShell -File build.ps1
