@@ -8,8 +8,6 @@ matrix:
         sonarcloud:
           organization: "pmozola-github"
       dotnet: 2.2
-      install:
-      - PowerShell -Command 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned'
       before_script:
       - chmod a+x ./build.sh
       - export PATH="$PATH:/home/travis/.dotnet/tools"
