@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using FL.Domain.Aggregates.FixtureAggregate;
+﻿using System.Collections.Generic;
 using FL.Domain.BaseObjects;
 
 namespace FL.Domain.Aggregates.SeasonAggregate
@@ -26,33 +23,5 @@ namespace FL.Domain.Aggregates.SeasonAggregate
         }
 
         public void StartNew() { } // returns new season ?
-    }
-
-    public class League : Entity
-    {
-        public League(string name, int hierarchyNumber, IList<Guid> teams)
-        {
-            this.Name = name;
-            this.HierarchyNumber = hierarchyNumber;
-        }
-
-        private string Name { get; }
-
-        private int HierarchyNumber { get; }
-
-        public LeagueTable LeagueTable { get; }
-
-        public WeekFixture Fixutre { get; }
-
-        public void GenerateFixture()
-        {
-            ///??????
-        }
-    }
-
-    
-
-    public class LeagueTable : Entity
-    {
     }
 }
