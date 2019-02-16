@@ -9,9 +9,9 @@ namespace FL.API.Application.CommandHandlers.League
 {
     public class CreateSeasonHandler : IRequestHandler<CreateLeagueCommand, Guid>
     {
-        private readonly ISeasonnRepository repository;
+        private readonly ISeasonRepository repository;
 
-        public CreateSeasonHandler(ISeasonnRepository repository)
+        public CreateSeasonHandler(ISeasonRepository repository)
         {
             this.repository = repository;
         }

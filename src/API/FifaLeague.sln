@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FL.API", "FL.API\FL.API.csproj", "{38E516DF-609A-4276-B3A0-2D123FFAD082}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FL.API", "FL.API\FL.API.csproj", "{38E516DF-609A-4276-B3A0-2D123FFAD082}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FL.Domain", "FL.Domain\FL.Domain.csproj", "{E0051918-18B0-4B0D-A27C-4CE5EF0D64FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FL.Domain", "FL.Domain\FL.Domain.csproj", "{E0051918-18B0-4B0D-A27C-4CE5EF0D64FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

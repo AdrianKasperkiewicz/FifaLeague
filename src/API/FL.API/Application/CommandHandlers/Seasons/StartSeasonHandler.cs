@@ -9,9 +9,9 @@ namespace FL.API.Application.CommandHandlers.Seasons
 {
     public class StartSeasonHandler : AsyncRequestHandler<StartSeasonCommand>
     {
-        private readonly ISeasonnRepository repository;
+        private readonly ISeasonRepository repository;
 
-        public StartSeasonHandler(ISeasonnRepository repository)
+        public StartSeasonHandler(ISeasonRepository repository)
         {
             this.repository = repository;
         }
