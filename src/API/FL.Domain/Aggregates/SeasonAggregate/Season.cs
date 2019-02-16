@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FL.Domain.Aggregates.SeasonAggregate.Events;
 using FL.Domain.BaseObjects;
 
 namespace FL.Domain.Aggregates.SeasonAggregate
@@ -9,6 +10,8 @@ namespace FL.Domain.Aggregates.SeasonAggregate
         {
             this.Number = 1;
             this.Leagues = new List<League>();
+
+            this.AddDomainEvent(new SeasonCreated(base.Id, this.Number));
         }
 
         public int Number { get; }

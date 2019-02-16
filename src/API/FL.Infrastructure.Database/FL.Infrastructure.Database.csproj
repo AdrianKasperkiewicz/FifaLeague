@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FL.Domain\FL.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
