@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using FL.API.Application.CommandHandlers;
-
+using FL.API.Application.CommandHandlers.Teams;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

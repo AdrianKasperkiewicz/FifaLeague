@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 using System.Threading.Tasks;
+using FL.API.Application.QueryHandlers;
 
 namespace FL.API.Controllers
 {
@@ -30,6 +31,13 @@ namespace FL.API.Controllers
         {
             return this.Ok(
                 await this.mediator.Send(command));
+        }
+
+        [HttpGet()]
+        public async Task<ActionResult> Get([FromBody]GetSeasonListQuery command)
+        {
+            return this.Ok(
+                 await this.mediator.Send(command));
         }
     }
 }

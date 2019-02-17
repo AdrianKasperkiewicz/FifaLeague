@@ -9,16 +9,16 @@ namespace FL.API.Application.CommandHandlers.League
 {
     public class CreateSeasonHandler : IRequestHandler<CreateLeagueCommand, Guid>
     {
-        private readonly ISeasonRepository repository;
+        private readonly IRepository<Season> repository;
 
-        public CreateSeasonHandler(ISeasonRepository repository)
+        public CreateSeasonHandler(IRepository<Season> repository)
         {
             this.repository = repository;
         }
 
         public Task<Guid> Handle(CreateLeagueCommand request, CancellationToken cancellationToken)
         {
-            var season = new Season();
+            var season = new Season(request.Name);
 
             this.repository.Save(season);
 

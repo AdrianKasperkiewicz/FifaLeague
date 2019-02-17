@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-
-using FL.Domain;
 using FluentValidation;
+using FL.Domain;
 using FL.Domain.Aggregates.TeamAggregate;
 using MediatR;
 
-namespace FL.API.Application.CommandHandlers
+namespace FL.API.Application.CommandHandlers.Teams
 {
     public class CreateTeamHandler : IRequestHandler<CreateTeamCommand, Guid>
     {
-        private readonly ITeamRepository repository;
+        private readonly IRepository<Team> repository;
 
-        public CreateTeamHandler(ITeamRepository repository)
+        public CreateTeamHandler(IRepository<Team> repository)
         {
            this.repository = repository;
         }

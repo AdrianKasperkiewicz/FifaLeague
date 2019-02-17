@@ -16,11 +16,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\QueryHandlerrs\" />
+    <ProjectReference Include="..\FL.Domain\FL.Domain.csproj" />
+    <ProjectReference Include="..\FL.Infrastructure.Database\FL.Infrastructure.Database.csproj" />
+    <ProjectReference Include="..\FL.Infrastructure.ReadDatabase\FL.Infrastructure.ReadDatabase.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FL.Domain\FL.Domain.csproj" />
+    <Folder Include="Infrastructure\" />
   </ItemGroup>
 
 </Project>

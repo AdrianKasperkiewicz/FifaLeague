@@ -6,13 +6,16 @@ namespace FL.Domain.Aggregates.SeasonAggregate
 {
     public class Season : Entity, IAggregateRoot
     {
-        public Season()
+        public Season(string name)
         {
+            this.Name = name;
             this.Number = 1;
             this.Leagues = new List<League>();
 
-            this.AddDomainEvent(new SeasonCreated(base.Id, this.Number));
+            this.AddDomainEvent(new SeasonCreated(base.Id, this.Name, this.Number));
         }
+
+        public string Name { get; }
 
         public int Number { get; }
 

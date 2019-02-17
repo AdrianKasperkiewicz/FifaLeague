@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FL.Domain.Aggregates.SeasonAggregate.Events;
+﻿using FL.Domain.Aggregates.SeasonAggregate.Events;
 using FL.Infrastructure.ReadDatabase.Database;
 using MediatR;
 
