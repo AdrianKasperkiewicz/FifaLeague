@@ -4,17 +4,14 @@ matrix:
       mono: none
       sudo: required
       dist: xenial
-      install: 
-        - dotnet tool install --global dotnet-sonarscanner
       addons:
         sonarcloud:
           organization: "pmozola-github"
       dotnet: 2.2
-      before_script:
-      - dotnet tool install --global dotnet-sonarscanner
-      - export PATH="$PATH:/home/travis/.dotnet/tools"
       script:
       - cd src/API
+      - dotnet tool install dotnet-sonarscanner
+      - export PATH="$PATH:/home/travis/.dotnet/tools"
       - dotnet restore
       - dotnet sonarscanner begin /k:"FifaLeague" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="$SONAR_TOKEN"
       - dotnet build
