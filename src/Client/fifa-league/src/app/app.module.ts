@@ -6,15 +6,17 @@ import { AppComponent } from './app.component';
 import { AddTeamComponent } from './pages/add-team/add-team.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppMaterialModule } from './shared/modules/app-material.module';
-import { TeamService } from './shared/services/team.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TeamListComponent } from './pages/team-list/team-list.component';
+import { LoaderComponent } from './shared/components/loader/loader.component';
+import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddTeamComponent,
-    TeamListComponent
+    TeamListComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -23,7 +25,13 @@ import { TeamListComponent } from './pages/team-list/team-list.component';
     AppMaterialModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
