@@ -10,6 +10,8 @@ using FL.Domain;
 using FL.Infrastructure.Database;
 using FL.Infrastructure.ReadDatabase;
 using FL.Infrastructure.ReadDatabase.Database;
+using Microsoft.EntityFrameworkCore;
+using FL.Infrastructure.ReadDatabase.EventHandlers;
 
 namespace FL.API.Application.IoC
 {
@@ -17,14 +19,23 @@ namespace FL.API.Application.IoC
     {
         public static void RegisterFLModule(this IServiceCollection services)
         {
+            services.AddTransient<AggregateStoreContext>();
+            services.AddTransient<LeagueReadModelContext>();
+            services.AddDbContext<AggregateStoreContext>(context => context.UseInMemoryDatabase());
+
+            services.AddDbContext<LeagueReadModelContext>(context => context.UseInMemoryDatabase());
             services.AddMediatR(typeof(CreateTeamCommand).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(CreateSeasonEventHandler).GetTypeInfo().Assembly);
+
+            services.AddEntityFrameworkInMemoryDatabase();
+
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandValidationBehavior<,>));
 
             services.AddTransient<IValidator<CreateTeamCommand>, CreateTeamCommandValidator>();
             services.AddTransient<ISeasonReadRepository, SeasonReadRepository>();
-            services.AddTransient<AggregateStoreContext>();
-            services.AddTransient<LeagueReadModelContext>();
+          
             services.AddScoped(typeof(IRepository<>), typeof(AggregateRepository<>));
+            services.AddScoped<ITeamReadRepository, TeamReadRepository>();
         }
     }
 }

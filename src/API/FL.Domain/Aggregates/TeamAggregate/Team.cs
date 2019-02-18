@@ -14,7 +14,7 @@ namespace FL.Domain.Aggregates.TeamAggregate
             this.EmailAddress = new EmailAddress(email);
             base.Id = Guid.NewGuid();
 
-            this.AddDomainEvent(new TeamCreatedDomainEvent(this.Name, this.EmailAddress.Value));
+            this.AddDomainEvent(new TeamCreatedDomainEvent(this.Id, this.Name, this.EmailAddress.Value));
         }
 
         public string Name { get; }

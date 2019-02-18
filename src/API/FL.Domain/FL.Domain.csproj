@@ -1,13 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="MediatR">
-      <HintPath>..\..\..\..\..\..\.nuget\packages\mediatr\6.0.0\lib\netstandard2.0\MediatR.dll</HintPath>
-    </Reference>
+    <PackageReference Include="MediatR" Version="6.0.0" />
   </ItemGroup>
-
+  
 </Project>

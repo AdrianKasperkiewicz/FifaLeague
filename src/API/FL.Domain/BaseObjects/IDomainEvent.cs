@@ -1,6 +1,8 @@
-﻿namespace FL.Domain.BaseObjects
+﻿using MediatR;
+
+namespace FL.Domain.BaseObjects
 {
-    public interface IDomainEvent
+    public interface IDomainEvent : INotification
     {
     }
 }
