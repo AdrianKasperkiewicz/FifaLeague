@@ -8,8 +8,6 @@ namespace FL.Domain.Aggregates.TeamAggregate
 {
     public class EmailAddress : ValueObject
     {
-        private const string EmailRegex = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
-
         public EmailAddress(string email)
         {
             Validate(email);
@@ -26,7 +24,7 @@ namespace FL.Domain.Aggregates.TeamAggregate
 
         private static void Validate(string email)
         {
-            if (!new Regex(EmailRegex).IsMatch(email))
+            if (!new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").IsMatch(email))
             {
                 throw new FormatException("email is not valid.");
             }

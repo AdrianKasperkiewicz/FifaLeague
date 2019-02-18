@@ -51,7 +51,7 @@ namespace FL.Domain.BaseObjects
 
         public override string ToString() => this.Name;
 
-        public int CompareTo(object other) => this.Id.CompareTo(((Enumeration)other).Id);
+        public int CompareTo(object obj) => this.Id.CompareTo(((Enumeration)obj).Id);
 
         public override bool Equals(object obj)
         {

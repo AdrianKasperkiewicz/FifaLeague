@@ -5,7 +5,7 @@ using MediatR;
 
 namespace FL.Domain.Aggregates.SeasonAggregate.Events
 {
-    public class SeasonCreated : IDomainEvent, INotification
+    public class SeasonCreated : IDomainEvent
     {
         public SeasonCreated(Guid id, string name, int number)
         {

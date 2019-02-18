@@ -19,11 +19,14 @@ namespace FL.API.Application.IoC
     {
         public static void RegisterFLModule(this IServiceCollection services)
         {
+
+
             services.AddTransient<AggregateStoreContext>();
             services.AddTransient<LeagueReadModelContext>();
-            services.AddDbContext<AggregateStoreContext>(context => context.UseInMemoryDatabase());
 
-            services.AddDbContext<LeagueReadModelContext>(context => context.UseInMemoryDatabase());
+            services.AddDbContext<AggregateStoreContext>(context => context.UseInMemoryDatabase("AggregateStore"));
+            services.AddDbContext<LeagueReadModelContext>(context => context.UseInMemoryDatabase("LeagueReadDatabase"));
+
             services.AddMediatR(typeof(CreateTeamCommand).GetTypeInfo().Assembly);
             services.AddMediatR(typeof(CreateSeasonEventHandler).GetTypeInfo().Assembly);
 

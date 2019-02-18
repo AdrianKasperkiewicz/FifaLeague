@@ -6,6 +6,7 @@ using FluentValidation.Results;
 
 namespace FL.API.Application.BaseObjects
 {
+    [Serializable]
     public class CommandValidationException : Exception
     {
         public CommandValidationException(IEnumerable<ValidationFailure> errors) 

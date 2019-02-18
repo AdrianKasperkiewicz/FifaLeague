@@ -24,6 +24,7 @@ namespace FL.Domain.Aggregates.SeasonAggregate
 
         public void GenerateFixture()
         {
+            throw new NotImplementedException();
         }
     }
 }

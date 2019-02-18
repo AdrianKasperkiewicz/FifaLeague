@@ -88,7 +88,7 @@ namespace FL.Domain.BaseObjects
                 return this.requestedHashCode.Value;
             }
 
-            return base.GetHashCode();
+            return this.GetHashCode();
         }
     }
 }

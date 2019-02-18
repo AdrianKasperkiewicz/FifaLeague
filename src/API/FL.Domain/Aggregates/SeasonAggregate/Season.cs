@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using FL.Domain.Aggregates.SeasonAggregate.Events;
 using FL.Domain.BaseObjects;
 
@@ -19,15 +20,22 @@ namespace FL.Domain.Aggregates.SeasonAggregate
 
         public int Number { get; }
 
-        public List<League> Leagues;
+        private readonly List<League> Leagues;
 
 
-        public void Start() { }
+        public void Start()
+        {
+            throw new NotImplementedException();
+        }
 
         public void Finish()
         {
+            throw new NotImplementedException();
         }
 
-        public void StartNew() { } // returns new season ?
+        public void StartNew()
+        {
+            throw new NotImplementedException();
+        } // returns new season ?
     }
 }
