@@ -12,6 +12,7 @@ matrix:
       dotnet: 2.2
       before_script:
       - chmod a+x ./build.sh
+      - dotnet tool install --global dotnet-sonarscanner
       - export PATH="$PATH:/home/travis/.dotnet/tools"
       script:
       - cd src/API
