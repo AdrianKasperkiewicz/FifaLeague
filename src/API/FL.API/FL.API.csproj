@@ -23,8 +23,4 @@
     <ProjectReference Include="..\FL.Infrastructure.ReadDatabase\FL.Infrastructure.ReadDatabase.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Infrastructure\" />
-  </ItemGroup>
-
 </Project>

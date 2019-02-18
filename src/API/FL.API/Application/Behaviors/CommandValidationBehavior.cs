@@ -26,7 +26,7 @@ namespace FL.API.Application.Behaviors
 
             if (errors.Any())
             {
-                throw new CommandValidationException(errors);
+                throw new ValidationException(errors);
             }
 
             return next();

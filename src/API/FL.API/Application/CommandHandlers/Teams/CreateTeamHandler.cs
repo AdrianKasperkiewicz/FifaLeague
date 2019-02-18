@@ -51,7 +51,9 @@ namespace FL.API.Application.CommandHandlers.Teams
     {
         public CreateTeamCommandValidator()
         {
-            RuleFor(x => x.Email).NotEmpty();
+            RuleFor(x => x.Email)
+                .NotEmpty()
+                .EmailAddress();
             RuleFor(x => x.Name).NotEmpty();
         }
     }
