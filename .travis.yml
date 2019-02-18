@@ -3,12 +3,19 @@ matrix:
     - language: csharp
       mono: none
       sudo: required
-      os: windows
+      dist: xenial
+      install: 
+        - dotnet tool install --global dotnet-sonarscanner
+      addons:
+        sonarcloud:
+          organization: "pmozola-github"
+      dotnet: 2.2
+      before_script:
+      - chmod a+x ./build.sh
+      - export PATH="$PATH:/home/travis/.dotnet/tools"
       script:
-<<<<<<< HEAD
-      - powershell build.ps1
-=======
-      - SonarScanner begin /k:"pmozola_FifaLeague" /d:sonar.organization="pmozola-github" /d:sonar.language="cs" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="9f60fa7128dc42b1d1c750143dbc19f030de056e"
-      - ./build.sh
-      - SonarScannere end /d:sonar.login="9f60fa7128dc42b1d1c750143dbc19f030de056e"
->>>>>>> parent of 2ad3e50... Update .travis.yml
+      - cd src/API
+      - dotnet restore
+      - dotnet sonarscanner begin /k:"FifaLeague" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="$SONAR_TOKEN"
+      - dotnet build
+      - dotnet sonarscanner end
