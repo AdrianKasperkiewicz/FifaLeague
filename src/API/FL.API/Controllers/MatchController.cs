@@ -1,8 +1,11 @@
-﻿using FL.API.Application.CommandHandlers.Match;
+﻿using System.Threading.Tasks;
+
+using FL.API.Application.CommandHandlers.Match;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+using Microsoft.Extensions.FileProviders;
 
 namespace FL.API.Controllers
 {
@@ -24,6 +27,16 @@ namespace FL.API.Controllers
         public async Task<ActionResult> Post([FromBody]AddMatchCommand command)
         {
             return Ok(await this.mediator.Send(command));
+        }
+
+        [HttpPost("facts")]
+        [AllowAnonymous]
+        public async Task<ActionResult> PostFacts()
+        {
+            var file = Request.Form.Files[0];
+
+
+            return this.Ok("ok");
         }
     }
 }

@@ -12,13 +12,15 @@ import { LoaderComponent } from './shared/components/loader/loader.component';
 import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorsHandler } from './shared/handlers/errors-handler';
+import { AddScoreComponent } from './pages/add-score/add-score.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddTeamComponent,
     TeamListComponent,
-    LoaderComponent
+    LoaderComponent,
+    AddScoreComponent
   ],
   imports: [
     BrowserAnimationsModule,

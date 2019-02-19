@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -22,5 +22,4 @@
     <ProjectReference Include="..\FL.Infrastructure.Database\FL.Infrastructure.Database.csproj" />
     <ProjectReference Include="..\FL.Infrastructure.ReadDatabase\FL.Infrastructure.ReadDatabase.csproj" />
   </ItemGroup>
-
 </Project>

@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FL.API", "FL.API\FL.API.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FL.Domain", "FL.Domain\FL.Domain.csproj", "{E0051918-18B0-4B0D-A27C-4CE5EF0D64FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FL.Infrastructure.Database", "FL.Infrastructure.Database\FL.Infrastructure.Database.csproj", "{37AA9F48-B532-41AA-9433-104580FDD7A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FL.Infrastructure.Database", "FL.Infrastructure.Database\FL.Infrastructure.Database.csproj", "{37AA9F48-B532-41AA-9433-104580FDD7A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FL.Infrastructure.ReadDatabase", "FL.Infrastructure.ReadDatabase\FL.Infrastructure.ReadDatabase.csproj", "{A44EE1CC-7C09-486F-834F-B92ED2D1B881}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FL.Infrastructure.ReadDatabase", "FL.Infrastructure.ReadDatabase\FL.Infrastructure.ReadDatabase.csproj", "{A44EE1CC-7C09-486F-834F-B92ED2D1B881}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
