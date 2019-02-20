@@ -1,5 +1,4 @@
 ﻿using FL.API.Application.IoC;
-using FL.API.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,14 +30,24 @@ namespace FL.API
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+            //net core 2.2 issue https://github.com/aspnet/AspNetCore/issues/6166
+            app.Use(async (ctx, next) =>
+            {
+                await next();
+                if (ctx.Response.StatusCode == 204)
+                {
+                    ctx.Response.ContentLength = 0;
+                }
+            });
+
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "FL League API V1");
             });
-            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseMvc();
         }

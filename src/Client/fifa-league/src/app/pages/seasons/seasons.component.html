@@ -1,0 +1,6 @@
+<button *ngIf="!seasons?.length"  [routerLink]="['/season/add']" mat-raised-button color="primary">Dodaj Sezon</button>
+<ul>
+  <li *ngFor="let season of seasons">
+    {{ season.id }}, {{ season.number }}, {{ season.isRunning }}
+  </li>
+</ul>

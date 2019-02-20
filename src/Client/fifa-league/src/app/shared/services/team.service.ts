@@ -20,7 +20,7 @@ export class TeamService {
   }
 
   get():Observable<Array<ITeam>>{
-    const getTeamUrl = this.baseUrl + 'team'
+    const getTeamUrl = this.baseUrl + 'team';
 
     return this.httpClient.get<Array<ITeam>>(getTeamUrl);
   }

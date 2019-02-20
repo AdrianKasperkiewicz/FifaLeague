@@ -1,0 +1,15 @@
+<h3>Dodaj Zespół</h3>
+<form [formGroup]="seasonForm" (ngSubmit)="onSubmit()" class="season-form">
+  <mat-form-field>
+    <input matInput placeholder="Nazwa" formControlName="name" />
+    <mat-error *ngIf="f.name.hasError('required')">
+      Nazwa jest <strong>wymagana</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <div class="form-group">
+    <button mat-raised-button color="primary" [disabled]="seasonForm.invalid">
+      Zapisz
+    </button>
+  </div>
+</form>

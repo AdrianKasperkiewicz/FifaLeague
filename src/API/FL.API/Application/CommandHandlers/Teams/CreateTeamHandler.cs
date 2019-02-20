@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+
 using FluentValidation;
 using FL.Domain;
 using FL.Domain.Aggregates.TeamAggregate;

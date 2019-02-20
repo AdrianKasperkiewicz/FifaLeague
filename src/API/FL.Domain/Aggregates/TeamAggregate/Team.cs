@@ -12,9 +12,9 @@ namespace FL.Domain.Aggregates.TeamAggregate
             this.Name = name;
             this.IsActive = true;
             this.EmailAddress = new EmailAddress(email);
-            base.Id = Guid.NewGuid();
+            base.Id = new Identity();
 
-            this.AddDomainEvent(new TeamCreatedDomainEvent(this.Id, this.Name, this.EmailAddress.Value));
+            this.AddDomainEvent(new TeamCreatedDomainEvent(this.Id.Value, this.Name, this.EmailAddress.Value));
         }
 
         public string Name { get; }

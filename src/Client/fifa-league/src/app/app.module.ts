@@ -12,13 +12,21 @@ import { LoaderComponent } from './shared/components/loader/loader.component';
 import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorsHandler } from './shared/handlers/errors-handler';
+import { AddFirstSeasonComponent } from './pages/add-first-season/add-first-season.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { HomeComponent } from './pages/home/home.component';
+import { SeasonsComponent } from './pages/seasons/seasons.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddTeamComponent,
     TeamListComponent,
-    LoaderComponent
+    LoaderComponent,
+    AddFirstSeasonComponent,
+    NavbarComponent,
+    HomeComponent,
+    SeasonsComponent
   ],
   imports: [
     BrowserAnimationsModule,

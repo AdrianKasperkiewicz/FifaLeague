@@ -21,7 +21,7 @@ namespace FL.Infrastructure.Database
         {
             var aggregateToStore = new DbAggregate
             {
-                Id = aggregate.Id,
+                Id = aggregate.Id.Value,
                 Value = JsonConvert.SerializeObject(aggregate)
             };
 

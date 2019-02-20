@@ -38,10 +38,10 @@ namespace FL.API.Controllers
 
         [HttpGet()]
         [AllowAnonymous]
-        public async Task<ActionResult> Get([FromBody]GetSeasonListQuery command)
+        public async Task<ActionResult> Get()
         {
             return this.Ok(
-                 await this.mediator.Send(command));
+                 await this.mediator.Send(new GetSeasonListQuery()));
         }
     }
 }

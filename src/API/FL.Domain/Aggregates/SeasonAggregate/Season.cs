@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+
 using FL.Domain.Aggregates.SeasonAggregate.Events;
 using FL.Domain.BaseObjects;
 
@@ -9,13 +9,13 @@ namespace FL.Domain.Aggregates.SeasonAggregate
     {
         public Season(string name)
         {
-            this.Name = name;
             this.Number = 1;
+            base.Id = new Identity();
 
-            this.AddDomainEvent(new SeasonCreated(base.Id, this.Name, this.Number));
+            this.AddDomainEvent(new SeasonCreated(base.Id.Value, this.Number));
         }
 
-        public string Name { get; }
+       
 
         public int Number { get; }
         

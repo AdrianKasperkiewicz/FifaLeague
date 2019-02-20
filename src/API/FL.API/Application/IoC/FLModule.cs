@@ -28,7 +28,7 @@ namespace FL.API.Application.IoC
             services.AddDbContext<LeagueReadModelContext>(context => context.UseInMemoryDatabase("LeagueReadDatabase"));
 
             services.AddMediatR(typeof(CreateTeamCommand).GetTypeInfo().Assembly);
-            services.AddMediatR(typeof(CreateSeasonEventHandler).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(SeasonCreatedEventHandler).GetTypeInfo().Assembly);
 
             services.AddEntityFrameworkInMemoryDatabase();
 

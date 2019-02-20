@@ -1,12 +1,9 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Builder;
+﻿using System.Net;
+using System.Threading.Tasks;
+
+using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
 
 namespace FL.API.Infrastructure
 {
@@ -19,7 +16,7 @@ namespace FL.API.Infrastructure
             this.next = next;
         }
 
-        public async Task Invoke(HttpContext context /* other dependencies */)
+        public async Task Invoke(HttpContext context)
         {
             try
             {

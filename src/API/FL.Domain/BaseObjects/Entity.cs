@@ -9,7 +9,7 @@ namespace FL.Domain.BaseObjects
 
         private List<IDomainEvent> domainEvents;
 
-        public virtual Guid Id { get; protected set; }
+        public virtual Identity Id { get; protected set; }
 
         public IReadOnlyCollection<IDomainEvent> DomainEvents => this.domainEvents?.AsReadOnly();
 
@@ -46,7 +46,7 @@ namespace FL.Domain.BaseObjects
 
         public bool IsTransient()
         {
-            return this.Id == default(Guid);
+            return this.Id.Value == default(Guid);
         }
 
         public override bool Equals(object obj)
