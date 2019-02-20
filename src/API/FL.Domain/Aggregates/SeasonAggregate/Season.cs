@@ -11,7 +11,6 @@ namespace FL.Domain.Aggregates.SeasonAggregate
         {
             this.Name = name;
             this.Number = 1;
-            this.Leagues = new List<League>();
 
             this.AddDomainEvent(new SeasonCreated(base.Id, this.Name, this.Number));
         }
@@ -19,9 +18,7 @@ namespace FL.Domain.Aggregates.SeasonAggregate
         public string Name { get; }
 
         public int Number { get; }
-
-        private readonly List<League> Leagues;
-
+        
 
         public void Start()
         {
