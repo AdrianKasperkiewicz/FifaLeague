@@ -1,9 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.IO;
+using System.Threading.Tasks;
 
 using FL.API.Application.CommandHandlers.Match;
+using FL.Infrastructure.OCR;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.FileProviders;
 
@@ -31,12 +35,19 @@ namespace FL.API.Controllers
 
         [HttpPost("facts")]
         [AllowAnonymous]
-        public async Task<ActionResult> PostFacts()
+        public async Task<ActionResult> PostFacts(IFormFile file)
         {
-            var file = Request.Form.Files[0];
+            Byte[] imagebytes;
 
+            using (var ms = new MemoryStream())
+            {
+                file.CopyTo(ms);
+                imagebytes = ms.ToArray();
+            }
+            var reader = new OCRReader();
+            var result  = reader.Read(imagebytes);
 
-            return this.Ok("ok");
+            return this.Ok(result);
         }
     }
 }
