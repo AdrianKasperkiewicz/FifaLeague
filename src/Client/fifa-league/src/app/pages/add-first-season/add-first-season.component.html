@@ -1,15 +1,36 @@
-<h3>Dodaj Zespół</h3>
-<form [formGroup]="seasonForm" (ngSubmit)="onSubmit()" class="season-form">
-  <mat-form-field>
-    <input matInput placeholder="Nazwa" formControlName="name" />
-    <mat-error *ngIf="f.name.hasError('required')">
-      Nazwa jest <strong>wymagana</strong>
-    </mat-error>
-  </mat-form-field>
+<h3>Kreator Sezonu</h3>
 
-  <div class="form-group">
-    <button mat-raised-button color="primary" [disabled]="seasonForm.invalid">
-      Zapisz
-    </button>
-  </div>
-</form>
+----------------
+<br />
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="seasonFormGroup">
+    <form [formGroup]="seasonFormGroup">
+      <ng-template matStepLabel>Nazwa Ligi</ng-template>
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Nazwa ligi"
+          formControlName="name"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input class="ng-hide" id="input-file-id" multiple type="file" />
+        <label for="input-file-id" class="md-button md-raised md-primary"
+          >Choose Files</label
+        >
+      </mat-form-field>
+      <div>
+        <button mat-button (click)="onLeagueSubmit(stepper)">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

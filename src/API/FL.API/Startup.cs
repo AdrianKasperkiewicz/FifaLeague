@@ -20,6 +20,8 @@ namespace FL.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.RegisterApplicationModule();
@@ -32,6 +34,7 @@ namespace FL.API
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
             // net core 2.2 issue https://github.com/aspnet/AspNetCore/issues/6166
             app.Use(async (ctx, next) =>
             {
@@ -42,13 +45,14 @@ namespace FL.API
                 }
             });
 
+            app.UseCors(builder => builder.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:4200"));
+
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "FL League API V1");
             });
-            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseMvc();
         }

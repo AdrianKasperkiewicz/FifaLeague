@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SeasonService } from 'src/app/shared/services/season.service';
 import { Router } from '@angular/router';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-add-first-season',
@@ -9,26 +10,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-first-season.component.css']
 })
 export class AddFirstSeasonComponent implements OnInit {
-  seasonForm: FormGroup;
+  seasonFormGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private seasonService: SeasonService, private router: Router) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private seasonService: SeasonService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.seasonForm = this.formBuilder.group({
+    this.seasonFormGroup = this.formBuilder.group({
       name: ['', Validators.required]
     });
-
   }
 
-  get f() { return this.seasonForm.controls; }
+  get seasonForm() {
+    return this.seasonFormGroup.controls;
+  }
 
-
-  onSubmit() {
-    if (this.seasonForm.invalid) {
-      console.log("invalid")
+  onLeagueSubmit(stepper: MatStepper) {
+    if (this.seasonFormGroup.invalid) {
+      console.log('invalid');
       return;
     }
-
-    this.seasonService.create(this.seasonForm.value).subscribe(x => this.router.navigate(['/season']));
+    this.seasonService
+      .create(this.seasonFormGroup.value).subscribe();
   }
 }

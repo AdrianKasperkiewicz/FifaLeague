@@ -19,7 +19,7 @@ export class SeasonService {
   }
 
   create(form): Observable<any>{
-    const postSeasonsUrl = this.baseUrl + 'season';
+    const postSeasonsUrl = this.baseUrl + 'Season';
 
     return this.httpClient.post<string>(postSeasonsUrl, form);
   }

@@ -8,7 +8,7 @@ namespace FL.Infrastructure.Database
 {
     public class AggregateStoreContext : DbContext
     {
-        public AggregateStoreContext(DbContextOptions options)
+        public AggregateStoreContext(DbContextOptions<AggregateStoreContext> options)
             : base(options)
         {
         }
