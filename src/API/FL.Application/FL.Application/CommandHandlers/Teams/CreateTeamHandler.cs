@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-
-using FluentValidation;
 using FL.Domain;
 using FL.Domain.Aggregates.TeamAggregate;
+using FluentValidation;
 using MediatR;
 
-namespace FL.API.Application.CommandHandlers.Teams
+namespace FL.Application.CommandHandlers.Teams
 {
     public class CreateTeamHandler : IRequestHandler<CreateTeamCommand, Guid>
     {
@@ -16,7 +15,7 @@ namespace FL.API.Application.CommandHandlers.Teams
 
         public CreateTeamHandler(IRepository<Team> repository, IMediator mediator)
         {
-           this.repository = repository;
+            this.repository = repository;
             this.mediator = mediator;
         }
 
@@ -24,11 +23,11 @@ namespace FL.API.Application.CommandHandlers.Teams
         {
             var team = new Team(request.Name, request.Email);
 
-           this.repository.Save(team);
+            this.repository.Save(team);
 
-           foreach(var @event in team.DomainEvents)
+            foreach (var @event in team.DomainEvents)
             {
-                this.mediator.Publish(@event);
+                this.mediator.Publish(@event, cancellationToken);
             }
 
             return Task.FromResult(Guid.NewGuid());
@@ -52,10 +51,10 @@ namespace FL.API.Application.CommandHandlers.Teams
     {
         public CreateTeamCommandValidator()
         {
-            RuleFor(x => x.Email)
+            this.RuleFor(x => x.Email)
                 .NotEmpty()
                 .EmailAddress();
-            RuleFor(x => x.Name).NotEmpty();
+            this.RuleFor(x => x.Name).NotEmpty();
         }
     }
 }

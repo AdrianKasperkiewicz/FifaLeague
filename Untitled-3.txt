@@ -1,0 +1,27 @@
+private void ApplySubmittedStage(AdmissionsAttempt admissionsAttempt, IDatabaseContext context)
+        {
+            // Get the Application Submitted Stage (this should be in every system)
+            // SYSTEM REQUIRED BUSINESS MEANING NAME
+            AdmissionsStage stageSubmitted = context.GetByBusinessMeaningName<AdmissionsStage>("AdmStage.AppSubmitted");
+            if (stageSubmitted == null)
+            {
+                Manager.Logger.Critical("SYSTEM CONFIGURATION ISSUE :: Admissions Stage \"AdmStage.AppSubmitted\" missing from database.");
+                throw new NullReferenceException("Admissions Stage \"AdmStage.AppSubmitted\" missing");
+            }
+
+            // Set the stage
+            admissionsAttempt.AdmissionsStage = stageSubmitted;
+
+            // Add in the Application Submitted Milestone if it's not already added
+            if (admissionsAttempt.Milestones.All(m => m.AdmissionsStageID != admissionsAttempt.AdmissionsStageOrEmpty.ID))
+            {
+                admissionsAttempt.Milestones.Add(new AdmissionsAttemptMilestone()
+                {
+                    AdmissionsAttemptID = admissionsAttempt.ID,
+                    AdmissionsAttempt = admissionsAttempt,
+                    DateOfMilestone = DateTime.Now,
+                    AdmissionsStageID = admissionsAttempt.AdmissionsStageID,
+                    AdmissionsStage = admissionsAttempt.AdmissionsStageOrEmpty
+                });
+            }
+        }

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-
 using FL.Domain;
 using FL.Domain.Aggregates.SeasonAggregate;
 using FluentValidation;
 using MediatR;
 
-namespace FL.API.Application.CommandHandlers.Seasons
+namespace FL.Application.CommandHandlers.Seasons
 {
     public class CreateSeasonHandler : IRequestHandler<CreateSeasonCommand, Guid>
     {
@@ -48,7 +47,7 @@ namespace FL.API.Application.CommandHandlers.Seasons
     {
         public CreateSeasonCommanddValidator()
         {
-            RuleFor(x => x.Name)
+            this.RuleFor(x => x.Name)
                 .NotEmpty();
         }
     }

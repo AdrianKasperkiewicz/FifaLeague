@@ -15,10 +15,7 @@ namespace FL.Domain.Aggregates.SeasonAggregate
             this.AddDomainEvent(new SeasonCreated(base.Id.Value, this.Number));
         }
 
-       
-
         public int Number { get; }
-        
 
         public void Start()
         {

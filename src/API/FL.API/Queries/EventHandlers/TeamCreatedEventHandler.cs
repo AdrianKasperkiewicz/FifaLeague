@@ -1,9 +1,9 @@
-﻿using FL.Domain.Aggregates.SeasonAggregate.Events;
+﻿using FL.API.Queries.Database;
+using FL.Application;
 using FL.Domain.Aggregates.TeamAggregate.Events;
-using FL.Infrastructure.ReadDatabase.Database;
 using MediatR;
 
-namespace FL.Infrastructure.ReadDatabase.EventHandlers
+namespace FL.API.Queries.EventHandlers
 {
     public class TeamCreatedEventHandler : NotificationHandler<TeamCreatedDomainEvent>
     {

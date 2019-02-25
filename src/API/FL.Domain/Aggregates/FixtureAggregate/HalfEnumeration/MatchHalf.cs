@@ -1,7 +1,6 @@
-﻿
-using FL.Domain.BaseObjects;
+﻿using FL.Domain.BaseObjects;
 
-namespace FL.Domain.Aggregates.FixtureAggregate
+namespace FL.Domain.Aggregates.FixtureAggregate.HalfEnumeration
 {
     public class MatchHalf : Enumeration
     {

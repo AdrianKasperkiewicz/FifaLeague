@@ -1,14 +1,14 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace FL.Infrastructure.Database
 {
     public class AggregateStoreContext : DbContext
     {
-
-        public AggregateStoreContext(DbContextOptions<AggregateStoreContext> options)
+        public AggregateStoreContext(DbContextOptions options)
             : base(options)
         {
         }

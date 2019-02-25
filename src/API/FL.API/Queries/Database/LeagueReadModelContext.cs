@@ -1,7 +1,8 @@
-﻿using System;
+﻿using FL.API.Queries.ViewModels;
+using FL.Application;
 using Microsoft.EntityFrameworkCore;
 
-namespace FL.Infrastructure.ReadDatabase.Database
+namespace FL.API.Queries.Database
 {
     public class LeagueReadModelContext : DbContext
     {
@@ -14,5 +15,4 @@ namespace FL.Infrastructure.ReadDatabase.Database
 
         public DbSet<TeamViewModel> Team { get; set; }
     }
-
 }

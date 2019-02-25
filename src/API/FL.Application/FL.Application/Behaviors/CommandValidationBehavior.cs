@@ -2,11 +2,10 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-
 using FluentValidation;
 using MediatR;
 
-namespace FL.API.Application.Behaviors
+namespace FL.Application.Behaviors
 {
     public class CommandValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>

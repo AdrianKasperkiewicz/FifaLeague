@@ -1,10 +1,9 @@
-﻿using FL.API.Application.CommandHandlers.Seasons;
+﻿using System.Threading.Tasks;
+using FL.API.Queries.QueryHandlers;
+using FL.Application.CommandHandlers.Seasons;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
-
-using System.Threading.Tasks;
-using FL.API.Application.QueryHandlers;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FL.API.Controllers
 {
@@ -36,7 +35,7 @@ namespace FL.API.Controllers
                 await this.mediator.Send(command));
         }
 
-        [HttpGet()]
+        [HttpGet]
         [AllowAnonymous]
         public async Task<ActionResult> Get()
         {

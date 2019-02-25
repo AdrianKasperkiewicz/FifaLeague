@@ -9,8 +9,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="2.2.2" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\FL.Domain\FL.Domain.csproj" />
-  </ItemGroup>
-
 </Project>

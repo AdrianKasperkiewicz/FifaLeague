@@ -1,4 +1,4 @@
-﻿namespace FL.Domain.Aggregates.FixtureAggregate
+﻿namespace FL.Domain.Aggregates.FixtureAggregate.HalfEnumeration
 {
     public class FirstMatchHalf : MatchHalf
     {

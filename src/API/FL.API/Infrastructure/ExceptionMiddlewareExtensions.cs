@@ -7,11 +7,11 @@ using Newtonsoft.Json;
 
 namespace FL.API.Infrastructure
 {
-    public class ErrorHandlingMiddleware
+    public class ExceptionMiddlewareExtensions
     {
         private readonly RequestDelegate next;
 
-        public ErrorHandlingMiddleware(RequestDelegate next)
+        public ExceptionMiddlewareExtensions(RequestDelegate next)
         {
             this.next = next;
         }
@@ -20,7 +20,7 @@ namespace FL.API.Infrastructure
         {
             try
             {
-                await next(context);
+                await this.next(context);
             }
             catch (ValidationException ex)
             {

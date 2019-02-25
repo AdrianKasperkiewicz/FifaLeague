@@ -1,4 +1,4 @@
-﻿using FL.API.Application.IoC;
+﻿using FL.API.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +13,7 @@ namespace FL.API
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -21,7 +21,9 @@ namespace FL.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.RegisterFLModule();
+
+            services.RegisterApplicationModule();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "FL League API", Version = "v1" });
@@ -30,8 +32,7 @@ namespace FL.API
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-
-            //net core 2.2 issue https://github.com/aspnet/AspNetCore/issues/6166
+            // net core 2.2 issue https://github.com/aspnet/AspNetCore/issues/6166
             app.Use(async (ctx, next) =>
             {
                 await next();

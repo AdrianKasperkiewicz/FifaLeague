@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace FL.Infrastructure.ReadDatabase
+namespace FL.API.Queries.ViewModels
 {
-    public interface ISeasonReadRepository
-    {
-        Task<IList<SeasonViewModel>> GetSeasons();
-    }
-
     public class SeasonViewModel
     {
         public SeasonViewModel()
@@ -28,5 +21,4 @@ namespace FL.Infrastructure.ReadDatabase
 
         public int Number { get; set; }
     }
-
 }

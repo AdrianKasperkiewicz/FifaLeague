@@ -8,7 +8,8 @@ using Newtonsoft.Json;
 
 namespace FL.Infrastructure.Database
 {
-    public class AggregateRepository<T> : IRepository<T> where T : Entity, IAggregateRoot
+    public class AggregateRepository<T> : IRepository<T>
+        where T : Entity, IAggregateRoot
     {
         private readonly AggregateStoreContext context;
 

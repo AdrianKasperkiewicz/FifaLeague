@@ -1,8 +1,9 @@
-﻿using FL.Domain.Aggregates.SeasonAggregate.Events;
-using FL.Infrastructure.ReadDatabase.Database;
+﻿using FL.API.Queries.Database;
+using FL.API.Queries.ViewModels;
+using FL.Domain.Aggregates.SeasonAggregate.Events;
 using MediatR;
 
-namespace FL.Infrastructure.ReadDatabase.EventHandlers
+namespace FL.API.Queries.EventHandlers
 {
     public class SeasonCreatedEventHandler : NotificationHandler<SeasonCreated>
     {

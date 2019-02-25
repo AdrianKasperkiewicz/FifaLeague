@@ -1,10 +1,12 @@
 ﻿using System;
 
-namespace FL.Infrastructure.ReadDatabase
+namespace FL.Application
 {
     public class TeamViewModel
     {
-        public TeamViewModel() { }
+        public TeamViewModel()
+        {
+        }
 
         public TeamViewModel(Guid id, string email, string name)
         {
@@ -24,5 +26,4 @@ namespace FL.Infrastructure.ReadDatabase
 
         public Guid? LeagueGuid { get; private set; }
     }
-
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-using FL.Domain.Aggregates.TeamAggregate.Events;
+﻿using FL.Domain.Aggregates.TeamAggregate.Events;
 using FL.Domain.BaseObjects;
 
 namespace FL.Domain.Aggregates.TeamAggregate

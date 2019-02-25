@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using FL.Domain.Aggregates.FixtureAggregate.HalfEnumeration;
 using FL.Domain.BaseObjects;
 
 namespace FL.Domain.Aggregates.FixtureAggregate

@@ -9,13 +9,13 @@ namespace FL.Domain.Aggregates.FixtureAggregate
 
         public int AwayTeam { get; private set; }
 
+        public List<Goal> Goals { get; private set; }
+
+        public DateTime? DateOfPlay { get; private set; }
+
         public bool IsPlayed()
         {
             return this.DateOfPlay.HasValue;
         }
-
-        public List<Goal> Goals { get; private set; }
-
-        public DateTime? DateOfPlay { get; private set; }
     }
 }
