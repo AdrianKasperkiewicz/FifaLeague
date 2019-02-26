@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material';
+import { SeasonService } from 'src/app/shared/services/season.service';
 
 @Component({
   selector: 'app-league-step',
@@ -13,7 +14,7 @@ export class LeagueStepComponent implements OnInit {
   imgURL: any;
   public message: string;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private seasonService: SeasonService) {}
 
   ngOnInit() {
     this.leagueStepForm = this.formBuilder.group({
@@ -42,8 +43,10 @@ export class LeagueStepComponent implements OnInit {
     };
   }
 
-  onSubmit(r) {
-    console.log("step 1 finsished");
-    this.stepper.next();
+  onSubmit() {
+    this.seasonService.create(this.leagueStepForm.value).subscribe(x => {
+      console.log('step 1 saved');
+      this.stepper.next();
+    });
   }
 }

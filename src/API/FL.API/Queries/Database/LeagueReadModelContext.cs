@@ -13,6 +13,8 @@ namespace FL.API.Queries.Database
 
         public DbSet<SeasonViewModel> Season { get; set; }
 
+        public DbSet<DivisionViewModel> Division { get; set; }
+
         public DbSet<TeamViewModel> Team { get; set; }
     }
 }
