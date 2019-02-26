@@ -16,6 +16,11 @@ import { AddFirstSeasonComponent } from './pages/add-first-season/add-first-seas
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SeasonsComponent } from './pages/seasons/seasons.component';
+import { LeagueStepComponent } from './pages/add-first-season/league-step/league-step.component';
+import { DivisionStepComponent } from './pages/add-first-season/division-step/division-step.component';
+import { TeamStepComponent } from './pages/add-first-season/team-step/team-step.component';
+import { DivisionCardComponent } from './pages/add-first-season/division-step/division-card/division-card.component';
+import { TeamCardComponent } from './pages/add-first-season/team-step/team-card/team-card.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,12 @@ import { SeasonsComponent } from './pages/seasons/seasons.component';
     AddFirstSeasonComponent,
     NavbarComponent,
     HomeComponent,
-    SeasonsComponent
+    SeasonsComponent,
+    LeagueStepComponent,
+    DivisionStepComponent,
+    TeamStepComponent,
+    DivisionCardComponent,
+    TeamCardComponent,
   ],
   imports: [
     BrowserAnimationsModule,

@@ -1,0 +1,22 @@
+<mat-card>
+
+
+
+  <form [formGroup]="frmStepThree">
+    <button mat-raised-button color="primary" (click)="addTeam()">
+      Dodaj Zespol
+    </button>
+    <div formArrayName="form" *ngFor="let item of frmStepThree.get('teams').controls">
+
+
+   <app-team-card [teamForm]="item"></app-team-card>
+    </div>
+
+    <mat-card-actions>
+      <button mat-raised-button (click)="onSubmit()" class="nav-btn pull-right">
+        zakoncz
+      </button>
+    </mat-card-actions>
+  </form>
+
+</mat-card>

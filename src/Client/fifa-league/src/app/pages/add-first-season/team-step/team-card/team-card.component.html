@@ -1,0 +1,19 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Nowa Zespol
+      </mat-panel-title>
+      <mat-panel-description>
+        jakis opis
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div [formGroup]="teamForm"></div>
+    <mat-form-field>
+      <input matInput formControlName="name" placeholder="Nazwa Zespolu" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="email" placeholder="Adres email" />
+    </mat-form-field>
+  </mat-expansion-panel>
+</mat-accordion>

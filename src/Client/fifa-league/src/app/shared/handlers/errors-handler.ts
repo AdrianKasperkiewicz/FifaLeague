@@ -21,12 +21,13 @@ export class ErrorsHandler implements ErrorHandler {
       }
       // Http Error
       this.toastrService.error(`${error.status} - ${error.message}`, null, { onActivateTick: true });
-    } else {
-      // Client Error Happend
-      // Send the error to the server and then
-      // router.navigate(['/error'], { queryParams: errorWithContextInfo });
-      this.toastrService.error('${error}', null, { onActivateTick: true });
     }
+    // else {
+    //   // Client Error Happend
+    //   // Send the error to the server and then
+    //   // router.navigate(['/error'], { queryParams: errorWithContextInfo });
+    //   this.toastrService.error('${error}', null, { onActivateTick: true });
+    // }
   }
 
   private get toastrService(): ToastrService {

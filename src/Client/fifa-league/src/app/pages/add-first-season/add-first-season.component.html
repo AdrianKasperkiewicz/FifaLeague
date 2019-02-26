@@ -2,35 +2,18 @@
 
 ----------------
 <br />
-<mat-horizontal-stepper [linear]="true" #stepper>
-  <mat-step [stepControl]="seasonFormGroup">
-    <form [formGroup]="seasonFormGroup">
-      <ng-template matStepLabel>Nazwa Ligi</ng-template>
-      <mat-form-field>
-        <input
-          matInput
-          placeholder="Nazwa ligi"
-          formControlName="name"
-          required
-        />
-      </mat-form-field>
-      <mat-form-field>
-        <input class="ng-hide" id="input-file-id" multiple type="file" />
-        <label for="input-file-id" class="md-button md-raised md-primary"
-          >Choose Files</label
-        >
-      </mat-form-field>
-      <div>
-        <button mat-button (click)="onLeagueSubmit(stepper)">Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
+<mat-horizontal-stepper linear #stepper>
+	<mat-step [stepControl]="leagueStepForm">
+		<ng-template matStepLabel>Szczegóły Ligi</ng-template>
+		<app-league-step [stepper] ="stepper"></app-league-step>
+	</mat-step>
+	<mat-step [stepControl]="frmStepTwo">
+		<ng-template matStepLabel>Szczegóły Dywizji</ng-template>
+		<app-division-step [stepper] ="stepper"></app-division-step>
+	</mat-step>
+	<mat-step [stepControl]="frmStepThree">
+		<ng-template matStepLabel>Zespoły</ng-template>
+		<app-team-step></app-team-step>
+	</mat-step>
 </mat-horizontal-stepper>
+
