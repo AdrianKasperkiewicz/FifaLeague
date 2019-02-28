@@ -20,7 +20,7 @@ namespace FL.API.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> Post([FromBody]CreateTeamCommand command)
+        public async Task<ActionResult> Post([FromBody]CreateTeamsCommand command)
         {
             return this.Ok(
                await this.mediator

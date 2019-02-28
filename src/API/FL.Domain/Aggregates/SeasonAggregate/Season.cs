@@ -34,9 +34,29 @@ namespace FL.Domain.Aggregates.SeasonAggregate
 
         public void Apply(DivisionCreatedEvent @event)
         {
-            var division = new Division(@event.Id, @event.Name, @event.Hierarchy);
+            var division = new Division(@event.DivisionId, @event.Name, @event.Hierarchy);
 
             this.divisions.Add(division);
+        }
+
+        public void Apply(TeamAddedToDivisionEvent @event)
+        {
+            this.divisions.First(x => x.Id.Value == @event.DivisionId).AddTeam(@event.TeamId);
+        }
+
+        public void AddTeam(Guid teamId, Guid divisionId)
+        {
+            if (this.divisions.All(x => x.Id.Value != divisionId))
+            {
+                throw new ArgumentException($"Divsion with Id {divisionId} not found.");
+            }
+
+            if (this.divisions.Any(x => x.Teams.Contains(teamId)))
+            {
+                throw new TeamAlreadyAddedToDivisonException();
+            }
+
+            this.ApplyChange(new TeamAddedToDivisionEvent(base.Id.Value, divisionId, teamId));
         }
 
         public void AddDivision(string divisionName, int divisionHierarchy)

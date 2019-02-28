@@ -6,18 +6,18 @@ namespace FL.Domain.BaseObjects
 {
     public class DomainEvent : INotification
     {
-        private Guid id;
+        private Guid eventId;
 
-        public Guid Id
+        public Guid EventId
         {
             get
             {
-                if (this.id == Guid.Empty)
+                if (this.eventId == Guid.Empty)
                 {
-                    this.id = Guid.NewGuid();
+                    this.eventId = Guid.NewGuid();
                 }
 
-                return this.id;
+                return this.eventId;
             }
         }
 

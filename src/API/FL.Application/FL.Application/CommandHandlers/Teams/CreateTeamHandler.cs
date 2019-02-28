@@ -1,14 +1,17 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using FL.Domain;
-using FL.Domain.Aggregates.TeamAggregate;
-using FluentValidation;
-using MediatR;
-
-namespace FL.Application.CommandHandlers.Teams
+﻿namespace FL.Application.CommandHandlers.Teams
 {
-    public class CreateTeamHandler : IRequestHandler<CreateTeamCommand, Guid>
+    using System;
+    using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using FL.Application.CommandHandlers.Division;
+    using FL.Domain;
+    using FL.Domain.Aggregates.SeasonAggregate.Events;
+    using FL.Domain.Aggregates.TeamAggregate;
+    using FluentValidation;
+    using MediatR;
+
+    public class CreateTeamHandler : AsyncRequestHandler<CreateTeamsCommand>
     {
         private readonly IRepository<Team> repository;
         private readonly IMediator mediator;
@@ -19,42 +22,78 @@ namespace FL.Application.CommandHandlers.Teams
             this.mediator = mediator;
         }
 
-        public Task<Guid> Handle(CreateTeamCommand request, CancellationToken cancellationToken)
+        protected override async Task Handle(CreateTeamsCommand request, CancellationToken cancellationToken)
         {
-            var team = new Team(request.Name, request.Email);
-
-            this.repository.Save(team);
-
-            foreach (var @event in team.GetUncommittedChanges())
+            foreach (var team in request.Teams)
             {
-                this.mediator.Publish(@event, cancellationToken);
-            }
+                var aggregate = new Team(team.Name, team.Email);
+                await this.repository.Save(aggregate);
 
-            return Task.FromResult(Guid.NewGuid());
+                foreach (var @event in aggregate.GetUncommittedChanges())
+                {
+                    await this.mediator.Publish(@event);
+                }
+
+                await this.mediator.Send(new AddNewTeamToDivisionCommand(aggregate.Id.Value, request.SeasonId, team.DivisionId));
+            }
         }
     }
 
-    public class CreateTeamCommand : IRequest<Guid>
+    public class CreateTeamsCommand : IRequest
     {
-        public CreateTeamCommand(string name, string email)
+        public CreateTeamsCommand(Guid seasonId, IList<TeamViewModel> teams)
+        {
+            this.SeasonId = seasonId;
+            this.Teams = teams;
+        }
+
+        public IList<TeamViewModel> Teams { get; }
+
+        public Guid SeasonId { get; }
+    }
+
+    public class TeamViewModel
+    {
+        public TeamViewModel(string name, string email, Guid divisionId)
         {
             this.Email = email;
+            this.DivisionId = divisionId;
             this.Name = name;
         }
 
         public string Name { get; }
 
         public string Email { get; }
+
+        public Guid DivisionId { get; }
     }
 
-    public class CreateTeamCommandValidator : AbstractValidator<CreateTeamCommand>
+    public class CreateTeamsCommandValidator : AbstractValidator<CreateTeamsCommand>
     {
-        public CreateTeamCommandValidator()
+        public CreateTeamsCommandValidator()
         {
+            this.RuleFor(x => x.SeasonId)
+                .NotEmpty();
+
+            this.RuleForEach(x => x.Teams)
+                .SetValidator(new TeamViewModelValidatior());
+        }
+    }
+
+    internal class TeamViewModelValidatior : AbstractValidator<TeamViewModel>
+    {
+        public TeamViewModelValidatior()
+        {
+            this.RuleFor(x => x.Name)
+                .NotEmpty();
+
             this.RuleFor(x => x.Email)
-                .NotEmpty()
                 .EmailAddress();
-            this.RuleFor(x => x.Name).NotEmpty();
+
+            this.RuleFor(x => x.DivisionId)
+                .NotEmpty()
+                .NotNull()
+                .NotEqual(Guid.NewGuid());
         }
     }
 }

@@ -11,7 +11,7 @@ namespace FL.Application.IoC
         public static void RegisterFLModule(this IServiceCollection services)
         {
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandValidationBehavior<,>));
-            services.AddTransient<IValidator<CreateTeamCommand>, CreateTeamCommandValidator>();
+            services.AddTransient<IValidator<CreateTeamsCommand>, CreateTeamsCommandValidator>();
         }
     }
 }

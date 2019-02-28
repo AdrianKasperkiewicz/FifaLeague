@@ -11,11 +11,14 @@ namespace FL.Domain.Aggregates.SeasonAggregate.Events
             this.Name = name;
             this.SeasonId = seasonId;
             this.Hierarchy = hierarchy;
+            this.DivisionId = divisionId;
         }
 
         public string Name { get; }
 
         public Guid SeasonId { get; }
+
+        public Guid DivisionId { get; }
 
         public int Hierarchy { get; }
     }

@@ -16,7 +16,7 @@
       <input matInput formControlName="email" placeholder="Adres email" />
     </mat-form-field>
     <mat-form-field >
-        <input type="text" placeholder="nazwa dywizji" aria-label="Dywizja" matInput formControlName="division" [matAutocomplete]="auto">
+        <input type="text" placeholder="nazwa dywizji" aria-label="Dywizja" matInput formControlName="divisionId" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let division of searchResult" [value]="division.id">
             {{ division.name }}

@@ -17,14 +17,10 @@ export class TeamCardComponent implements OnInit {
   searchResult = [] as IDivision[];
 
   ngOnInit() {
-    this.divisionservice
-      .getDivisions()
-      .subscribe(resp => (
-        this.searchResult = resp));
-
-
-
-
+    this.divisionservice.getDivisions().subscribe(resp => {
+      this.searchResult = resp;
+      console.log(resp);
+    });
 
     // this.teamForm
     //   .get('division')

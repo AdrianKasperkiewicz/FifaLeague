@@ -10,18 +10,23 @@ import { ITeam } from '../models/team-viewmodel';
 export class TeamService {
   readonly baseUrl = environment.api;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   add(teamForm: any): Observable<string> {
     const registerUrl = this.baseUrl + 'team';
 
-    return this.httpClient
-    .post<string>(registerUrl, teamForm)
+    return this.httpClient.post<string>(registerUrl, teamForm);
   }
 
-  get():Observable<Array<ITeam>>{
+  get(): Observable<Array<ITeam>> {
     const getTeamUrl = this.baseUrl + 'team';
 
     return this.httpClient.get<Array<ITeam>>(getTeamUrl);
+  }
+
+  createTeams(teamForm: any): Observable<any> {
+    const postTeamsUrl = this.baseUrl + 'team';
+
+    return this.httpClient.post<any>(postTeamsUrl, teamForm);
   }
 }

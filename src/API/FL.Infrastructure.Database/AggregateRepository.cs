@@ -28,7 +28,7 @@ namespace FL.Infrastructure.Database
             {
                 var aggregateToStore = new EventStore
                 {
-                    EventId = @event.Id,
+                    EventId = @event.EventId,
                     AggregateId = aggregate.Id.Value,
                     Event = JsonConvert.SerializeObject(@event),
                     EventType = @event.GetType().AssemblyQualifiedName,
