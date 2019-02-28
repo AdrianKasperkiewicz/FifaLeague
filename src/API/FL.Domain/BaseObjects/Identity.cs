@@ -11,6 +11,11 @@ namespace FL.Domain.BaseObjects
             this.Value = Guid.NewGuid();
         }
 
+        public Identity(Guid id)
+        {
+            this.Value = id;
+        }
+
         public Guid Value { get; }
     }
 }

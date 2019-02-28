@@ -8,9 +8,10 @@
           numer: {{ divisionForm.controls['hierarchy'].value }}
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <div [formGroup]="divisionForm"></div>
+      <form [formGroup]="divisionForm">
       <mat-form-field>
         <input matInput formControlName="name" placeholder="Nazwa dywizji">
       </mat-form-field>
+    </form>
     </mat-expansion-panel>
   </mat-accordion>

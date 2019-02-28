@@ -13,15 +13,21 @@ namespace FL.Infrastructure.Database
         {
         }
 
-        public DbSet<DbAggregate> AggregateStore { get; set; }
+        public DbSet<EventStore> EventStore { get; set; }
     }
 
-    public class DbAggregate
+    public class EventStore
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public Guid Id { get; set; }
+        public Guid EventId { get; set; }
 
-        public string Value { get; set; }
+        public Guid AggregateId { get; set; }
+
+        public string EventType { get; set; }
+
+        public string Event { get; set; }
+
+        public DateTime TimeCreated { get; set; }
     }
 }

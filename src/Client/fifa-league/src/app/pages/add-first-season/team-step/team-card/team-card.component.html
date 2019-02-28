@@ -8,12 +8,21 @@
         jakis opis
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <div [formGroup]="teamForm"></div>
+    <div [formGroup]="teamForm">
     <mat-form-field>
       <input matInput formControlName="name" placeholder="Nazwa Zespolu" />
     </mat-form-field>
     <mat-form-field>
       <input matInput formControlName="email" placeholder="Adres email" />
     </mat-form-field>
+    <mat-form-field >
+        <input type="text" placeholder="nazwa dywizji" aria-label="Dywizja" matInput formControlName="division" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let division of searchResult" [value]="division.id">
+            {{ division.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
   </mat-expansion-panel>
 </mat-accordion>

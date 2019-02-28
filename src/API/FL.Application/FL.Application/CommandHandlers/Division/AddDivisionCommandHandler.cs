@@ -26,12 +26,12 @@ namespace FL.Application.CommandHandlers.Division
 
             foreach (var division in request.Divisions)
             {
-                season.AddDivision(new FL.Domain.Aggregates.SeasonAggregate.Division(division.Name, division.Hierarchy));
+                season.AddDivision(division.Name, division.Hierarchy);
             }
 
             await this.repository.Save(season);
 
-            foreach (var @event in season.DomainEvents)
+            foreach (var @event in season.GetUncommittedChanges())
             {
                 await this.mediator.Publish(@event);
             }

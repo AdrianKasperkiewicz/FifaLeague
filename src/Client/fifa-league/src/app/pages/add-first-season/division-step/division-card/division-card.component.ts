@@ -9,6 +9,7 @@ import { FormGroup } from '@angular/forms';
 export class DivisionCardComponent implements OnInit {
 
   @Input() divisionForm: FormGroup;
+  @Input() seasonId: string;
   constructor() { }
 
   ngOnInit() {

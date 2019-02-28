@@ -5,15 +5,15 @@
 <mat-horizontal-stepper linear #stepper>
 	<mat-step [stepControl]="leagueStepForm">
 		<ng-template matStepLabel>Szczegóły Ligi</ng-template>
-		<app-league-step [stepper] ="stepper"></app-league-step>
+		<app-league-step [stepper] ="stepper" (seasonCreated)='assignSeasonId($event)'></app-league-step>
 	</mat-step>
 	<mat-step [stepControl]="frmStepTwo">
 		<ng-template matStepLabel>Szczegóły Dywizji</ng-template>
-		<app-division-step [stepper] ="stepper"></app-division-step>
+		<app-division-step [stepper] ="stepper" [(seasonId)] ="seasonId"></app-division-step>
 	</mat-step>
 	<mat-step [stepControl]="frmStepThree">
 		<ng-template matStepLabel>Zespoły</ng-template>
-		<app-team-step></app-team-step>
+		<app-team-step [(seasonId)] ="seasonId"></app-team-step>
 	</mat-step>
 </mat-horizontal-stepper>
 

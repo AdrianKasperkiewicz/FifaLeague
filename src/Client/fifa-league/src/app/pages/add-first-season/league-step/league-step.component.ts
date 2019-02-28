@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material';
 import { SeasonService } from 'src/app/shared/services/season.service';
@@ -9,20 +9,21 @@ import { SeasonService } from 'src/app/shared/services/season.service';
   styleUrls: ['./league-step.component.css']
 })
 export class LeagueStepComponent implements OnInit {
+
+  constructor(private formBuilder: FormBuilder, private seasonService: SeasonService) {}
   leagueStepForm: FormGroup;
   public imagePath;
   imgURL: any;
   public message: string;
 
-  constructor(private formBuilder: FormBuilder, private seasonService: SeasonService) {}
+  @Input() stepper: MatStepper;
+  @Output() seasonCreated = new EventEmitter<string>();
 
   ngOnInit() {
     this.leagueStepForm = this.formBuilder.group({
       name: ['', Validators.required]
     });
   }
-
-  @Input() stepper: MatStepper;
 
   preview(files) {
     if (files.length === 0) {
@@ -45,7 +46,8 @@ export class LeagueStepComponent implements OnInit {
 
   onSubmit() {
     this.seasonService.create(this.leagueStepForm.value).subscribe(x => {
-      console.log('step 1 saved');
+      this.seasonCreated.emit(x);
+      console.log('step 1 saved id: ' + x);
       this.stepper.next();
     });
   }

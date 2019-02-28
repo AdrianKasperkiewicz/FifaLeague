@@ -18,7 +18,7 @@ export class SeasonService {
     return this.httpClient.get<Array<ISeason>>(getSeasonsUrl);
   }
 
-  create(form): Observable<any>{
+  create(form): Observable<string>{
     const postSeasonsUrl = this.baseUrl + 'Season';
 
     return this.httpClient.post<string>(postSeasonsUrl, form);

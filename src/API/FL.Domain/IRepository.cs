@@ -6,7 +6,7 @@ using FL.Domain.BaseObjects;
 namespace FL.Domain
 {
     public interface IRepository<T>
-        where T : Entity, IAggregateRoot
+        where T : AggregateRoot, new()
     {
         Task Save(T aggregate);
 

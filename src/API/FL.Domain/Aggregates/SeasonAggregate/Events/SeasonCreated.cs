@@ -1,19 +1,16 @@
 ﻿using System;
 
 using FL.Domain.BaseObjects;
-using MediatR;
 
 namespace FL.Domain.Aggregates.SeasonAggregate.Events
 {
-    public class SeasonCreated : IDomainEvent
+    public class SeasonCreated : DomainEvent
     {
-        public SeasonCreated(Guid id, int number)
+        public SeasonCreated(Guid seasonId)
         {
-            this.Id = id;
+            this.SeasonId = seasonId;
         }
 
-        public Guid Id { get; }
-
-        public int Number { get; }
+        public Guid SeasonId { get; }
     }
 }

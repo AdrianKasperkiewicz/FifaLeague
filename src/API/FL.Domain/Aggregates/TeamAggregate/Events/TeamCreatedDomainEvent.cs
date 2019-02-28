@@ -4,16 +4,16 @@ using FL.Domain.BaseObjects;
 
 namespace FL.Domain.Aggregates.TeamAggregate.Events
 {
-    public class TeamCreatedDomainEvent : IDomainEvent
+    public class TeamCreatedDomainEvent : DomainEvent
     {
-        public TeamCreatedDomainEvent(Guid id, string name, string email)
+        public TeamCreatedDomainEvent(Guid teamId, string name, string email)
         {
-            this.Id = id;
+            this.TeamId = teamId;
             this.Name = name;
             this.Email = email;
         }
 
-        public Guid Id { get; }
+        public Guid TeamId { get; }
 
         public string Name { get;  }
 

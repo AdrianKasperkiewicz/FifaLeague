@@ -16,7 +16,7 @@ namespace FL.API.Queries.EventHandlers
 
         protected override void Handle(SeasonCreated notification)
         {
-            var seasonVM = new SeasonViewModel(notification.Id);
+            var seasonVM = new SeasonViewModel(notification.SeasonId);
 
             this.context.Season.AddAsync(seasonVM);
             this.context.SaveChangesAsync();

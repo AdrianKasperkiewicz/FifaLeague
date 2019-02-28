@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
   styleUrls: ['./team-step.component.css']
 })
 export class TeamStepComponent implements OnInit {
-
+  @Input() seasonId: string;
   frmStepThree: FormGroup;
   constructor(private formBuilder: FormBuilder) {
 
@@ -34,12 +34,14 @@ export class TeamStepComponent implements OnInit {
     teamsArray.push(
       this.formBuilder.group({
         name: '',
-        email: ''
+        email: '',
+        division: ''
       })
     );
   }
 
   onSubmit(){
+    console.log(this.frmStepThree.value);
     // redirect
   }
 }

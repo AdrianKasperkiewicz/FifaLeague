@@ -12,6 +12,7 @@ import { TeamStepComponent } from './team-step/team-step.component';
 export class AddFirstSeasonComponent implements OnInit {
 
   seasonFormGroup: FormGroup;
+  seasonId: string;
 
 
   @ViewChild(LeagueStepComponent) stepOneComponent: LeagueStepComponent;
@@ -19,6 +20,7 @@ export class AddFirstSeasonComponent implements OnInit {
   @ViewChild(TeamStepComponent) stepThreeComponent: TeamStepComponent;
 
   ngOnInit(): void {
+    this.seasonId = 'dupa';
   }
 
   get leagueStepForm() {
@@ -33,5 +35,13 @@ export class AddFirstSeasonComponent implements OnInit {
      return this.stepThreeComponent ? this.stepThreeComponent.frmStepThree : null;
   }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {
+    this.seasonId = 'dupa';
+   }
+
+   assignSeasonId(event){
+     console.log(event);
+
+     this.seasonId = event;
+   }
 }

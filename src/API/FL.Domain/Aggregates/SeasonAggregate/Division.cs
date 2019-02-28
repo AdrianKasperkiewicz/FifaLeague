@@ -1,11 +1,14 @@
-﻿namespace FL.Domain.Aggregates.SeasonAggregate
-{
-    using FL.Domain.BaseObjects;
+﻿using System;
 
+using FL.Domain.BaseObjects;
+
+namespace FL.Domain.Aggregates.SeasonAggregate
+{
     public class Division : Entity
     {
-        public Division(string name, int hierarchy)
+        public Division(Guid guid, string name, int hierarchy)
         {
+            base.Id = new Identity(guid);
             this.Name = name;
             this.Hierarchy = hierarchy;
         }

@@ -3,19 +3,20 @@ using FL.Domain.BaseObjects;
 
 namespace FL.Domain.Aggregates.SeasonAggregate.Events
 {
-    public class DivisionCreatedEvent : IDomainEvent
+    public class DivisionCreatedEvent : DomainEvent
     {
-        public DivisionCreatedEvent(Guid seasonId, Guid divisionId, string name)
+        public DivisionCreatedEvent(Guid seasonId, Guid divisionId, string name, int hierarchy)
+            : base()
         {
-            this.Id = divisionId;
             this.Name = name;
             this.SeasonId = seasonId;
+            this.Hierarchy = hierarchy;
         }
-
-        public Guid Id { get; }
 
         public string Name { get; }
 
         public Guid SeasonId { get; }
+
+        public int Hierarchy { get; }
     }
 }

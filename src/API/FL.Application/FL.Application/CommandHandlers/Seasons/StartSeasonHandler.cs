@@ -21,8 +21,7 @@ namespace FL.Application.CommandHandlers.Seasons
         {
             var season = await this.repository.Get(request.Id);
 
-            season.Start();
-
+            // season.Start();
             await this.repository.Save(season);
         }
     }

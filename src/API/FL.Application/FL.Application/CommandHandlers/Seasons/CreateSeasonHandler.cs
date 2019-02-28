@@ -24,7 +24,7 @@ namespace FL.Application.CommandHandlers.Seasons
             var season = new Season(request.Name);
             this.repository.Save(season);
 
-            foreach (var @event in season.DomainEvents)
+            foreach (var @event in season.GetUncommittedChanges())
             {
                 this.mediator.Publish(@event);
             }

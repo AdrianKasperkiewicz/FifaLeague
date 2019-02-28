@@ -7,11 +7,11 @@ namespace FL.Domain.BaseObjects
     {
         private int? requestedHashCode;
 
-        private List<IDomainEvent> domainEvents;
+        private List<DomainEvent> domainEvents;
 
         public virtual Identity Id { get; protected set; }
 
-        public IReadOnlyCollection<IDomainEvent> DomainEvents => this.domainEvents?.AsReadOnly();
+        public IReadOnlyCollection<DomainEvent> DomainEvents => this.domainEvents?.AsReadOnly();
 
         public static bool operator ==(Entity left, Entity right)
         {
@@ -28,13 +28,13 @@ namespace FL.Domain.BaseObjects
             return !(left == right);
         }
 
-        public void AddDomainEvent(IDomainEvent eventItem)
+        public void AddDomainEvent(DomainEvent eventItem)
         {
-            this.domainEvents = this.domainEvents ?? new List<IDomainEvent>();
+            this.domainEvents = this.domainEvents ?? new List<DomainEvent>();
             this.domainEvents.Add(eventItem);
         }
 
-        public void RemoveDomainEvent(IDomainEvent eventItem)
+        public void RemoveDomainEvent(DomainEvent eventItem)
         {
             this.domainEvents?.Remove(eventItem);
         }

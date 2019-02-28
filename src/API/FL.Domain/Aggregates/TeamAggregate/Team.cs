@@ -1,9 +1,8 @@
-﻿using FL.Domain.Aggregates.TeamAggregate.Events;
-using FL.Domain.BaseObjects;
+﻿using FL.Domain.BaseObjects;
 
 namespace FL.Domain.Aggregates.TeamAggregate
 {
-    public class Team : Entity, IAggregateRoot
+    public class Team : AggregateRoot
     {
         public Team(string name, string email)
         {
@@ -12,7 +11,11 @@ namespace FL.Domain.Aggregates.TeamAggregate
             this.EmailAddress = new EmailAddress(email);
             base.Id = new Identity();
 
-            this.AddDomainEvent(new TeamCreatedDomainEvent(this.Id.Value, this.Name, this.EmailAddress.Value));
+            // this.AddDomainEvent(new TeamCreatedDomainEvent(this.Id.Value, this.Name, this.EmailAddress.Value));
+        }
+
+        public Team()
+        {
         }
 
         public string Name { get; }

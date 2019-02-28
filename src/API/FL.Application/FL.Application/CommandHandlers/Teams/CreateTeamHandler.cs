@@ -25,7 +25,7 @@ namespace FL.Application.CommandHandlers.Teams
 
             this.repository.Save(team);
 
-            foreach (var @event in team.DomainEvents)
+            foreach (var @event in team.GetUncommittedChanges())
             {
                 this.mediator.Publish(@event, cancellationToken);
             }
