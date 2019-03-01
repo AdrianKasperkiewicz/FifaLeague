@@ -54,7 +54,7 @@ const MENUITEMS = [
     state: '/settings/newseason',
     type: 'link',
     name: 'Ustawienia',
-    icon: 'all_inclusive'
+    icon: 'settings'
   }
 ];
 
