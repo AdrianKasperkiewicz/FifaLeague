@@ -20,6 +20,10 @@ export const AppRoutes: Routes = [
       {
         path: 'starter',
         loadChildren: './starter/starter.module#StarterModule'
+      } ,
+      {
+        path: 'settings',
+        loadChildren: './settings/settings.module#SettingsModule'
       }
     ]
   }
