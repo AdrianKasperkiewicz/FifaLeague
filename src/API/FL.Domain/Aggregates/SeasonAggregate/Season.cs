@@ -12,9 +12,14 @@ namespace FL.Domain.Aggregates.SeasonAggregate
     {
         private List<Division> divisions;
 
-        public Season(string name)
+        public Season(DateTime startDate)
         {
-            base.ApplyChange(new SeasonCreated(Guid.NewGuid()));
+            if (startDate.Date < DateTime.Now.Date)
+            {
+                throw new ArgumentException("Start date can not be less than today");
+            }
+
+            base.ApplyChange(new SeasonCreatedEvent(Guid.NewGuid(), startDate));
         }
 
         public Season()
@@ -23,18 +28,21 @@ namespace FL.Domain.Aggregates.SeasonAggregate
 
         public int Number { get; private set; }
 
+        public DateTime StartDate { get; private set; }
+
         public ReadOnlyCollection<Division> Divisions => this.divisions.AsReadOnly();
 
-        public void Apply(SeasonCreated @event)
+        public void Apply(SeasonCreatedEvent @event)
         {
             base.Id = new Identity(@event.SeasonId);
             this.divisions = new List<Division>();
             this.Number = 1;
+            this.StartDate = @event.StartDate;
         }
 
         public void Apply(DivisionCreatedEvent @event)
         {
-            var division = new Division(@event.DivisionId, @event.Name, @event.Hierarchy);
+            var division = new Division(@event.DivisionId, @event.Name, @event.Hierarchy, @event.NumberOfDegraded, @event.NumberOfPromoted);
 
             this.divisions.Add(division);
         }
@@ -48,7 +56,7 @@ namespace FL.Domain.Aggregates.SeasonAggregate
         {
             if (this.divisions.All(x => x.Id.Value != divisionId))
             {
-                throw new ArgumentException($"Divsion with Id {divisionId} not found.");
+                throw new ArgumentException($"Division with Id {divisionId} not found.");
             }
 
             if (this.divisions.Any(x => x.Teams.Contains(teamId)))
@@ -59,11 +67,11 @@ namespace FL.Domain.Aggregates.SeasonAggregate
             this.ApplyChange(new TeamAddedToDivisionEvent(base.Id.Value, divisionId, teamId));
         }
 
-        public void AddDivision(string divisionName, int divisionHierarchy)
+        public void AddDivision(string divisionName, int divisionHierarchy, int numberOfDegraded, int numberOfPromoted)
         {
             if (this.divisions.Any(x => x.Hierarchy == divisionHierarchy))
             {
-                throw new ArgumentException($"Division with {divisionHierarchy} Hierarchy, was already addeded.");
+                throw new ArgumentException($"Division with {divisionHierarchy} Hierarchy, was already added.");
             }
 
             if (this.divisions.Any(x => x.Hierarchy < 0))
@@ -71,7 +79,12 @@ namespace FL.Domain.Aggregates.SeasonAggregate
                 throw new ArgumentException($"Division Hierarchy, could not be smaller than 0.");
             }
 
-            this.ApplyChange(new DivisionCreatedEvent(base.Id.Value, Guid.NewGuid(), divisionName, divisionHierarchy));
+            if (divisionHierarchy == 1 && numberOfPromoted > 0)
+            {
+                throw new ArgumentException("Team could not be promoted from highest division");
+            }
+
+            this.ApplyChange(new DivisionCreatedEvent(base.Id.Value, Guid.NewGuid(), divisionName, divisionHierarchy, numberOfDegraded, numberOfPromoted));
         }
     }
 }

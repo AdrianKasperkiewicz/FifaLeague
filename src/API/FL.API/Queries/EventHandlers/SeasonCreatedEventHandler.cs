@@ -5,7 +5,7 @@ using MediatR;
 
 namespace FL.API.Queries.EventHandlers
 {
-    public class SeasonCreatedEventHandler : NotificationHandler<SeasonCreated>
+    public class SeasonCreatedEventHandler : NotificationHandler<SeasonCreatedEvent>
     {
         private readonly LeagueReadModelContext context;
 
@@ -14,7 +14,7 @@ namespace FL.API.Queries.EventHandlers
             this.context = context;
         }
 
-        protected override void Handle(SeasonCreated notification)
+        protected override void Handle(SeasonCreatedEvent notification)
         {
             var seasonVM = new SeasonViewModel(notification.SeasonId);
 

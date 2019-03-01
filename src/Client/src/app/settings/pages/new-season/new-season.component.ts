@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { SeasonService } from '../../../shared/services/season.service';
 
 @Component({
   selector: 'app-new-season',
@@ -10,7 +11,7 @@ export class NewSeasonComponent {
   isLinear = true;
   seasonFormGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private seasonService: SeasonService) { }
 
   ngOnInit() {
     this.seasonFormGroup = this.formBuilder.group({
@@ -32,6 +33,8 @@ export class NewSeasonComponent {
   }
 
   onSubmit() {
-    console.log(this.seasonFormGroup.value);
+    this.seasonService
+      .create(this.seasonFormGroup.value)
+      .subscribe(x => console.log('created: ' + x));
   }
 }

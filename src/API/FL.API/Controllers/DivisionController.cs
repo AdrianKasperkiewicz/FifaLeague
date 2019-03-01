@@ -19,12 +19,12 @@ namespace FL.API.Controllers
             this.mediator = mediator;
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<ActionResult> Post([FromBody]AddDivisionsCommand command)
-        {
-            return this.Ok(await this.mediator.Send(command));
-        }
+        //[HttpPost]
+        //[AllowAnonymous]
+        //public async Task<ActionResult> Post([FromBody]AddDivisionsCommand command)
+        //{
+        //    return this.Ok(await this.mediator.Send(command));
+        //}
 
         [HttpGet("{name}")]
         [AllowAnonymous]

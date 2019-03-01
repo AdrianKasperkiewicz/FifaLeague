@@ -4,12 +4,15 @@ using FL.Domain.BaseObjects;
 
 namespace FL.Domain.Aggregates.SeasonAggregate.Events
 {
-    public class SeasonCreated : DomainEvent
+    public class SeasonCreatedEvent : DomainEvent
     {
-        public SeasonCreated(Guid seasonId)
+        public SeasonCreatedEvent(Guid seasonId, DateTime startDate)
         {
             this.SeasonId = seasonId;
+            this.StartDate = startDate;
         }
+
+        public DateTime StartDate { get; }
 
         public Guid SeasonId { get; }
     }
