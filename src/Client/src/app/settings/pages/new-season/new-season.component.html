@@ -21,31 +21,37 @@
         <mat-card-content>
           <mat-card-title>
             Konfiguracja Dywizji
-            <button class="right-button" mat-raised-button color="primary" (click)='addNewDivision()'>Dodaj Nową</button>
+            <button class="right-button" mat-raised-button color="primary" (click)='addNewDivision()'>Dodaj
+              Nową</button>
           </mat-card-title>
 
           <mat-accordion>
-            <div formArrayName="divisions" *ngFor="let division of seasonFormGroup.get('divisions').controls; let i = index">
-              <div [formGroupName]="i">
+            <div formArrayName="divisions" cdkDropList (cdkDropListDropped)="drop($event)">
+              <div *ngFor="let division of formArray.controls; let i = index" cdkDrag>
                 <mat-expansion-panel>
                   <mat-expansion-panel-header>
                     <mat-panel-title>
-                      Nowa Dywizja
+                      Dywizja : {{ division.controls["name"].value}}
                     </mat-panel-title>
                     <mat-panel-description>
-                      Informacje o dywizji
+                      Hierarchia {{ division.controls["hierarchy"].value}}
+                      <mat-icon *ngIf="!division.valid">highlight_off</mat-icon>
+                      <mat-icon *ngIf="division.valid">check_circle_outline</mat-icon>
                     </mat-panel-description>
                   </mat-expansion-panel-header>
-
-                  <mat-form-field>
-                    <input matInput placeholder="Nazwa Dywizji" formControlName="name">
-                  </mat-form-field>
-                  <mat-form-field>
-                    <input matInput type="number" placeholder="Liczba promowanych zespołów" formControlName="numberOfPromoted">
-                  </mat-form-field>
-                  <mat-form-field>
-                    <input matInput type="number" placeholder="Liczba degradowanych zespołów" formControlName="numberOfDegraded">
-                  </mat-form-field>
+                  <div [formGroupName]="i">
+                    <mat-form-field>
+                      <input matInput placeholder="Nazwa Dywizji" formControlName="name">
+                    </mat-form-field>
+                    <mat-form-field>
+                      <input matInput type="number" placeholder="Liczba promowanych zespołów"
+                        formControlName="numberOfPromoted">
+                    </mat-form-field>
+                    <mat-form-field>
+                      <input matInput type="number" placeholder="Liczba degradowanych zespołów"
+                        formControlName="numberOfDegraded">
+                    </mat-form-field>
+                  </div>
                 </mat-expansion-panel>
               </div>
             </div>
@@ -54,7 +60,8 @@
       </mat-card>
 
 
-      <button class="right-button" mat-raised-button color="primary" [disabled]="!seasonFormGroup.valid" (click)='onSubmit()'>Zapisz</button>
+      <button class="right-button" mat-raised-button color="primary" [disabled]="!seasonFormGroup.valid"
+        (click)='onSubmit()'>Zapisz</button>
     </form>
   </div>
 </div>
