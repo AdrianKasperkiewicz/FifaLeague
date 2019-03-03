@@ -55,6 +55,12 @@ const MENUITEMS = [
     type: 'link',
     name: 'Ustawienia',
     icon: 'settings'
+  },
+  {
+    state: '/settings/teams',
+    type: 'link',
+    name: 'Zespoły',
+    icon: 'people'
   }
 ];
 

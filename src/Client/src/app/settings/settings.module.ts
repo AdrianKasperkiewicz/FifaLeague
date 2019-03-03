@@ -5,8 +5,9 @@ import { SettingsRoutingModule } from './settings-routing.module';
 import { NewSeasonComponent } from './pages/new-season/new-season.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MaterialModule } from '../shared/modules/material-module';
+import { TeamsComponent } from './teams/teams.component';
 
 @NgModule({
   imports: [
@@ -16,8 +17,8 @@ import { MaterialModule } from '../shared/modules/material-module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    DragDropModule 
+    DragDropModule
   ],
-  declarations: [NewSeasonComponent]
+  declarations: [NewSeasonComponent, TeamsComponent]
 })
 export class SettingsModule { }
