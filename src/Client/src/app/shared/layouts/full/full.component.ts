@@ -11,9 +11,9 @@ import {
   Directive,
   AfterViewInit
 } from '@angular/core';
-import { MenuItems } from '../../shared/menu-items/menu-items';
 import { AppHeaderComponent } from './header/header.component';
 import { AppSidebarComponent } from './sidebar/sidebar.component';
+import { MenuItems } from '../../models/menu-items/menu-items';
 
 /** @title Responsive sidenav */
 @Component({

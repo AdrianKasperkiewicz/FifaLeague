@@ -35,8 +35,8 @@
                     </mat-panel-title>
                     <mat-panel-description>
                       Hierarchia {{ division.controls["hierarchy"].value}}
-                      <mat-icon *ngIf="!division.valid">highlight_off</mat-icon>
-                      <mat-icon *ngIf="division.valid">check_circle_outline</mat-icon>
+                      <mat-icon *ngIf="!division.valid" class="red-icon">highlight_off</mat-icon>
+                      <mat-icon *ngIf="division.valid" class="green-icon">check_circle_outline</mat-icon>
                     </mat-panel-description>
                   </mat-expansion-panel-header>
                   <div [formGroupName]="i">

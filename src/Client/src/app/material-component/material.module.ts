@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
-import { DemoMaterialModule } from '../demo-material-module';
 import { CdkTableModule } from '@angular/cdk/table';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,12 +30,13 @@ import { TooltipComponent } from './tooltip/tooltip.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
 import { SliderComponent } from './slider/slider.component';
 import { SlideToggleComponent } from './slide-toggle/slide-toggle.component';
+import { MaterialModule } from '../shared/modules/material-module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(MaterialRoutes),
-    DemoMaterialModule,
+    MaterialModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

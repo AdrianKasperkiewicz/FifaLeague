@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { SeasonService } from '../../../shared/services/season.service';
-import { CdkDragDrop} from '@angular/cdk/drag-drop';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-new-season',
@@ -58,7 +58,9 @@ export class NewSeasonComponent {
 
   private reorderHierarchy() {
     for (var i = 0; i < this.formArray.controls.length; i++) {
-      this.formArray.controls[i].controls['hierarchy'].value = i + 1;
+      this.formArray
+        .controls[i]
+        .patchValue({ hierarchy: i + 1 });
     }
   }
 }
