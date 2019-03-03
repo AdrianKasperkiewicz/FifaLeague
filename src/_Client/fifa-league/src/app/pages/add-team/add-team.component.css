@@ -1,8 +1,0 @@
-.team-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.team-form > * {
-  width: 60%;
-}
