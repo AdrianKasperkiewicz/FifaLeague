@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DivisionService } from '../../shared/services/division.service';
+import { Observable } from 'rxjs';
+import { IDivision } from '../../shared/models/division.viewmodel';
 
 @Component({
   selector: 'app-teams',
@@ -6,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./teams.component.css']
 })
 export class TeamsComponent implements OnInit {
+  divisions: Observable<IDivision[]>;
 
-  constructor() { }
+  constructor(private divisionService: DivisionService) { }
 
   ngOnInit() {
+    this.divisions = this.divisionService.getDivisions();
   }
-
 }
