@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DivisionService } from '../../shared/services/division.service';
 import { Observable } from 'rxjs';
-import { IDivision } from '../../shared/models/division.viewmodel';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { IDivision } from '../../../shared/models/division.viewmodel';
+import { DivisionService } from '../../../shared/services/division.service';
 
 @Component({
   selector: 'app-teams',
