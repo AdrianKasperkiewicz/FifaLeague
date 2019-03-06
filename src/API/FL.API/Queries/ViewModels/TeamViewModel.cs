@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FL.Application
+namespace FL.API.Queries.ViewModels
 {
     public class TeamViewModel
     {

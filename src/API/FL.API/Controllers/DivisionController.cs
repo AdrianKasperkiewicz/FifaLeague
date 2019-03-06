@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 using FL.API.Queries.QueryHandlers;
 using FL.Application.CommandHandlers.Division;
@@ -19,9 +20,9 @@ namespace FL.API.Controllers
             this.mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("AddTeam")]
         [AllowAnonymous]
-        public async Task<ActionResult> CreateTeamsForDivisions([FromBody]CreateTeamsForDivisionCommand command)
+        public async Task<ActionResult> AddNewTeam([FromBody] AddTeamForDivisionCommand command)
         {
             return this.Ok(await this.mediator.Send(command));
         }
@@ -38,6 +39,14 @@ namespace FL.API.Controllers
         public async Task<ActionResult> GetDivisions()
         {
             return this.Ok(await this.mediator.Send(new GetDivisionsQuery()));
+        }
+
+        [HttpGet("{id}/teams")]
+
+    [AllowAnonymous]
+        public async Task<ActionResult> GetTeams(Guid id)
+        {
+            return this.Ok(await this.mediator.Send(new GetDivisionTeamsQuery(id)));
         }
     }
 }

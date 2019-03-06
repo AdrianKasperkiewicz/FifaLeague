@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+
 using FL.API.Queries.QueryHandlers;
 using FL.Application.CommandHandlers.Teams;
 using MediatR;
@@ -34,6 +35,24 @@ namespace FL.API.Controllers
             return this.Ok(
                await this.mediator
                     .Send(new GetTeamListQuery()));
+        }
+
+        [HttpGet("top")]
+        [AllowAnonymous]
+        public async Task<ActionResult> TopFive()
+        {
+            return this.Ok(
+                await this.mediator
+                    .Send(new GetTopFiveTeamQuery()));
+        }
+
+        [HttpGet("{name}")]
+        [AllowAnonymous]
+        public async Task<ActionResult> FilterByName(string name)
+        {
+            return this.Ok(
+                await this.mediator
+                    .Send(new GetTeamByNameQuery(name)));
         }
     }
 }

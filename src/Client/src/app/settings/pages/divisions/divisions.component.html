@@ -10,7 +10,7 @@
         <mat-tab-group *ngIf="divisions | async">
           <mat-tab *ngFor="let division of divisions | async" label="{{ division.name }}">
             <mat-card-content>information about {{division.name}}
-             <app-add-team-to-division [divisionForm]="getDivisionForm(division.id)"></app-add-team-to-division>
+             <app-add-team-to-division [division]="division"></app-add-team-to-division>
             </mat-card-content>
           </mat-tab>
         </mat-tab-group>

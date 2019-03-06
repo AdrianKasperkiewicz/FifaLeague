@@ -11,6 +11,7 @@ import { DivisionsComponent } from './pages/divisions/divisions.component';
 import { TeamsComponent } from './pages/teams/teams.component';
 import { DialogNewTeamComponent } from './pages/teams/dialog-new-team/dialog-new-team.component';
 import { AddTeamToDivisionComponent } from './pages/divisions/add-team-to-division/add-team-to-division.component';
+import { AddTeamToDivisionDialogComponent } from './pages/divisions/add-team-to-division-dialog/add-team-to-division-dialog.component';
 
 @NgModule({
   imports: [
@@ -27,8 +28,9 @@ import { AddTeamToDivisionComponent } from './pages/divisions/add-team-to-divisi
     DivisionsComponent,
     TeamsComponent,
     DialogNewTeamComponent,
-    AddTeamToDivisionComponent
+    AddTeamToDivisionComponent,
+    AddTeamToDivisionDialogComponent
   ],
-  entryComponents: [DialogNewTeamComponent],
+  entryComponents: [DialogNewTeamComponent, AddTeamToDivisionDialogComponent],
 })
 export class SettingsModule { }

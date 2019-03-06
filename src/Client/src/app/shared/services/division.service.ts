@@ -10,11 +10,11 @@ export class DivisionService {
 
   readonly baseUrl = environment.api;
 
-  createTeamsForDivisions(form: any) {
-    const postDivisionUrl = this.baseUrl + 'division';
+  // createTeamsForDivisions(form: any) {
+  //   const postDivisionUrl = this.baseUrl + 'division';
 
-    return this.httpClient.post(postDivisionUrl, form);
-  }
+  //   return this.httpClient.post(postDivisionUrl, form);
+  // }
 
   searchForDivision(searchphrase: string) {
     const searchDivisionUrl = this.baseUrl + 'division/' + searchphrase;
@@ -25,5 +25,11 @@ export class DivisionService {
     const searchDivisionUrl = this.baseUrl + 'division';
 
     return this.httpClient.get<IDivision[]>(searchDivisionUrl);
+  }
+
+  addTeamToDivision(form: any): any {
+    const postDivisionUrl = this.baseUrl + 'division/addteam';
+
+    return this.httpClient.post(postDivisionUrl, form);
   }
 }

@@ -54,7 +54,7 @@ export class DivisionsComponent implements OnInit {
   onSubmit() {
     console.log('sdsdsd');
     if (this.divisionsFormGroup.valid) {
-      this.divisionService.createTeamsForDivisions(this.divisionsFormGroup.value).subscribe();
+    //  this.divisionService.createTeamsForDivisions(this.divisionsFormGroup.value).subscribe();
     }
   }
 }
