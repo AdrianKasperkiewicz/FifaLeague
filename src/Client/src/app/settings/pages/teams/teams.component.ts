@@ -1,57 +1,68 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
-import { IDivision } from '../../../shared/models/division.viewmodel';
-import { DivisionService } from '../../../shared/services/division.service';
+import { MatDialog } from '@angular/material';
+import { DialogNewTeamComponent } from './dialog-new-team/dialog-new-team.component';
+import { TeamService } from '../../../shared/services/team.service';
+import { ITeam } from '../../../shared/models/team.viewmodel';
 
 @Component({
   selector: 'app-teams',
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.css']
 })
-export class TeamsComponent implements OnInit {
-  divisions: Observable<IDivision[]>;
+export class TeamsComponent {
+  displayedColumns: string[] = ['name', 'email'];
+  dataSource = ELEMENT_DATA;
+  teams: ITeam[];
+  animal: string;
+  name: string;
 
-  divisionsFormGroup: FormGroup;
+  constructor(public dialog: MatDialog, private teamService: TeamService) {
+    this.getTeams();
+  }
 
-  constructor(private divisionService: DivisionService, private formBuilder: FormBuilder) { }
+  private getTeams() {
+    this.teamService
+      .get()
+      .subscribe(x => this.teams = x);
+  }
 
-  ngOnInit() {
-    this.divisions = this.divisionService.getDivisions();
-
-    this.divisionsFormGroup = this.formBuilder.group({
-      seasonId: [''],
-      divisions: this.formBuilder.array([])
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogNewTeamComponent, {
+      width: '250px',
+      data: { name: this.name, animal: this.animal }
     });
 
-    const divisionsFormArray = <FormArray>this.divisionsFormGroup.controls['divisions'];
+    dialogRef.afterClosed().subscribe(isCompleted => {
+      console.log('The dialog was closed');
 
-    this.divisions.subscribe(x => x.forEach(division => {
-      divisionsFormArray.push(this.formBuilder.group({
-        divisionId: [division.id],
-        teams: this.formBuilder.array([])
-      }));
-    }));
+      if (isCompleted) {
+        this.getTeams();
+      }
+    });
   }
 
-  teamsformArray(id: string): FormArray {
-    const divi = this.divisionsFormGroup.controls['divisions'] as FormArray;
-    const divisionForm = divi.controls.filter(x => x.get('divisionId').value === id)[0] as FormGroup;
+  addTeam() {
 
-    return <FormArray>divisionForm.controls['teams'];
   }
 
-  addNewTeam(id: string) {
-    const divi = this.divisionsFormGroup.controls['divisions'] as FormArray;
-
-    const divisionForm = divi.controls.filter(x => x.get('divisionId').value === id)[0] as FormGroup;
-    const teams = <FormArray>divisionForm.controls['teams'];
-    teams.controls.push(this.formBuilder.group({
-      name: 'fakeName',
-      email: ''
-    }));
-  }
-
-  onSubmit() {
-  }
 }
+
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
+  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
+  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
+  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
+  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
+  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
+  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
+  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
+  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
+  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
+  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+];

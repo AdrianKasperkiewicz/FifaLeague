@@ -7,8 +7,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MaterialModule } from '../shared/modules/material-module';
-import { DivisionCardComponent } from './pages/teams/division-card/division-card.component';
+import { DivisionsComponent } from './pages/divisions/divisions.component';
 import { TeamsComponent } from './pages/teams/teams.component';
+import { DialogNewTeamComponent } from './pages/teams/dialog-new-team/dialog-new-team.component';
+import { AddTeamToDivisionComponent } from './pages/divisions/add-team-to-division/add-team-to-division.component';
 
 @NgModule({
   imports: [
@@ -20,6 +22,13 @@ import { TeamsComponent } from './pages/teams/teams.component';
     HttpClientModule,
     DragDropModule
   ],
-  declarations: [NewSeasonComponent, TeamsComponent, DivisionCardComponent]
+  declarations: [
+    NewSeasonComponent,
+    DivisionsComponent,
+    TeamsComponent,
+    DialogNewTeamComponent,
+    AddTeamToDivisionComponent
+  ],
+  entryComponents: [DialogNewTeamComponent],
 })
 export class SettingsModule { }

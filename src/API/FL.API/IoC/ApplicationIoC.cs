@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 
 using FL.API.Queries.Database;
-using FL.Application.CommandHandlers.Teams;
+using FL.Application.CommandHandlers.Seasons;
 using FL.Application.IoC;
 using FL.Domain;
 using FL.Infrastructure.Database;
@@ -22,7 +22,7 @@ namespace FL.API.IoC
             services.AddDbContext<LeagueReadModelContext>(context => context.UseInMemoryDatabase("LeagueReadDatabase"));
 
             services.AddMediatR();
-            services.AddMediatR(typeof(CreateTeamsCommand).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(CreateSeasonCommand).GetTypeInfo().Assembly);
 
             services.AddScoped(typeof(IRepository<>), typeof(AggregateRepository<>));
 

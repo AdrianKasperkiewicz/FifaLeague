@@ -14,7 +14,7 @@ import { MenuItems } from './models/menu-items/menu-items';
     AccordionAnchorDirective,
     AccordionLinkDirective,
     AccordionDirective
-   ],
-  providers: [ MenuItems ]
+  ],
+  providers: [MenuItems]
 })
 export class SharedModule { }

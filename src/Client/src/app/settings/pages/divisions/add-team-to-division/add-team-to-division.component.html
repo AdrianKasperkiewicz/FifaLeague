@@ -1,0 +1,12 @@
+<button (click)="addTeam()">Dodaj zespół</button>
+<form [formGroup]="divisionForm">
+  <div formArrayName="teams" >
+    <div *ngFor="let division of teamsArray.controls; let i = index" >
+      <div [formGroupName]="i">
+        <mat-form-field>
+          <input matInput placeholder="Id zespołu" formControlName="id">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</form>

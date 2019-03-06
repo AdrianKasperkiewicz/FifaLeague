@@ -6,6 +6,8 @@ namespace FL.API.Queries.ViewModels
     {
         public Guid Id { get; set; }
 
+        public Guid SeasonId { get; set; }
+
         public string Name { get; set; }
     }
 }

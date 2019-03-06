@@ -8,22 +8,20 @@ namespace FL.Application
         {
         }
 
-        public TeamViewModel(Guid id, string email, string name)
+        public TeamViewModel(Guid id, string email, string firstName, string lastName)
         {
             this.Id = id;
             this.Email = email;
-            this.Name = name;
-            this.LeagueName = string.Empty;
+            this.FirstName = firstName;
+            this.LastName = lastName;
         }
 
         public Guid Id { get; set; }
 
         public string Email { get; private set; }
 
-        public string Name { get; private set; }
+        public string FirstName { get; private set; }
 
-        public string LeagueName { get; private set; }
-
-        public Guid? LeagueGuid { get; private set; }
+        public string LastName { get; private set; }
     }
 }

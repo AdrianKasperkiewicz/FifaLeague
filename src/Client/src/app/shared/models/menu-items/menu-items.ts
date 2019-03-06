@@ -57,6 +57,12 @@ const MENUITEMS = [
     icon: 'settings'
   },
   {
+    state: '/settings/divisions',
+    type: 'link',
+    name: 'Dywizje',
+    icon: 'tab'
+  },
+  {
     state: '/settings/teams',
     type: 'link',
     name: 'Zespoły',

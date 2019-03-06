@@ -10,7 +10,7 @@ export class DivisionService {
 
   readonly baseUrl = environment.api;
 
-  createDivisions(form: any) {
+  createTeamsForDivisions(form: any) {
     const postDivisionUrl = this.baseUrl + 'division';
 
     return this.httpClient.post(postDivisionUrl, form);

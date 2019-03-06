@@ -52,7 +52,7 @@ namespace FL.Domain.Aggregates.SeasonAggregate
             this.divisions.First(x => x.Id.Value == @event.DivisionId).AddTeam(@event.TeamId);
         }
 
-        public void AddTeam(Guid teamId, Guid divisionId)
+        public void AddTeam(Guid divisionId, Guid teamId)
         {
             if (this.divisions.All(x => x.Id.Value != divisionId))
             {
