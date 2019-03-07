@@ -23,7 +23,8 @@ import { MenuItems } from '../../models/menu-items/menu-items';
 })
 export class FullComponent implements OnDestroy, AfterViewInit {
   mobileQuery: MediaQueryList;
-
+  minisidebar: boolean;
+  sidebarOpened;
   private _mobileQueryListener: () => void;
 
   constructor(
