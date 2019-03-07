@@ -15,12 +15,10 @@ namespace FL.Infrastructure.Database
         where T : AggregateRoot, new()
     {
         private readonly AggregateStoreContext context;
-        private readonly IMediator mediator;
 
-        public AggregateRepository(AggregateStoreContext context, IMediator mediator)
+        public AggregateRepository(AggregateStoreContext context)
         {
             this.context = context;
-            this.mediator = mediator;
         }
 
         public async Task Save(T aggregate)
@@ -43,6 +41,7 @@ namespace FL.Infrastructure.Database
 
             await this.context.AddRangeAsync(eventsToStore);
             await this.context.SaveChangesAsync();
+            aggregate.MarkChangesAsCommitted();
         }
 
         public async Task<T> Get(Guid id)
@@ -57,16 +56,6 @@ namespace FL.Infrastructure.Database
             aggregate.LoadsFromHistory(domainEvents);
 
             return aggregate;
-        }
-
-        private void PublishUncomitedEvents(T aggregate)
-        {
-            foreach (var @event in aggregate.GetUncommittedChanges())
-            {
-                this.mediator.Publish(@event);
-            }
-
-            aggregate.MarkChangesAsCommitted();
         }
     }
 }

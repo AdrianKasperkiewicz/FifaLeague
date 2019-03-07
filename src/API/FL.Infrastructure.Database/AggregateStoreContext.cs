@@ -38,7 +38,12 @@ namespace FL.Infrastructure.Database
 
         private void DispatchDomainEvent()
         {
-            var domainEvents = this.ChangeTracker.Entries<EventStore>().Select(x => x.Entity);
+            var domainEvents = this.ChangeTracker
+                .Entries()
+                .Where(x =>
+                    x.State != EntityState.Detached &&
+                    x.State != EntityState.Unchanged).Select(x => x.Entity)
+                .Cast<EventStore>();
 
             foreach (var @event in domainEvents.Select(x => JsonConvert.DeserializeObject(x.Event, Type.GetType(x.EventType)) as DomainEvent))
             {
