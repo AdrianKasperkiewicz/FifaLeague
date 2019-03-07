@@ -18,7 +18,7 @@
 
         public async Task Handle(DivisionCreatedEvent notification, CancellationToken cancellationToken)
         {
-            await this.context.Division.AddAsync(new ViewModels.DivisionViewModel { Id = notification.DivisionId, Name = notification.Name, SeasonId = notification.SeasonId });
+            await this.context.Divisions.AddAsync(new ViewModels.DivisionViewModel { Id = notification.DivisionId, Name = notification.Name, SeasonId = notification.SeasonId });
 
             await this.context.SaveChangesAsync(cancellationToken);
         }

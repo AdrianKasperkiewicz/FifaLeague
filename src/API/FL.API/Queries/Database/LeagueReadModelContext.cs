@@ -11,12 +11,12 @@ namespace FL.API.Queries.Database
         {
         }
 
-        public DbSet<SeasonViewModel> Season { get; set; }
+        public DbSet<SeasonViewModel> Seasons { get; set; }
 
-        public DbSet<DivisionViewModel> Division { get; set; }
+        public DbSet<DivisionViewModel> Divisions { get; set; }
 
-        public DbSet<TeamViewModel> Team { get; set; }
+        public DbSet<TeamViewModel> Teams { get; set; }
 
-        public DbSet<DivisionTeamViewModel> DivisionTeam { get; set; }
+        public DbSet<DivisionTeamViewModel> DivisionTeams { get; set; }
     }
 }

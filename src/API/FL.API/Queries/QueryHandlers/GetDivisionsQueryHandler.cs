@@ -19,7 +19,7 @@
 
         public async Task<IList<DivisionViewModel>> Handle(GetDivisionsQuery request, CancellationToken cancellationToken)
         {
-            return await this.context.Division.ToListAsync();
+            return await this.context.Divisions.ToListAsync();
         }
     }
 

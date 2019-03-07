@@ -9,13 +9,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./dialog-new-team.component.css']
 })
 export class DialogNewTeamComponent implements OnInit {
-  ngOnInit(): void {
-    this.teamFormGroup = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: '',
-      email: ['', [Validators.email, Validators.required]]
-    })
-  }
   teamFormGroup: FormGroup;
 
   constructor(
@@ -24,8 +17,17 @@ export class DialogNewTeamComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
 
+  ngOnInit(): void {
+    this.teamFormGroup = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: '',
+      email: ['', [Validators.email, Validators.required]]
+    });
+  }
 
-  onNoClick(): void {
+
+
+  onCancel(): void {
     this.dialogRef.close();
   }
 

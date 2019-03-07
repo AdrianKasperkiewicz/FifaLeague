@@ -18,7 +18,7 @@ namespace FL.API.Queries.EventHandlers
 
         protected override void Handle(TeamAddedToDivisionEvent notification)
         {
-            var team = this.context.Team.First(x => x.Id == notification.TeamId);
+            var team = this.context.Teams.First(x => x.Id == notification.TeamId);
 
             this.context.Add(new DivisionTeamViewModel()
             {

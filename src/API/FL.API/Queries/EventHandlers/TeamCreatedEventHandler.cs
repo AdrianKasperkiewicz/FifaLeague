@@ -18,7 +18,7 @@ namespace FL.API.Queries.EventHandlers
         {
             var vm = new TeamViewModel(notification.EventId, notification.Email, notification.FirstName, notification.LastName);
 
-            this.context.Team.AddAsync(vm);
+            this.context.Teams.AddAsync(vm);
             this.context.SaveChangesAsync();
         }
     }

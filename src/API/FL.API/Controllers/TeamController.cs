@@ -43,7 +43,7 @@ namespace FL.API.Controllers
         {
             return this.Ok(
                 await this.mediator
-                    .Send(new GetTopFiveTeamQuery()));
+                    .Send(new GetTopTeamQuery(5)));
         }
 
         [HttpGet("{name}")]
@@ -52,7 +52,7 @@ namespace FL.API.Controllers
         {
             return this.Ok(
                 await this.mediator
-                    .Send(new GetTeamByNameQuery(name)));
+                    .Send(new FindTeamByNameQuery(name)));
         }
     }
 }

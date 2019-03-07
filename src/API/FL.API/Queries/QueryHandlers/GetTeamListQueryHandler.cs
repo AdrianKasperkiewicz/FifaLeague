@@ -20,7 +20,7 @@ namespace FL.API.Queries.QueryHandlers
 
         public async Task<List<TeamViewModel>> Handle(GetTeamListQuery request, CancellationToken cancellationToken)
         {
-            return await this.repository.Team.ToListAsync(cancellationToken);
+            return await this.repository.Teams.ToListAsync(cancellationToken);
         }
     }
 

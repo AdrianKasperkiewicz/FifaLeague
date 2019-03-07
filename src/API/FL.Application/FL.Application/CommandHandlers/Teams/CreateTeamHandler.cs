@@ -11,12 +11,10 @@
     public class CreateTeamHandler : AsyncRequestHandler<CreateTeamCommand>
     {
         private readonly IRepository<Team> repository;
-        private readonly IMediator mediator;
 
-        public CreateTeamHandler(IRepository<Team> repository, IMediator mediator)
+        public CreateTeamHandler(IRepository<Team> repository)
         {
             this.repository = repository;
-            this.mediator = mediator;
         }
 
         protected override async Task Handle(CreateTeamCommand request, CancellationToken cancellationToken)

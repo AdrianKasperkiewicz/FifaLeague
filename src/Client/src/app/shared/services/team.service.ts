@@ -27,15 +27,9 @@ export class TeamService {
   }
 
   filterByName(name: any): Observable<ITeam[]> {
-    const getTeamsUrl = this.baseUrl + 'team/'+ name;
-    
+    const getTeamsUrl = this.baseUrl + 'team/' + name;
+
     return this.httpClient.get<ITeam[]>(getTeamsUrl);
-  }
-
-  getByDivision(divisionId: string): Observable<IDivisionTeam[]> {
-    const getTeamUrl = this.baseUrl + 'division/' + divisionId + "/teams";
-
-    return this.httpClient.get<IDivisionTeam[]>(getTeamUrl);
   }
 
   getTopFive(): Observable<ITeam[]> {

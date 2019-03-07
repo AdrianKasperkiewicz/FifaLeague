@@ -22,7 +22,7 @@ namespace FL.API.Queries.QueryHandlers
         public async Task<IList<DivisionTeamViewModel>> Handle(GetDivisionTeamsQuery request, CancellationToken cancellationToken)
         {
             return await this.repository
-                .DivisionTeam.Where(x => x.DivisionId == request.Id)
+                .DivisionTeams.Where(x => x.DivisionId == request.Id)
                 .ToListAsync(cancellationToken);
         }
     }

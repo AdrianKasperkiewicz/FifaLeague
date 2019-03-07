@@ -18,7 +18,7 @@ namespace FL.API.Queries.EventHandlers
         {
             var seasonVM = new SeasonViewModel(notification.SeasonId);
 
-            this.context.Season.AddAsync(seasonVM);
+            this.context.Seasons.AddAsync(seasonVM);
             this.context.SaveChangesAsync();
         }
     }

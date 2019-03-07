@@ -20,9 +20,9 @@ namespace FL.API.Controllers
             this.mediator = mediator;
         }
 
-        [HttpPost("AddTeam")]
+        [HttpPost("AssignTeam")]
         [AllowAnonymous]
-        public async Task<ActionResult> AddNewTeam([FromBody] AddTeamForDivisionCommand command)
+        public async Task<ActionResult> AssignTeam([FromBody] AddTeamForDivisionCommand command)
         {
             return this.Ok(await this.mediator.Send(command));
         }

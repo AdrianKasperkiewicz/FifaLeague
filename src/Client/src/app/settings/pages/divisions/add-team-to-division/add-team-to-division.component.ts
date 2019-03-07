@@ -5,6 +5,7 @@ import { TeamService } from '../../../../shared/services/team.service';
 import { IDivision } from '../../../../shared/models/division.viewmodel';
 import { AddTeamToDivisionDialogComponent } from '../add-team-to-division-dialog/add-team-to-division-dialog.component';
 import { IDivisionTeam } from '../../../../shared/models/DivisionTeam.viewmodel';
+import { DivisionService } from '../../../../shared/services/division.service';
 
 @Component({
   selector: 'app-add-team-to-division',
@@ -19,11 +20,11 @@ export class AddTeamToDivisionComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
-    private teamService: TeamService) {
+    private divisionService: DivisionService) {
   }
 
   private getTeams() {
-    this.teamService
+    this.divisionService
       .getByDivision(this.division.id)
       .subscribe(x => this.teams = x);
   }

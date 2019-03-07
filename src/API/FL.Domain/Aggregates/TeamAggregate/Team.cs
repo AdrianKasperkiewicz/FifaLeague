@@ -6,6 +6,10 @@
 
     public class Team : AggregateRoot
     {
+        public Team()
+        {
+        }
+
         public Team(string firstName, string lastName, string email)
         {
             if (string.IsNullOrEmpty(firstName))
@@ -19,10 +23,6 @@
             }
 
             base.ApplyChange(new TeamCreatedDomainEvent(Guid.NewGuid(), firstName, lastName, email));
-        }
-
-        public Team()
-        {
         }
 
         public string FirstName { get; private set; }

@@ -12,7 +12,7 @@ namespace FL.API.Queries.QueryHandlers
     using MediatR;
     using Microsoft.EntityFrameworkCore;
 
-    public class GetTopFiveTeamQueryHandler : IRequestHandler<GetTopFiveTeamQuery, List<TeamViewModel>>
+    public class GetTopFiveTeamQueryHandler : IRequestHandler<GetTopTeamQuery, List<TeamViewModel>>
     {
         private readonly LeagueReadModelContext repository;
 
@@ -21,13 +21,19 @@ namespace FL.API.Queries.QueryHandlers
             this.repository = repository;
         }
 
-        public async Task<List<TeamViewModel>> Handle(GetTopFiveTeamQuery request, CancellationToken cancellationToken)
+        public async Task<List<TeamViewModel>> Handle(GetTopTeamQuery request, CancellationToken cancellationToken)
         {
-            return await this.repository.Team.Take(5).ToListAsync(cancellationToken);
+            return await this.repository.Teams.Take(request.Count).ToListAsync(cancellationToken);
         }
     }
 
-    public class GetTopFiveTeamQuery : IRequest<List<TeamViewModel>>
+    public class GetTopTeamQuery : IRequest<List<TeamViewModel>>
     {
+        public GetTopTeamQuery(int count)
+        {
+            this.Count = count;
+        }
+
+        public int Count { get; }
     }
 }

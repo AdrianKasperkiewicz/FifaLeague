@@ -4,10 +4,6 @@ namespace FL.API.Queries.ViewModels
 {
     public class TeamViewModel
     {
-        public TeamViewModel()
-        {
-        }
-
         public TeamViewModel(Guid id, string email, string firstName, string lastName)
         {
             this.Id = id;
