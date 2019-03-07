@@ -43,14 +43,12 @@ namespace FL.Infrastructure.Database
 
             await this.context.AddRangeAsync(eventsToStore);
             await this.context.SaveChangesAsync();
-
-            this.PublishUncomitedEvents(aggregate);
         }
 
         public async Task<T> Get(Guid id)
         {
             T aggregate = new T();
-            var serializedEvents = this.context.EventStore.Where(x => x.AggregateId == id);
+            var serializedEvents = this.context.EventsStore.Where(x => x.AggregateId == id);
 
             var domainEvents = await serializedEvents
                 .Select(x => JsonConvert.DeserializeObject(x.Event, Type.GetType(x.EventType)) as DomainEvent)

@@ -12,7 +12,6 @@ namespace FL.Application.CommandHandlers.Seasons
     public class CreateSeasonHandler : IRequestHandler<CreateSeasonCommand, Guid>
     {
         private readonly IRepository<Season> repository;
-        private readonly IMediator mediator;
 
         public CreateSeasonHandler(IRepository<Season> repository)
         {
