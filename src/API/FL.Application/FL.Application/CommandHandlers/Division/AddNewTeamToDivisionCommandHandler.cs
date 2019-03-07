@@ -11,12 +11,10 @@
     public class AddNewTeamToDivisionCommandHandler : AsyncRequestHandler<AddNewTeamToDivisionCommand>
     {
         private readonly IRepository<Season> repository;
-        private readonly IMediator mediator;
 
-        public AddNewTeamToDivisionCommandHandler(IRepository<Season> repository, IMediator mediator)
+        public AddNewTeamToDivisionCommandHandler(IRepository<Season> repository)
         {
             this.repository = repository;
-            this.mediator = mediator;
         }
 
         protected override async Task Handle(AddNewTeamToDivisionCommand request, CancellationToken cancellationToken)
@@ -26,11 +24,6 @@
             aggregate.AddTeam(request.TeamId, request.DivisionId);
 
             await this.repository.Save(aggregate);
-
-            foreach (var @event in aggregate.GetUncommittedChanges())
-            {
-                await this.mediator.Publish(@event);
-            }
         }
     }
 

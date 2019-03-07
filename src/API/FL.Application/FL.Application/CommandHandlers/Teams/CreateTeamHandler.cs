@@ -24,11 +24,6 @@
             var aggregate = new Team(request.FirstName, request.LastName, request.Email);
 
             await this.repository.Save(aggregate);
-
-            foreach (var @event in aggregate.GetUncommittedChanges())
-            {
-                await this.mediator.Publish(@event);
-            }
         }
     }
 

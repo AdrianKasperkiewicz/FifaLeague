@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 using FL.Domain;
 using FL.Domain.BaseObjects;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
@@ -14,10 +15,12 @@ namespace FL.Infrastructure.Database
         where T : AggregateRoot, new()
     {
         private readonly AggregateStoreContext context;
+        private readonly IMediator mediator;
 
-        public AggregateRepository(AggregateStoreContext context)
+        public AggregateRepository(AggregateStoreContext context, IMediator mediator)
         {
             this.context = context;
+            this.mediator = mediator;
         }
 
         public async Task Save(T aggregate)
@@ -39,8 +42,9 @@ namespace FL.Infrastructure.Database
             }
 
             await this.context.AddRangeAsync(eventsToStore);
-
             await this.context.SaveChangesAsync();
+
+            this.PublishUncomitedEvents(aggregate);
         }
 
         public async Task<T> Get(Guid id)
@@ -55,6 +59,16 @@ namespace FL.Infrastructure.Database
             aggregate.LoadsFromHistory(domainEvents);
 
             return aggregate;
+        }
+
+        private void PublishUncomitedEvents(T aggregate)
+        {
+            foreach (var @event in aggregate.GetUncommittedChanges())
+            {
+                this.mediator.Publish(@event);
+            }
+
+            aggregate.MarkChangesAsCommitted();
         }
     }
 }

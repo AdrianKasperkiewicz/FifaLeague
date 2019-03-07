@@ -14,10 +14,9 @@ namespace FL.Application.CommandHandlers.Seasons
         private readonly IRepository<Season> repository;
         private readonly IMediator mediator;
 
-        public CreateSeasonHandler(IRepository<Season> repository, IMediator mediator)
+        public CreateSeasonHandler(IRepository<Season> repository)
         {
             this.repository = repository;
-            this.mediator = mediator;
         }
 
         public async Task<Guid> Handle(CreateSeasonCommand request, CancellationToken cancellationToken)
@@ -34,11 +33,6 @@ namespace FL.Application.CommandHandlers.Seasons
             }
 
             await this.repository.Save(season);
-
-            foreach (var @event in season.GetUncommittedChanges())
-            {
-                await this.mediator.Publish(@event);
-            }
 
             return season.Id.Value;
         }
