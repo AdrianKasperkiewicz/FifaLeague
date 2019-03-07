@@ -42,8 +42,7 @@ namespace FL.API.Controllers
         }
 
         [HttpGet("{id}/teams")]
-
-    [AllowAnonymous]
+        [AllowAnonymous]
         public async Task<ActionResult> GetTeams(Guid id)
         {
             return this.Ok(await this.mediator.Send(new GetDivisionTeamsQuery(id)));

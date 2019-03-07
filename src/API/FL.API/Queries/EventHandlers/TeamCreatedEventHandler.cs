@@ -1,5 +1,4 @@
 ﻿using FL.API.Queries.Database;
-using FL.Application;
 using FL.API.Queries.ViewModels;
 using FL.Domain.Aggregates.TeamAggregate.Events;
 using MediatR;

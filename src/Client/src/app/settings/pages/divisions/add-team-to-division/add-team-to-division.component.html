@@ -1,16 +1,12 @@
-<button (click)="openDialog()">Dodaj zespół</button>
+<button mat-raised-button color="primary"  (click)="openDialog()">Dodaj zespół</button>
 <table mat-table [dataSource]="teams">
-
-  <!--- Note that these columns can be defined in any order.
-    The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Position Column -->
+  <!-- Name Column -->
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Nazwa </th>
     <td mat-cell *matCellDef="let element"> {{ element.fullTeamName}} </td>
   </ng-container>
 
-  <!-- Name Column -->
+  <!-- Email Column -->
   <ng-container matColumnDef="email">
     <th mat-header-cell *matHeaderCellDef> Email </th>
     <td mat-cell *matCellDef="let element"> {{ element.email }} </td>
@@ -19,14 +15,3 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<!-- 
-<form [formGroup]="divisionForm">
-  <div formArrayName="teams">
-    <div *ngFor="let team of teamsArray.controls; let i = index">
-      <app-add-team-autocomplete [teamForm] = team></app-add-team-autocomplete>
-      <div [formGroupName]="i">
-
-      </div>
-    </div>
-  </div>
-</form> -->

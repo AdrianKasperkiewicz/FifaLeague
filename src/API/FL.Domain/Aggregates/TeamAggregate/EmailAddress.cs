@@ -17,9 +17,9 @@ namespace FL.Domain.Aggregates.TeamAggregate
 
         public string Value { get; }
 
-        protected override IEnumerable<object> GetAtomicValues()
+        public static bool IsCorrectEmail(string email)
         {
-            yield return this.Value;
+            return new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").IsMatch(email);
         }
 
         public void ValidateAndThrow(string email)
@@ -30,9 +30,9 @@ namespace FL.Domain.Aggregates.TeamAggregate
             }
         }
 
-        public static bool IsCorrectEmail(string email)
+        protected override IEnumerable<object> GetAtomicValues()
         {
-            return new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").IsMatch(email);
+            yield return this.Value;
         }
     }
 }

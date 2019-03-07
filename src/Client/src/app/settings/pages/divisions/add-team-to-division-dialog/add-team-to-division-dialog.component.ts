@@ -17,35 +17,40 @@ export class AddTeamToDivisionDialogComponent implements OnInit {
   teamForm: FormGroup;
   filteredOptions: Observable<ITeam[]>;
   division: IDivision;
-    constructor(private formbBuilder: FormBuilder, private teamService: TeamService, private divisionService: DivisionService, public dialogRef: MatDialogRef<AddTeamToDivisionDialogComponent>,@Inject(MAT_DIALOG_DATA) private data: any) {
-this.division = data.division;
-     }
-  
-    ngOnInit() {
-      this.teamForm = this.formbBuilder.group({
-        seasonId:'',
-        divisionId:'',
-        teamId:''
-      })
-      this.filteredOptions = this.teamForm.controls['teamId'].valueChanges
-        .pipe(
-          startWith(''),
-          flatMap(x => this.teamService.filterByName(x))
-        )
-    }
+  constructor(
+    private formbBuilder: FormBuilder,
+    private teamService: TeamService,
+    private divisionService: DivisionService,
+    public dialogRef: MatDialogRef<AddTeamToDivisionDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: any) {
+    this.division = data.division;
+  }
 
-    onNoClick(): void {
-      this.dialogRef.close();
+  ngOnInit() {
+    this.teamForm = this.formbBuilder.group({
+      seasonId: '',
+      divisionId: '',
+      teamId: ''
+    });
+
+    this.filteredOptions = this.teamForm.controls['teamId'].valueChanges
+      .pipe(
+        startWith(''),
+        flatMap(x => this.teamService.filterByName(x))
+      );
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  onSubmit(): void {
+    if (this.teamForm.valid) {
+      this.teamForm.patchValue({ seasonId: this.division.seasonId });
+      this.teamForm.patchValue({ divisionId: this.division.id });
+
+      this.divisionService.addTeamToDivision(this.teamForm.value)
+        .subscribe(this.dialogRef.close(true));
     }
-  
-    onSubmit(): void {
-      if (this.teamForm.valid) {
-        this.teamForm.patchValue({seasonId: this.division.seasonId})
-        
-        this.teamForm.patchValue({divisionId: this.division.id})
-        this.divisionService.addTeamToDivision(this.teamForm.value)
-          .subscribe(resp => this.dialogRef.close(true));
-      }
-    
   }
 }

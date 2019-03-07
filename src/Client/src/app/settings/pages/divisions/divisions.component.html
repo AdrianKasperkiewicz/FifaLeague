@@ -1,21 +1,18 @@
-<form [formGroup]="divisionsFormGroup">
-  <div fxLayout="row" fxLayoutWrap="wrap">
-    <!-- Card column -->
-    <div fxFlex.gt-sm="100%" fxFlex="100">
-      <mat-card>
-        <mat-card-content>
-          <mat-card-title>Konfiguracja Dywizji</mat-card-title>
-          <mat-card-subtitle> przydzielanie zespołów do dywizji</mat-card-subtitle>
-        </mat-card-content>
-        <mat-tab-group *ngIf="divisions | async">
-          <mat-tab *ngFor="let division of divisions | async" label="{{ division.name }}">
-            <mat-card-content>information about {{division.name}}
-             <app-add-team-to-division [division]="division"></app-add-team-to-division>
-            </mat-card-content>
-          </mat-tab>
-        </mat-tab-group>
-      </mat-card>
-    </div>
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <!-- Card column -->
+  <div fxFlex.gt-sm="100%" fxFlex="100">
+    <mat-card>
+      <mat-card-content>
+        <mat-card-title>Konfiguracja Dywizji</mat-card-title>
+        <mat-card-subtitle> przydzielanie zespołów do dywizji</mat-card-subtitle>
+      </mat-card-content>
+      <mat-tab-group *ngIf="divisions | async">
+        <mat-tab *ngFor="let division of divisions | async" label="{{ division.name }}">
+          <mat-card-content>
+            <app-add-team-to-division [division]="division"></app-add-team-to-division>
+          </mat-card-content>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
   </div>
-  <button mat-raised-button color="primary" [disabled]="!divisionsFormGroup.valid" (click)='onSubmit()'>Zapisz</button>
-</form>
+</div>

@@ -3,7 +3,6 @@ using System.Threading;
 using System.Threading.Tasks;
 
 using FL.API.Queries.Database;
-using FL.Application;
 using FL.API.Queries.ViewModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

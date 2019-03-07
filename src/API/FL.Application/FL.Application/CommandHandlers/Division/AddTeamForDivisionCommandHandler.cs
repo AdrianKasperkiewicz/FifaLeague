@@ -63,7 +63,6 @@
 
             this.RuleFor(x => x.DivisionId)
                 .NotEmpty();
-
         }
     }
 }

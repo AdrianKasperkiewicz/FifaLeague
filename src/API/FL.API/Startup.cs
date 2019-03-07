@@ -20,7 +20,6 @@ namespace FL.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -34,7 +33,6 @@ namespace FL.API
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-
             // net core 2.2 issue https://github.com/aspnet/AspNetCore/issues/6166
             app.Use(async (ctx, next) =>
             {
