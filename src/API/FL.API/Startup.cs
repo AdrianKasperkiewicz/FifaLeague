@@ -1,4 +1,6 @@
-﻿using FL.API.IoC;
+﻿using DemoDataConfiguration;
+using FL.API.Infrastructure;
+using FL.API.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -53,6 +55,11 @@ namespace FL.API
             });
 
             app.UseMvc();
+
+            if (env.IsDevelopment())
+            {
+                app.AddDeveloperStarterData();
+            }
         }
     }
 }

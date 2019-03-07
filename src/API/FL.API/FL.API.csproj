@@ -32,6 +32,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FL.Application\FL.Application\FL.Application.csproj" />
     <ProjectReference Include="..\FL.Infrastructure.Database\FL.Infrastructure.Database.csproj" />
+    <ProjectReference Include="..\Infrastructure\DemoDataConfiguration\DemoDataConfiguration.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\_stylecop\StyleCopRules.ruleset</CodeAnalysisRuleSet>

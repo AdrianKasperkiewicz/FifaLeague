@@ -2,6 +2,7 @@
 using FL.API.Queries.ViewModels;
 using FL.Domain.Aggregates.TeamAggregate.Events;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace FL.API.Queries.EventHandlers
 {
