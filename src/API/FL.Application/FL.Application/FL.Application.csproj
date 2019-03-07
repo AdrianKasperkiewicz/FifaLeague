@@ -26,6 +26,10 @@
     <ProjectReference Include="..\..\FL.Domain\FL.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CommandHandlers\Teams\" />
+  </ItemGroup>
+
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\_stylecop\StyleCopRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>

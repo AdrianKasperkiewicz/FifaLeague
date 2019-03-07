@@ -10,24 +10,29 @@ namespace FL.Domain.Aggregates.TeamAggregate
     {
         public EmailAddress(string email)
         {
-            Validate(email);
+            this.ValidateAndThrow(email);
 
             this.Value = email;
         }
 
         public string Value { get; }
 
-        protected override IEnumerable<object> GetAtomicValues()
+        public static bool IsCorrectEmail(string email)
         {
-            yield return this.Value;
+            return new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").IsMatch(email);
         }
 
-        private static void Validate(string email)
+        public void ValidateAndThrow(string email)
         {
-            if (!new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").IsMatch(email))
+            if (!IsCorrectEmail(email))
             {
                 throw new FormatException("email is not valid.");
             }
+        }
+
+        protected override IEnumerable<object> GetAtomicValues()
+        {
+            yield return this.Value;
         }
     }
 }

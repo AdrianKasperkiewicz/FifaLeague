@@ -21,7 +21,7 @@
         public async Task<IList<DivisionViewModel>> Handle(GetDivisionByNameQuery request, CancellationToken cancellationToken)
         {
             return await this.repository
-                .Division
+                .Divisions
                 .Where(x => x.Name.Contains(request.Name))
                 .ToListAsync();
         }

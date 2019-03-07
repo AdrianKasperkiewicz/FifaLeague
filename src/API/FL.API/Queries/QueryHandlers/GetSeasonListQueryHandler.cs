@@ -20,7 +20,7 @@ namespace FL.API.Queries.QueryHandlers
 
         public async Task<IList<SeasonViewModel>> Handle(GetSeasonListQuery request, CancellationToken cancellationToken)
         {
-            return await this.repository.Season.ToListAsync(cancellationToken);
+            return await this.repository.Seasons.ToListAsync(cancellationToken);
         }
     }
 

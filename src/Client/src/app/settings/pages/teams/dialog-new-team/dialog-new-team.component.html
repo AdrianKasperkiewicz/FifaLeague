@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Dane nowego zespołu</h1>
+<div mat-dialog-content>
+ <form [formGroup]="teamFormGroup">
+  <mat-form-field>
+    <input matInput placeholder="Imię" formControlName="firstName">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Nazwisko" formControlName="lastName">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="email" formControlName="email">
+  </mat-form-field>
+ </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onSubmit()" [disabled]="!teamFormGroup.valid" tabindex="2">Zapisz</button>
+  <button mat-button (click)="onCancel()" tabindex="-1">Anuluj</button>
+</div>
