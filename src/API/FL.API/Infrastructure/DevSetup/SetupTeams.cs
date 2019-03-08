@@ -3,7 +3,7 @@ using Bogus.Extensions;
 using FL.Application.CommandHandlers.Teams;
 using MediatR;
 
-namespace DemoDataConfiguration.Setups
+namespace FL.API.Infrastructure.DevSetup
 {
     public class SetupTeams
     {

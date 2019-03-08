@@ -1,9 +1,8 @@
-﻿using DemoDataConfiguration.Setups;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DemoDataConfiguration
+namespace FL.API.Infrastructure.DevSetup
 {
     public static class SetupData
     {

@@ -1,7 +1,5 @@
-﻿using DemoDataConfiguration;
-using FL.API.Infrastructure;
+﻿using FL.API.Infrastructure.DevSetup;
 using FL.API.IoC;
-using FutbinService.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -27,7 +25,6 @@ namespace FL.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.RegisterApplicationModule();
-            services.FutbinServiceModule();
 
             services.AddSwaggerGen(c =>
             {

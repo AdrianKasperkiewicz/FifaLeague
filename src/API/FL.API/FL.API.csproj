@@ -14,6 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Bogus" Version="26.0.1" />
     <PackageReference Include="FluentValidation" Version="8.1.3" />
     <PackageReference Include="MediatR" Version="6.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="6.0.1" />
@@ -32,8 +33,6 @@
   <ItemGroup>
     <ProjectReference Include="..\FL.Application\FL.Application\FL.Application.csproj" />
     <ProjectReference Include="..\FL.Infrastructure.Database\FL.Infrastructure.Database.csproj" />
-    <ProjectReference Include="..\Infrastructure\DemoDataConfiguration\DemoDataConfiguration.csproj" />
-    <ProjectReference Include="..\Infrastructure\FutbinService\FutbinService.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <CodeAnalysisRuleSet>..\_stylecop\StyleCopRules.ruleset</CodeAnalysisRuleSet>

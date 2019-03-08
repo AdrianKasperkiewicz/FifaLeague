@@ -2,7 +2,7 @@
 using FL.Application.CommandHandlers.Seasons;
 using MediatR;
 
-namespace DemoDataConfiguration.Setups
+namespace FL.API.Infrastructure.DevSetup
 {
     public class SetupSeason
     {
