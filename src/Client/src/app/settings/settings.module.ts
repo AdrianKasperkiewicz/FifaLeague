@@ -12,6 +12,7 @@ import { TeamsComponent } from './pages/teams/teams.component';
 import { DialogNewTeamComponent } from './pages/teams/dialog-new-team/dialog-new-team.component';
 import { AddTeamToDivisionComponent } from './pages/divisions/add-team-to-division/add-team-to-division.component';
 import { AddTeamToDivisionDialogComponent } from './pages/divisions/add-team-to-division-dialog/add-team-to-division-dialog.component';
+import { StartSeasonComponent } from './pages/start-season/start-season.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { AddTeamToDivisionDialogComponent } from './pages/divisions/add-team-to-
     TeamsComponent,
     DialogNewTeamComponent,
     AddTeamToDivisionComponent,
-    AddTeamToDivisionDialogComponent
+    AddTeamToDivisionDialogComponent,
+    StartSeasonComponent
   ],
   entryComponents: [DialogNewTeamComponent, AddTeamToDivisionDialogComponent],
 })

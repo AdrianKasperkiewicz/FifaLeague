@@ -84,6 +84,12 @@ const MENUITEMS = [
         type: 'link',
         name: 'Zespoły',
         icon: 'people'
+      },
+      {
+        state: '/settings/startseason',
+        type: 'power_settings_new',
+        name: 'Rozpocznij sezon',
+        icon: 'people'
       }
     ]
   }

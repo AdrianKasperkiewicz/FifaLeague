@@ -53,6 +53,11 @@ namespace FL.Infrastructure.Database
                 .Select(x => JsonConvert.DeserializeObject(x.Event, Type.GetType(x.EventType)) as DomainEvent)
                 .ToListAsync();
 
+            if (domainEvents == null || !domainEvents.Any())
+            {
+                throw new AggregateException("Aggregate not exist");
+            }
+
             aggregate.LoadsFromHistory(domainEvents);
 
             return aggregate;

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NewSeasonComponent } from './pages/new-season/new-season.component';
 import { DivisionsComponent } from './pages/divisions/divisions.component';
 import { TeamsComponent } from './pages/teams/teams.component';
+import { StartSeasonComponent } from './pages/start-season/start-season.component';
 const routes: Routes = [{
   path: 'newseason',
   component: NewSeasonComponent
@@ -13,6 +14,10 @@ const routes: Routes = [{
 {
   path: 'teams',
   component: TeamsComponent
+},
+{
+  path: 'startseason',
+  component: StartSeasonComponent
 }];
 
 @NgModule({
