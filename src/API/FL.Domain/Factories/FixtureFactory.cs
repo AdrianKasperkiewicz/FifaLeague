@@ -73,13 +73,20 @@ namespace FL.Domain.Factories
                     Console.WriteLine("{0} vs {1}", teams[firstTeam], teams[secondTeam]);
                 }
 
+                this.ClearEmptyMatches(matches);
                 yield return new WeekFixture(
                     this.seasonId,
                     divisionId,
                     currentFixtureStartDate.Date,
                     currentFixtureStartDate.AddDays(7),
-                    matches);
+                    matches,
+                    day + 1);
             }
+        }
+
+        private void ClearEmptyMatches(List<KeyValuePair<Guid, Guid>> matches)
+        {
+            matches.Remove(matches.FirstOrDefault(x => x.Value == Guid.Empty || x.Key == Guid.Empty));
         }
     }
 }

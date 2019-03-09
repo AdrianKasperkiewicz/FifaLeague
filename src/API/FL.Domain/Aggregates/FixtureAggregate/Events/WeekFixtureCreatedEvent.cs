@@ -7,7 +7,7 @@ namespace FL.Domain.Aggregates.FixtureAggregate.Events
 {
     public class WeekFixtureCreatedEvent : DomainEvent
     {
-        public WeekFixtureCreatedEvent(Guid seasonId, Guid divisionId, DateTime startDate, DateTime endDate, List<KeyValuePair<Guid, Guid>> matchList)
+        public WeekFixtureCreatedEvent(Guid seasonId, Guid divisionId, DateTime startDate, DateTime endDate, List<KeyValuePair<Guid, Guid>> matchList, int fixtureWeekNumber)
             : base()
         {
             this.DivisionId = divisionId;
@@ -15,7 +15,10 @@ namespace FL.Domain.Aggregates.FixtureAggregate.Events
             this.StartDate = startDate;
             this.EndDate = endDate;
             this.MatchList = matchList;
+            this.FixtureWeekNumber = fixtureWeekNumber;
         }
+
+        public int FixtureWeekNumber { get; }
 
         public Guid SeasonId { get; }
 

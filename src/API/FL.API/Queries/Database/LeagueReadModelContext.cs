@@ -18,5 +18,7 @@ namespace FL.API.Queries.Database
         public DbSet<TeamViewModel> Teams { get; set; }
 
         public DbSet<DivisionTeamViewModel> DivisionTeams { get; set; }
+
+        public DbSet<DivisionMatchViewModel> DivisionsMatches { get; set; }
     }
 }

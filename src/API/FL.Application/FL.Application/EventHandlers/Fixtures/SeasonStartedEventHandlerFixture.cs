@@ -9,11 +9,11 @@ using MediatR;
 
 namespace FL.Application.EventHandlers.Fixtures
 {
-    public class SeasonStartedEventHandler : NotificationHandler<SeasonStartedEvent>
+    public class SeasonStartedEventHandlerFixture : NotificationHandler<SeasonStartedEvent>
     {
         private readonly IRepository<WeekFixture> fixtureRepository;
 
-        public SeasonStartedEventHandler(IRepository<WeekFixture> fixtureRepository)
+        public SeasonStartedEventHandlerFixture(IRepository<WeekFixture> fixtureRepository)
         {
             this.fixtureRepository = fixtureRepository;
         }
