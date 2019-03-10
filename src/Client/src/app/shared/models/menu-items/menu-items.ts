@@ -10,6 +10,7 @@ export interface Menu {
 const MENUITEMS = [
 
   { state: '/starter', name: 'Start', type: 'link', icon: 'home' },
+  { state: '/league/fixture', name: 'Terminarz', type: 'link', icon: 'today' },
   {
     state: '',
     name: 'Material Ui',
