@@ -30,4 +30,10 @@ export class SeasonService {
 
     return this.httpClient.post<string>(startSeasonrUrl, null);
   }
+
+  getCurrent(): Observable<ISeason> {
+    const getUrl = this.baseUrl + 'season/current';
+
+    return this.httpClient.get<ISeason>(getUrl);
+  }
 }

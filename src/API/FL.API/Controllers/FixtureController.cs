@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 using FL.API.Queries.QueryHandlers;
 using MediatR;
@@ -22,14 +23,21 @@ namespace FL.API.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> Get()
         {
-            return this.Ok(this.mediator.Send(new GetCurrentSeasonFixturesQuery()));
+            return this.Ok(await this.mediator.Send(new GetCurrentSeasonFixturesQuery()));
+        }
+
+        [HttpGet("{divisionId}")]
+        [AllowAnonymous]
+        public async Task<ActionResult> Get(Guid divisionId)
+        {
+            return this.Ok(await this.mediator.Send(new GetFixtureByDivisionQuery(divisionId)));
         }
 
         [HttpGet("Next")]
         [AllowAnonymous]
         public async Task<ActionResult> NextMatches()
         {
-            return this.Ok(this.mediator.Send(new GetCurrentFixtureQuery()));
+            return this.Ok(await this.mediator.Send(new GetCurrentFixtureQuery()));
         }
     }
 }

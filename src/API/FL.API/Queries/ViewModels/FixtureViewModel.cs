@@ -21,5 +21,9 @@ namespace FL.API.Queries.ViewModels
         public DateTime EndDate { get; set; }
 
         public Guid SeasonId { get; set; }
+
+        public Guid DivisionId { get; set; }
+
+        public int WeekNumber { get; set; }
     }
 }

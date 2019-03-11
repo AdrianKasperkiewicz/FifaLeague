@@ -23,15 +23,18 @@ namespace FL.API.Queries.QueryHandlers
         public async Task<IList<FixtureViewModel>> Handle(GetCurrentFixtureQuery request, CancellationToken cancellationToken)
         {
 
-            return await this.dbContext.Fixtures
-                .Where(x => x.StartDate.Date >= DateTime.Now.Date && x.EndDate.Date <= DateTime.Now.Date)
-                .ToListAsync(cancellationToken);
+            var query = this.dbContext.Fixtures
+                .Where(x => x.StartDate.Date >= DateTime.Now.Date && x.EndDate.Date <= DateTime.Now.Date);
+
+                return request.Number.HasValue ?
+                    await query.Take(request.Number.Value).ToListAsync(cancellationToken) :
+                    await query.ToListAsync(cancellationToken);
         }
     }
 
     public class GetCurrentFixtureQuery : IRequest<IList<FixtureViewModel>>
     {
-        public GetCurrentFixtureQuery(int? number)
+        public GetCurrentFixtureQuery(int? number = null)
         {
             this.Number = number;
         }
