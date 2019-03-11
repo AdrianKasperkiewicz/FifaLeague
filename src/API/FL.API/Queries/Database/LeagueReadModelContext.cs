@@ -20,5 +20,6 @@
         public DbSet<DivisionTeamViewModel> DivisionTeams { get; set; }
 
         public DbSet<FixtureViewModel> Fixtures { get; set; }
+        public DbSet<DivisionMatchViewModel> DivisionsMatches { get; set; }
     }
 }

@@ -103,11 +103,10 @@ namespace FL.Domain.Aggregates.SeasonAggregate
         public void Start()
         {
             var teamsDivision = this.divisions
-                .SelectMany(x => x.Teams, (division, team) => new {team, division.Id});
+                .SelectMany(x => x.Teams, (division, team) => new { team, division.Id })
+                .ToDictionary(x => x.team, x => x.Id.Value);
 
-                //.ToDictionary(x => x.Id.Value, x => x.team);
-
-            this.ApplyChange(new SeasonStartedEvent(this.Id.Value, this.StartDate, teamsDivision.ToDictionary(x => x.team, x => x.Id.Value)));
+            this.ApplyChange(new SeasonStartedEvent(this.Id.Value, this.StartDate, teamsDivision));
         }
 
         private void VerifyEditingModeAndThrow()

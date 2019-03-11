@@ -22,7 +22,6 @@ namespace FL.API.IoC
             services.AddDbContext<LeagueReadModelContext>(context => context.UseInMemoryDatabase("LeagueReadDatabase"));
 
             services.AddMediatR();
-            services.AddMediatR(typeof(CreateSeasonCommand).GetTypeInfo().Assembly);
 
             services.AddScoped(typeof(IRepository<>), typeof(AggregateRepository<>));
 

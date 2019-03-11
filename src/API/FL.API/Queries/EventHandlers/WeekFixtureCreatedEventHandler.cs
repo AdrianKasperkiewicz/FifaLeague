@@ -2,7 +2,7 @@
 using System.Linq;
 
 using FL.API.Queries.Database;
-using FL.API.Queries.QueryHandlers;
+using FL.API.Queries.ViewModels;
 using FL.Domain.Aggregates.FixtureAggregate.Events;
 using MediatR;
 
@@ -32,7 +32,9 @@ namespace FL.API.Queries.EventHandlers
                         StartDate = notification.StartDate,
                         EndDate = notification.EndDate,
                         FixtureId = notification.FixtureId,
-                        SeasonId = notification.SeasonId
+                        SeasonId = notification.SeasonId,
+                        DivisionId = notification.DivisionId,
+                        WeekNumber = notification.FixtureWeekNumber
                     });
             }
 

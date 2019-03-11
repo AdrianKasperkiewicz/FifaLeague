@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+
+using FL.Domain.BaseObjects;
 
 namespace FL.Domain.Aggregates.FixtureAggregate
 {
-    public class Match
+    public class Match : Entity
     {
         public Match(Guid homeTeam, Guid awayTeam)
         {
