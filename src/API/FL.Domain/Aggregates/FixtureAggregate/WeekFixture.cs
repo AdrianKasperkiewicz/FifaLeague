@@ -19,7 +19,7 @@ namespace FL.Domain.Aggregates.FixtureAggregate
                 throw new ArgumentException("Fixyure start date should be greater than end date");
             }
 
-            this.ApplyChange(new WeekFixtureCreatedEvent(seasonId, divisionId, startDate, endDate, matchList));
+            this.ApplyChange(new WeekFixtureCreatedEvent(Guid.NewGuid(), seasonId, divisionId, startDate, endDate, matchList));
         }
 
         public Guid SeasonId { get; set; }
@@ -34,7 +34,7 @@ namespace FL.Domain.Aggregates.FixtureAggregate
 
         public void Apply(WeekFixtureCreatedEvent @event)
         {
-            base.Id = new Identity(@event.SeasonId);
+            base.Id = new Identity(@event.FixtureId);
             this.SeasonId = @event.SeasonId;
             this.DivisionId = @event.DivisionId;
             this.StartDate = @event.StartDate;
