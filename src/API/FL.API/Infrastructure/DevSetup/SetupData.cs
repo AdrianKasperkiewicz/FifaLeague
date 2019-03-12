@@ -14,6 +14,7 @@ namespace FL.API.Infrastructure.DevSetup
 
                 new SetupTeams(mediator).Seed();
                 new SetupSeason(mediator).Seed();
+                new SetupDivisionTeams(mediator).Seed();
             }
         }
     }
