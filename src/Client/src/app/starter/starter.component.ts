@@ -10,8 +10,7 @@ export class StarterComponent implements AfterViewInit, OnInit {
   constructor(private occupationService: RoomOccupationService){}
 
   ngOnInit(): void {
-    this.occupationService.startConnection();
-    this.occupationService.addOccupationListener();
   }
+
   ngAfterViewInit() {}
 }

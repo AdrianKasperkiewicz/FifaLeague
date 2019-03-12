@@ -7,7 +7,7 @@ import { IDivisionTeam } from '../models/DivisionTeam.viewmodel';
 
 @Injectable({ providedIn: 'root' })
 export class DivisionService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   readonly baseUrl = environment.api;
 
