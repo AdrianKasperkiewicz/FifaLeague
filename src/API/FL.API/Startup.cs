@@ -1,5 +1,7 @@
 ﻿using FL.API.Infrastructure.DevSetup;
 using FL.API.IoC;
+using Hangfire;
+using Hangfire.MemoryStorage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +32,8 @@ namespace FL.API
             {
                 c.SwaggerDoc("v1", new Info { Title = "FL League API", Version = "v1" });
             });
+
+            services.AddHangfire(x => x.UseMemoryStorage());
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -55,9 +59,12 @@ namespace FL.API
 
             app.UseMvc();
 
+            app.UseHangfireServer();
+
             if (env.IsDevelopment())
             {
                 app.AddDeveloperStarterData();
+                app.UseHangfireDashboard();
             }
         }
     }

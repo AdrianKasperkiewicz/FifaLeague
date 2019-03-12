@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-
+using FL.API.Infrastructure;
 using FL.API.Queries.QueryHandlers;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
