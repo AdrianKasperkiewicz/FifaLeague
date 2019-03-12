@@ -1,4 +1,5 @@
 ﻿using FL.API.Infrastructure.DevSetup;
+using FL.API.Infrastructure.SignalRHubs;
 using FL.API.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,7 @@ namespace FL.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.RegisterApplicationModule();
+            services.AddSignalR();
 
             services.AddSwaggerGen(c =>
             {
@@ -44,7 +46,7 @@ namespace FL.API
                 }
             });
 
-            app.UseCors(builder => builder.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:4200"));
+            app.UseCors(builder => builder.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:4200").AllowCredentials());
 
             app.UseSwagger();
 
@@ -59,6 +61,11 @@ namespace FL.API
             {
                 app.AddDeveloperStarterData();
             }
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<RoomOccupiedHub>("/roomoccupied");
+            });
         }
     }
 }
