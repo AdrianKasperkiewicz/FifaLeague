@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  api: 'http://localhost:56360/api/'
+  api: 'http://localhost:56360/api/',
+  roomOccupationService: 'http://localhost:56360/roomoccupied'
 };
