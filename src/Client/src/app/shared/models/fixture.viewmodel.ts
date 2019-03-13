@@ -1,7 +1,6 @@
 export interface IFixture {
-  id: string;
+  fixtureId: string;
+  startDate: Date;
   endDate: Date;
-  homeTeam: string;
-  awayTeam: string;
   weekNumber: number;
 }

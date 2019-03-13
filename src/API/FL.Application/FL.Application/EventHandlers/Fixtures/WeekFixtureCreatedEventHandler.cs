@@ -18,7 +18,7 @@ namespace FL.Application.EventHandlers.Fixtures
         protected override void Handle(WeekFixtureCreatedEvent notification)
         {
             this.mediator.Defer(new StartFixtureCommand(notification.FixtureId), notification.StartDate);
-            this.mediator.Defer(new EndFixtureCommand(notification.FixtureId), DateTime.Now.AddSeconds(30)); //notification.EndDate);
+            this.mediator.Defer(new EndFixtureCommand(notification.FixtureId), notification.EndDate);
         }
     }
 }

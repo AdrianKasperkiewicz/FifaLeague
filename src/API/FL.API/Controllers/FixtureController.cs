@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using FL.API.Infrastructure;
 using FL.API.Queries.QueryHandlers;
+using FL.Application.CommandHandlers.Fixtures;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +38,20 @@ namespace FL.API.Controllers
         public async Task<ActionResult> NextMatches()
         {
             return this.Ok(await this.mediator.Send(new GetCurrentFixtureQuery()));
+        }
+
+        [HttpGet("possiblereschedulefixtures/{matchId}")]
+        [AllowAnonymous]
+        public async Task<ActionResult> FindPossibleRescheduleFixtures(Guid matchId)
+        {
+            return this.Ok(await this.mediator.Send(new FindPossibleRescheduleFixturesQuery(matchId)));
+        }
+
+        [HttpPost("reschedule")]
+        [AllowAnonymous]
+        public async Task<ActionResult> RescheduleMatch([FromBody]RescheduleMatchCommand command)
+        {
+            return this.Ok(await this.mediator.Send(command));
         }
     }
 }

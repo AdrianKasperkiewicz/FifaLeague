@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+
 using FL.API.Queries.Database;
 using FL.API.Queries.ViewModels;
 using MediatR;
@@ -10,8 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FL.API.Queries.QueryHandlers
 {
-   
-    public class GetAllFixtureMatchesQueryHandler : IRequestHandler<GetAllFixtureMatchesQuery, IList<DivisionMatchViewModel>>
+    public class GetAllFixtureMatchesQueryHandler : IRequestHandler<GetAllFixtureMatchesQuery, IList<FixtureMatchViewModel>>
     {
         private readonly LeagueReadModelContext repository;
 
@@ -20,14 +18,14 @@ namespace FL.API.Queries.QueryHandlers
             this.repository = repository;
         }
 
-        public async Task<IList<DivisionMatchViewModel>> Handle(GetAllFixtureMatchesQuery request, CancellationToken cancellationToken)
+        public async Task<IList<FixtureMatchViewModel>> Handle(GetAllFixtureMatchesQuery request, CancellationToken cancellationToken)
         {
             return await this.repository
-                .DivisionsMatches.ToListAsync(cancellationToken);
+                .FixtureMatches.ToListAsync(cancellationToken);
         }
     }
 
-    public class GetAllFixtureMatchesQuery : IRequest<IList<DivisionMatchViewModel>>
+    public class GetAllFixtureMatchesQuery : IRequest<IList<FixtureMatchViewModel>>
     {
     }
 }

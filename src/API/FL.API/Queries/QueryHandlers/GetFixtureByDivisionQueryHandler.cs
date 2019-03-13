@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FL.API.Queries.QueryHandlers
 {
-    public class GetFixtureByDivisionQueryHandler : IRequestHandler<GetFixtureByDivisionQuery, IList<FixtureViewModel>>
+    public class GetFixtureByDivisionQueryHandler : IRequestHandler<GetFixtureByDivisionQuery, IList<FixtureMatchViewModel>>
     {
         private readonly LeagueReadModelContext dbContext;
 
@@ -20,15 +20,15 @@ namespace FL.API.Queries.QueryHandlers
             this.dbContext = dbContext;
         }
 
-        public async Task<IList<FixtureViewModel>> Handle(GetFixtureByDivisionQuery request, CancellationToken cancellationToken)
+        public async Task<IList<FixtureMatchViewModel>> Handle(GetFixtureByDivisionQuery request, CancellationToken cancellationToken)
         {
-            return await this.dbContext.Fixtures
+            return await this.dbContext.FixtureMatches
                 .Where(x => x.DivisionId == request.DivisionId)
                 .ToListAsync(cancellationToken);
         }
     }
 
-    public class GetFixtureByDivisionQuery : IRequest<IList<FixtureViewModel>>
+    public class GetFixtureByDivisionQuery : IRequest<IList<FixtureMatchViewModel>>
     {
         public GetFixtureByDivisionQuery(Guid divisionId)
         {

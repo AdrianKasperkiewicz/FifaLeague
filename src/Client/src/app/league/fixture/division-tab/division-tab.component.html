@@ -1,9 +1,9 @@
 <table class="full-width" mat-table [dataSource]="fixture">
   <!-- WeekNumber Column -->
   <ng-container matColumnDef="weekNumber">
-      <th mat-header-cell *matHeaderCellDef> Kolejka </th>
-      <td mat-cell *matCellDef="let element"> {{ element.weekNumber}} </td>
-    </ng-container>
+    <th mat-header-cell *matHeaderCellDef> Kolejka </th>
+    <td mat-cell *matCellDef="let element"> {{ element.weekNumber}} </td>
+  </ng-container>
 
   <!-- HomeTeam Column -->
   <ng-container matColumnDef="homeTeam">
@@ -21,6 +21,14 @@
   <ng-container matColumnDef="endDate">
     <th mat-header-cell *matHeaderCellDef> Rozegrać do </th>
     <td mat-cell *matCellDef="let element"> {{ element.endDate }} </td>
+  </ng-container>
+
+  <!-- ReSchedule Column -->
+  <ng-container matColumnDef="reschedule">
+    <th mat-header-cell *matHeaderCellDef>Przełóż</th>
+    <td mat-cell *matCellDef="let element" [ngClass]="{'posponed-row': element.posponed, 'rescheduled-row': element.rescheluded}">
+      <button *ngIf="!element.posponed" mat-raised-button color="primary" (click)="reschedule(element.matchId)">Przełóż</button>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

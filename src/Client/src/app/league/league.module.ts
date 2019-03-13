@@ -5,6 +5,7 @@ import { LeagueRoutingModule } from './league-routing.module';
 import { FixtureComponent } from './fixture/fixture.component';
 import { MaterialModule } from '../shared/modules/material-module';
 import { DivisionTabComponent } from './fixture/division-tab/division-tab.component';
+import { RescheduleDialogComponent } from './fixture/reschedule-dialog/reschedule-dialog.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { DivisionTabComponent } from './fixture/division-tab/division-tab.compon
     LeagueRoutingModule,
     MaterialModule
   ],
-  declarations: [FixtureComponent, DivisionTabComponent]
+  declarations: [FixtureComponent, DivisionTabComponent, RescheduleDialogComponent],
+  entryComponents: [RescheduleDialogComponent]
 })
 export class LeagueModule { }

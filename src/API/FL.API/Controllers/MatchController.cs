@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
-using FL.Application.CommandHandlers.Match;
-using FL.API.Queries.QueryHandlers;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace FL.API.Controllers
+﻿namespace FL.API.Controllers
 {
+    using System.Threading.Tasks;
+    using FL.API.Queries.QueryHandlers;
+    using FL.Application.CommandHandlers.Match;
+    using MediatR;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+
     [Route("api/[controller]")]
     [ApiController]
     public class MatchController : ControllerBase

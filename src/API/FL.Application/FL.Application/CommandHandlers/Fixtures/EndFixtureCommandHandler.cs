@@ -6,6 +6,7 @@ using MediatR;
 
 namespace FL.Application.CommandHandlers.Fixtures
 {
+    // TODO Comamnd validator
     public class EndFixtureCommandHandler : AsyncRequestHandler<EndFixtureCommand>
     {
         protected override Task Handle(EndFixtureCommand request, CancellationToken cancellationToken)

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FL.API.Queries.QueryHandlers
 {
-    public class GetCurrentSeasonFixturesQueryHandler : IRequestHandler<GetCurrentSeasonFixturesQuery, List<FixtureViewModel>>
+    public class GetCurrentSeasonFixturesQueryHandler : IRequestHandler<GetCurrentSeasonFixturesQuery, List<FixtureMatchViewModel>>
     {
         private readonly LeagueReadModelContext dbContext;
 
@@ -20,13 +20,13 @@ namespace FL.API.Queries.QueryHandlers
             this.dbContext = dbContext;
         }
 
-        public async Task<List<FixtureViewModel>> Handle(GetCurrentSeasonFixturesQuery request, CancellationToken cancellationToken)
+        public async Task<List<FixtureMatchViewModel>> Handle(GetCurrentSeasonFixturesQuery request, CancellationToken cancellationToken)
         {
             var seasonId = this.dbContext.Seasons.FirstOrDefault(x => x.IsRunning)?.Id;
 
             if (seasonId != null)
             {
-                return await this.dbContext.Fixtures.Where(x => x.SeasonId == seasonId).ToListAsync(cancellationToken);
+                return await this.dbContext.FixtureMatches.Where(x => x.SeasonId == seasonId).ToListAsync(cancellationToken);
             }
 
             seasonId = this.dbContext.Seasons
@@ -34,13 +34,13 @@ namespace FL.API.Queries.QueryHandlers
                 .OrderBy(x => x.StartDate)
                 .FirstOrDefault()?.Id;
 
-            return seasonId.HasValue ? 
-                await this.dbContext.Fixtures.Where(x => x.SeasonId == seasonId).ToListAsync(cancellationToken) :
-                new List<FixtureViewModel>();
+            return seasonId.HasValue ?
+                await this.dbContext.FixtureMatches.Where(x => x.SeasonId == seasonId).ToListAsync(cancellationToken) :
+                new List<FixtureMatchViewModel>();
         }
     }
 
-    public class GetCurrentSeasonFixturesQuery : IRequest<List<FixtureViewModel>>
+    public class GetCurrentSeasonFixturesQuery : IRequest<List<FixtureMatchViewModel>>
     {
     }
 }

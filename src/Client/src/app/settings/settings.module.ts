@@ -33,6 +33,6 @@ import { StartSeasonComponent } from './pages/start-season/start-season.componen
     AddTeamToDivisionDialogComponent,
     StartSeasonComponent
   ],
-  entryComponents: [DialogNewTeamComponent, AddTeamToDivisionDialogComponent],
+  entryComponents: [DialogNewTeamComponent, AddTeamToDivisionDialogComponent]
 })
 export class SettingsModule { }

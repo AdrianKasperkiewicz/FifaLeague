@@ -50,43 +50,45 @@ namespace FL.Domain.Factories
 
             var teams = new List<Guid>();
 
-            teams.AddRange(teamList); // Copy all the elements.
-            teams.RemoveAt(0); // To exclude the first team.
+            teams.AddRange(teamList);
+            teams.RemoveAt(0);
 
             var teamsSize = teams.Count;
             var currentFixtureStartDate = this.startDate;
 
             for (var day = 0; day < numDays; day++)
             {
-                var matches = new List<KeyValuePair<Guid, Guid>>();
-                Console.WriteLine("Day {0}", day + 1);
+                var fixture = new WeekFixture(
+                    this.seasonId,
+                    divisionId,
+                    currentFixtureStartDate.Date,
+                    currentFixtureStartDate.AddDays(7),
+                    day + 1);
 
                 var teamIdx = day % teamsSize;
-                matches.Add(new KeyValuePair<Guid, Guid>(teams[teamIdx], teamList[0]));
-                Console.WriteLine("{0} vs {1}", teams[teamIdx], teamList[0]);
+                if (!this.EmptyMatch(teams[teamIdx], teamList[0]))
+                {
+                    fixture.AddMatch(teams[teamIdx], teamList[0]);
+                }
 
                 for (var idx = 1; idx < halfSize; idx++)
                 {
                     var firstTeam = (day + idx) % teamsSize;
                     var secondTeam = (day + teamsSize - idx) % teamsSize;
-                    matches.Add(new KeyValuePair<Guid, Guid>(teams[firstTeam], teams[secondTeam]));
-                    Console.WriteLine("{0} vs {1}", teams[firstTeam], teams[secondTeam]);
+
+                    if (!this.EmptyMatch(teams[firstTeam], teams[secondTeam]))
+                    {
+                        fixture.AddMatch(teams[firstTeam], teams[secondTeam]);
+                    }
                 }
 
-                this.ClearEmptyMatches(matches);
-                yield return new WeekFixture(
-                    this.seasonId,
-                    divisionId,
-                    currentFixtureStartDate.Date,
-                    currentFixtureStartDate.AddDays(7),
-                    matches,
-                    day + 1);
+                yield return fixture;
             }
         }
 
-        private void ClearEmptyMatches(List<KeyValuePair<Guid, Guid>> matches)
+        private bool EmptyMatch(Guid homeTeam, Guid awayTeam)
         {
-            matches.Remove(matches.FirstOrDefault(x => x.Value == Guid.Empty || x.Key == Guid.Empty));
+            return homeTeam == Guid.Empty || awayTeam == Guid.Empty;
         }
     }
 }

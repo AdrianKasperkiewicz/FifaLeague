@@ -8,7 +8,6 @@ namespace FL.Shared.Mediator
         public static string Serialize(this IRequest request)
         {
             return JsonConvert.SerializeObject(request,  new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
-
         }
 
         public static IRequest Deserialize(this string serializedRequest)

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FL.API.Queries.QueryHandlers
 {
-    public class GetNextMatchesQueryHandler : IRequestHandler<GetCurrentFixtureQuery, IList<FixtureViewModel>>
+    public class GetNextMatchesQueryHandler : IRequestHandler<GetCurrentFixtureQuery, IList<FixtureMatchViewModel>>
     {
         private readonly LeagueReadModelContext dbContext;
 
@@ -20,10 +20,9 @@ namespace FL.API.Queries.QueryHandlers
             this.dbContext = dbContext;
         }
 
-        public async Task<IList<FixtureViewModel>> Handle(GetCurrentFixtureQuery request, CancellationToken cancellationToken)
+        public async Task<IList<FixtureMatchViewModel>> Handle(GetCurrentFixtureQuery request, CancellationToken cancellationToken)
         {
-
-            var query = this.dbContext.Fixtures
+            var query = this.dbContext.FixtureMatches
                 .Where(x => x.StartDate.Date >= DateTime.Now.Date && x.EndDate.Date <= DateTime.Now.Date);
 
                 return request.Number.HasValue ?
@@ -32,7 +31,7 @@ namespace FL.API.Queries.QueryHandlers
         }
     }
 
-    public class GetCurrentFixtureQuery : IRequest<IList<FixtureViewModel>>
+    public class GetCurrentFixtureQuery : IRequest<IList<FixtureMatchViewModel>>
     {
         public GetCurrentFixtureQuery(int? number = null)
         {

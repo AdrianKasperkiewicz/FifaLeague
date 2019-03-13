@@ -1,6 +1,5 @@
 ﻿namespace FL.API.Queries.Database
 {
-    using FL.API.Queries.QueryHandlers;
     using FL.API.Queries.ViewModels;
     using Microsoft.EntityFrameworkCore;
 
@@ -20,6 +19,7 @@
         public DbSet<DivisionTeamViewModel> DivisionTeams { get; set; }
 
         public DbSet<FixtureViewModel> Fixtures { get; set; }
-        public DbSet<DivisionMatchViewModel> DivisionsMatches { get; set; }
+
+        public DbSet<FixtureMatchViewModel> FixtureMatches { get; set; }
     }
 }

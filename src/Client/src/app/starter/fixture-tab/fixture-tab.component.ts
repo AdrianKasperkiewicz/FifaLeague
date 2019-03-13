@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FixtureService } from '../../shared/services/fixture.services';
-import { IFixture } from '../../shared/models/fixture.viewmodel';
 import { Observable } from 'rxjs';
+import { FixtureService } from '../../shared/services/fixture.service';
+import { IFixtureMatch } from '../../shared/models/fixture-match.viewmodel';
 
 @Component({
   selector: 'app-fixture-tab',
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./fixture-tab.component.css']
 })
 export class FixtureTabComponent implements OnInit {
-  currentFixtures: Observable<IFixture[]>;
+  currentFixtures: Observable<IFixtureMatch[]>;
   constructor(private fixture: FixtureService) {
     this.currentFixtures = fixture.getCurrent();
    }
