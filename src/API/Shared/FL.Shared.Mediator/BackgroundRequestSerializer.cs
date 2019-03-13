@@ -1,26 +1,20 @@
-﻿using System;
-
-using MediatR;
+﻿using MediatR;
 using Newtonsoft.Json;
 
 namespace FL.Shared.Mediator
 {
     internal static class BackgroundRequestSerializer
     {
-        public static SerializedRequest Serialize(this IRequest request)
+        public static string Serialize(this IRequest request)
         {
-            return new SerializedRequest
-            {
-                Type = request.GetType().AssemblyQualifiedName,
-                Value = JsonConvert.SerializeObject(request)
-            };
+            return JsonConvert.SerializeObject(request,  new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
+
         }
 
-        public static IRequest Deserialize(this SerializedRequest serializedRequest)
+        public static IRequest Deserialize(this string serializedRequest)
         {
-          return JsonConvert
-              .DeserializeObject(
-                  serializedRequest.Value, Type.GetType(serializedRequest.Type)) as IRequest;
+            return JsonConvert
+                .DeserializeObject<IRequest>(serializedRequest, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All });
         }
     }
 }
