@@ -1,6 +1,6 @@
 import * as $ from 'jquery';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -17,6 +17,8 @@ import { MaterialModule } from './shared/modules/material-module';
 import { AppHeaderComponent } from './shared/layouts/full/header/header.component';
 import { FullComponent } from './shared/layouts/full/full.component';
 import { AppSidebarComponent } from './shared/layouts/full/sidebar/sidebar.component';
+import { ToastrModule } from 'ngx-toastr';
+import { ErrorsHandler } from './shared/handlers/error-handler';
 
 @NgModule({
   declarations: [
@@ -34,13 +36,22 @@ import { AppSidebarComponent } from './shared/layouts/full/sidebar/sidebar.compo
     FlexLayoutModule,
     HttpClientModule,
     SharedModule,
-    RouterModule.forRoot(AppRoutes)
+    RouterModule.forRoot(AppRoutes),
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true
+    })
   ],
   providers: [
     {
       provide: LocationStrategy,
-      useClass: PathLocationStrategy
-    }
+      useClass: PathLocationStrategy,
+    },
+    {
+      provide: ErrorHandler,
+      useClass: ErrorsHandler
+    },
   ],
   bootstrap: [AppComponent]
 })

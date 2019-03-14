@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 
 using FluentValidation;
@@ -24,13 +25,21 @@ namespace FL.API.Infrastructure
             }
             catch (ValidationException ex)
             {
-                var code = HttpStatusCode.BadRequest;
-
-                var result = JsonConvert.SerializeObject(new { error = ex.Message });
-                context.Response.ContentType = "application/json";
-                context.Response.StatusCode = (int)code;
-                await context.Response.WriteAsync(result);
+                var result = JsonConvert.SerializeObject(new { message = "Validation error occured: " + ex.Message });
+                await CreateResponse(context, result);
             }
+            catch (Exception ex)
+            {
+                var result = JsonConvert.SerializeObject(new { message = "Application occured: " + ex.Message });
+                await CreateResponse(context, result);
+            }
+        }
+
+        private static async Task CreateResponse(HttpContext context, string result)
+        {
+            context.Response.ContentType = "application/json";
+            context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            await context.Response.WriteAsync(result);
         }
     }
 }

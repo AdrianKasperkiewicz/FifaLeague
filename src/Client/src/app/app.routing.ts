@@ -30,5 +30,9 @@ export const AppRoutes: Routes = [
         loadChildren: './league/league.module#LeagueModule'
       }
     ]
+  },
+  {
+    path: 'error',
+    loadChildren: './errors/errors.module#ErrorsModule'
   }
 ];

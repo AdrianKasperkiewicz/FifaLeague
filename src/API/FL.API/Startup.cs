@@ -1,4 +1,5 @@
-﻿using FL.API.Infrastructure.DevSetup;
+﻿using FL.API.Infrastructure;
+using FL.API.Infrastructure.DevSetup;
 using FL.API.Infrastructure.SignalRHubs;
 using FL.API.IoC;
 using Hangfire;
@@ -58,6 +59,8 @@ namespace FL.API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "FL League API V1");
             });
+
+            app.UseMiddleware<ExceptionMiddlewareExtensions>();
 
             app.UseMvc();
 
