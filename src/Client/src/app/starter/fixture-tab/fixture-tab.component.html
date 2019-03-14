@@ -11,7 +11,7 @@
           Nie na zaplanowanych spotkań
         </div>
         <div *ngFor="let fixture of currentFixtures | async">
-          {{ fixture?.homeTeam }}
+          {{ fixture?.homeTeam }} vs. {{fixture?.awayTeam}}
         </div>
       </div>
     </div>
