@@ -3,7 +3,7 @@
 namespace FL.API.Controllers
 {
     using System.Threading.Tasks;
-    using FL.Application.CommandHandlers.Match;
+    using FL.Application.CommandHandlers.Matches;
     using MediatR;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
@@ -19,9 +19,16 @@ namespace FL.API.Controllers
             this.mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("league")]
         [AllowAnonymous]
-        public async Task<ActionResult> Post([FromBody]AddMatchCommand command)
+        public async Task<ActionResult> PostLeagueMatch([FromBody]AddLeagueMatchResultCommand command)
+        {
+            return this.Ok(await this.mediator.Send(command));
+        }
+
+        [HttpPost("friendly")]
+        [AllowAnonymous]
+        public async Task<ActionResult> PostFriendlyMatch([FromBody]AddFriendlyMatchResultCommand command)
         {
             return this.Ok(await this.mediator.Send(command));
         }

@@ -3,7 +3,6 @@ using System.Net;
 using System.Threading.Tasks;
 
 using FluentValidation;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
@@ -41,14 +40,6 @@ namespace FL.API.Infrastructure
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
             await context.Response.WriteAsync(result);
-        }
-    }
-
-    public static class ExceptionMiddlewareExtension
-    {
-        public static IApplicationBuilder UseExceptionMiddleware(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<ExceptionMiddleware>();
         }
     }
 }
