@@ -1,8 +1,10 @@
-﻿namespace FL.API.Infrastructure.DevSetup
+﻿using FL.API.Queries.QueryHandlers.Divisions;
+using FL.API.Queries.QueryHandlers.Teams;
+
+namespace FL.API.Infrastructure.DevSetup
 {
     using System;
 
-    using FL.API.Queries.QueryHandlers;
     using FL.Application.CommandHandlers.Division;
     using MediatR;
 

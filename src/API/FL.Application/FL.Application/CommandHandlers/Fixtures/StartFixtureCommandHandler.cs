@@ -11,7 +11,7 @@ namespace FL.Application.CommandHandlers.Fixtures
     {
         protected override Task Handle(StartFixtureCommand request, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 

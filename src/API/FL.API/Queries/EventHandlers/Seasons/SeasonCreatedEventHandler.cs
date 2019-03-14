@@ -3,7 +3,7 @@ using FL.API.Queries.ViewModels;
 using FL.Domain.Aggregates.SeasonAggregate.Events;
 using MediatR;
 
-namespace FL.API.Queries.EventHandlers
+namespace FL.API.Queries.EventHandlers.Seasons
 {
     public class SeasonCreatedEventHandler : NotificationHandler<SeasonCreatedEvent>
     {

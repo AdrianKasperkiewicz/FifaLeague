@@ -1,7 +1,8 @@
-﻿namespace FL.API.Controllers
+﻿using FL.API.Queries.QueryHandlers.Fixtures;
+
+namespace FL.API.Controllers
 {
     using System.Threading.Tasks;
-    using FL.API.Queries.QueryHandlers;
     using FL.Application.CommandHandlers.Match;
     using MediatR;
     using Microsoft.AspNetCore.Authorization;

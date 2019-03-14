@@ -1,14 +1,14 @@
-﻿namespace FL.API.Queries.QueryHandlers
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using FL.API.Queries.Database;
-    using FL.API.Queries.ViewModels;
-    using MediatR;
-    using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using FL.API.Queries.Database;
+using FL.API.Queries.ViewModels;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
+namespace FL.API.Queries.QueryHandlers.Divisions
+{
     public class GetDivisionByNameQueryHandler : IRequestHandler<GetDivisionByNameQuery, IList<DivisionViewModel>>
     {
         private readonly LeagueReadModelContext repository;
@@ -23,7 +23,7 @@
             return await this.repository
                 .Divisions
                 .Where(x => x.Name.Contains(request.Name))
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
         }
     }
 

@@ -1,7 +1,4 @@
-﻿using System.Reflection;
-
-using FL.API.Queries.Database;
-using FL.Application.CommandHandlers.Seasons;
+﻿using FL.API.Queries.Database;
 using FL.Application.IoC;
 using FL.Domain;
 using FL.Infrastructure.Database;
@@ -27,7 +24,7 @@ namespace FL.API.IoC
 
             services.AddEntityFrameworkInMemoryDatabase();
 
-            services.RegisterFLModule();
+            services.RegisterFifaLeagueModule();
         }
     }
 }

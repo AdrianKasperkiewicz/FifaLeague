@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 using FL.Domain;
 using FL.Domain.BaseObjects;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 

@@ -8,7 +8,7 @@ using FL.API.Queries.ViewModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace FL.API.Queries.QueryHandlers
+namespace FL.API.Queries.QueryHandlers.Divisions
 {
     public class GetDivisionTeamsQueryHandler : IRequestHandler<GetDivisionTeamsQuery, IList<DivisionTeamViewModel>>
     {

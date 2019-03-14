@@ -70,7 +70,7 @@ namespace FL.Domain.BaseObjects
 
         public override int GetHashCode() => this.Id.GetHashCode();
 
-        private static T Parse<T, K>(K value, string description, Func<T, bool> predicate)
+        private static T Parse<T, TK>(TK value, string description, Func<T, bool> predicate)
             where T : Enumeration
         {
             var matchingItem = GetAll<T>().FirstOrDefault(predicate);

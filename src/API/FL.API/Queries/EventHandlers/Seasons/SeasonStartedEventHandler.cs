@@ -1,11 +1,9 @@
-﻿using System;
-using System.Linq;
-
+﻿using System.Linq;
 using FL.API.Queries.Database;
 using FL.Domain.Aggregates.SeasonAggregate.Events;
 using MediatR;
 
-namespace FL.API.Queries.EventHandlers
+namespace FL.API.Queries.EventHandlers.Seasons
 {
     public class SeasonStartedEventHandler : NotificationHandler<SeasonStartedEvent>
     {

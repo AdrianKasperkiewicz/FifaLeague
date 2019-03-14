@@ -2,9 +2,8 @@
 using FL.API.Queries.ViewModels;
 using FL.Domain.Aggregates.TeamAggregate.Events;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
-namespace FL.API.Queries.EventHandlers
+namespace FL.API.Queries.EventHandlers.Teams
 {
     public class TeamCreatedEventHandler : NotificationHandler<TeamCreatedDomainEvent>
     {

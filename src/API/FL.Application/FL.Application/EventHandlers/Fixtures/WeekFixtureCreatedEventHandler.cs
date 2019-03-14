@@ -1,5 +1,4 @@
-﻿using System;
-using FL.Application.CommandHandlers.Fixtures;
+﻿using FL.Application.CommandHandlers.Fixtures;
 using FL.Domain.Aggregates.FixtureAggregate.Events;
 using FL.Shared.Mediator;
 using MediatR;

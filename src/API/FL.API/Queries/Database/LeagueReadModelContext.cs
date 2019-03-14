@@ -1,6 +1,6 @@
 ﻿namespace FL.API.Queries.Database
 {
-    using FL.API.Queries.ViewModels;
+    using ViewModels;
     using Microsoft.EntityFrameworkCore;
 
     public class LeagueReadModelContext : DbContext

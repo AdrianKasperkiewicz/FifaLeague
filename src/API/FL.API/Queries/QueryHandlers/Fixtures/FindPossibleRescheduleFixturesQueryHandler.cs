@@ -1,15 +1,15 @@
-﻿namespace FL.API.Queries.QueryHandlers
-{
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using FL.API.Queries.Database;
-    using FL.API.Queries.ViewModels;
-    using MediatR;
-    using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using FL.API.Queries.Database;
+using FL.API.Queries.ViewModels;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
+namespace FL.API.Queries.QueryHandlers.Fixtures
+{
     public class FindPossibleRescheduleFixturesQueryHandler : IRequestHandler<FindPossibleRescheduleFixturesQuery, IList<FixtureViewModel>>
     {
         private readonly LeagueReadModelContext dbContext;
@@ -27,7 +27,7 @@
                 .Fixtures
                 .Where(x => x.DivisionId == match.DivisionId)
                 .Where(x => x.WeekNumber > match.WeekNumber)
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
         }
     }
 

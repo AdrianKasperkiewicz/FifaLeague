@@ -1,8 +1,5 @@
-﻿using System;
-
-using FL.Domain;
+﻿using FL.Domain;
 using FL.Domain.Aggregates.FixtureAggregate;
-using FL.Domain.Aggregates.SeasonAggregate;
 using FL.Domain.Aggregates.SeasonAggregate.Events;
 using FL.Domain.Factories;
 using MediatR;

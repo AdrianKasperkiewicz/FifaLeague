@@ -1,13 +1,12 @@
-﻿using System.Threading.Tasks;
-
-using FL.API.Queries.QueryHandlers;
-using FL.Application.CommandHandlers.Teams;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace FL.API.Controllers
+﻿namespace FL.API.Controllers
 {
+    using System.Threading.Tasks;
+    using FL.API.Queries.QueryHandlers.Teams;
+    using FL.Application.CommandHandlers.Teams;
+    using MediatR;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+
     [Route("api/[controller]")]
     [ApiController]
     public class TeamController : ControllerBase

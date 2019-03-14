@@ -1,17 +1,15 @@
-﻿using FL.API.Queries.ViewModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using FL.API.Queries.Database;
+using FL.API.Queries.ViewModels;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
-namespace FL.API.Queries.QueryHandlers
+namespace FL.API.Queries.QueryHandlers.Teams
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-
-    using FL.API.Queries.Database;
-    using MediatR;
-    using Microsoft.EntityFrameworkCore;
-
     public class FindTeamByNameQueryHandler : IRequestHandler<FindTeamByNameQuery, IList<TeamViewModel>>
     {
         private readonly LeagueReadModelContext repository;

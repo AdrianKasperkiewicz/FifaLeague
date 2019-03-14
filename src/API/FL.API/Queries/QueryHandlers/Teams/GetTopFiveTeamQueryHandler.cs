@@ -1,17 +1,14 @@
-﻿using FL.API.Queries.ViewModels;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using FL.API.Queries.Database;
+using FL.API.Queries.ViewModels;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 
-namespace FL.API.Queries.QueryHandlers
+namespace FL.API.Queries.QueryHandlers.Teams
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-
-    using FL.API.Queries.Database;
-    using FL.Application;
-    using MediatR;
-    using Microsoft.EntityFrameworkCore;
-
     public class GetTopFiveTeamQueryHandler : IRequestHandler<GetTopTeamQuery, List<TeamViewModel>>
     {
         private readonly LeagueReadModelContext repository;

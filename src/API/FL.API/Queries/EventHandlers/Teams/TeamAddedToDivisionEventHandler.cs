@@ -1,11 +1,10 @@
 ﻿using System.Linq;
-
 using FL.API.Queries.Database;
 using FL.API.Queries.ViewModels;
 using FL.Domain.Aggregates.SeasonAggregate.Events;
 using MediatR;
 
-namespace FL.API.Queries.EventHandlers
+namespace FL.API.Queries.EventHandlers.Teams
 {
     public class TeamAddedToDivisionEventHandler : NotificationHandler<TeamAddedToDivisionEvent>
     {

@@ -1,14 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using FL.API.Queries.QueryHandlers;
-using FL.Application.CommandHandlers.Division;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace FL.API.Controllers
+﻿namespace FL.API.Controllers
 {
+    using System;
+    using System.Threading.Tasks;
+    using FL.API.Queries.QueryHandlers.Divisions;
+    using FL.Application.CommandHandlers.Division;
+    using MediatR;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+
     [Route("api/[controller]")]
     [ApiController]
     public class DivisionController : ControllerBase

@@ -40,8 +40,8 @@
                 Rescheluded = true
             };
 
-            await this.dbContext.AddAsync(match);
-            await this.dbContext.SaveChangesAsync();
+            await this.dbContext.AddAsync(match, cancellationToken);
+            await this.dbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

@@ -89,7 +89,7 @@ namespace FL.Domain.Aggregates.FixtureAggregate
 
         public void PostponeMatch(Guid matchId)
         {
-            if (!this.matches.Any(x => x.Id.Value == matchId))
+            if (this.matches.All(x => x.Id.Value != matchId))
             {
                 throw new ArgumentException($"Match {matchId} not exist in fixture {this.Id.Value}");
             }

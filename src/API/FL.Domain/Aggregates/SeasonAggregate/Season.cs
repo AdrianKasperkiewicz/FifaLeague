@@ -89,7 +89,7 @@ namespace FL.Domain.Aggregates.SeasonAggregate
 
             if (this.divisions.Any(x => x.Hierarchy < 0))
             {
-                throw new ArgumentException($"Division Hierarchy, could not be smaller than 0.");
+                throw new ArgumentException("Division Hierarchy, could not be smaller than 0.");
             }
 
             if (divisionHierarchy == 1 && numberOfPromoted > 0)

@@ -20,7 +20,7 @@ namespace FL.API.Infrastructure.DevSetup
 
         private static DivisionViewModel[] GetNewDivision()
         {
-            return new DivisionViewModel[]
+            return new[]
             {
                 new DivisionViewModel("Ekstraklasa", 1, 2, 0),
                 new DivisionViewModel("Pierwsza Liga", 2, 2, 2),
