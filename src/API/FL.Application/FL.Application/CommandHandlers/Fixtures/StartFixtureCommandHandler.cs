@@ -1,17 +1,28 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-
+using FL.Domain;
+using FL.Domain.Aggregates.FixtureAggregate;
 using MediatR;
 
 namespace FL.Application.CommandHandlers.Fixtures
 {
-    // TODO Comamnd validator
     public class StartFixtureCommandHandler : AsyncRequestHandler<StartFixtureCommand>
     {
-        protected override Task Handle(StartFixtureCommand request, CancellationToken cancellationToken)
+        private readonly IRepository<WeekFixture> repository;
+
+        public StartFixtureCommandHandler(IRepository<WeekFixture> repository)
         {
-            throw new NotImplementedException();
+            this.repository = repository;
+        }
+
+        protected override async Task Handle(StartFixtureCommand request, CancellationToken cancellationToken)
+        {
+            var fixture = await this.repository.Get(request.FixtureId);
+
+            fixture.Start();
+
+            await this.repository.Save(fixture);
         }
     }
 

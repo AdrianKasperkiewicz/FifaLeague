@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using FL.Domain.Aggregates.FixtureAggregate.Events;
+using FL.Domain.Aggregates.FixtureAggregate.StateEnumeration;
 using FL.Domain.BaseObjects;
 
 namespace FL.Domain.Aggregates.FixtureAggregate
@@ -37,6 +38,8 @@ namespace FL.Domain.Aggregates.FixtureAggregate
 
         public int FixtureWeekNumber { get; private set; }
 
+        public FixtureState State { get; set; }
+
         public void Apply(WeekFixtureCreatedEvent @event)
         {
             base.Id = new Identity(@event.FixtureId);
@@ -46,6 +49,7 @@ namespace FL.Domain.Aggregates.FixtureAggregate
             this.EndDate = @event.EndDate;
             this.FixtureWeekNumber = @event.FixtureWeekNumber;
             this.matches = new List<Match>();
+            this.State = FixtureState.Ready;
         }
 
         public void Apply(FixtureMatchAddedEvent @event)
@@ -62,6 +66,16 @@ namespace FL.Domain.Aggregates.FixtureAggregate
         {
             var rescheduledMatch = new Match(@event.MatchId, @event.HomeTeamId, @event.AwayTeamId, isRescheduled: true);
             this.matches.Add(rescheduledMatch);
+        }
+
+        public void Apply(FixtureStartedEvent @event)
+        {
+            this.State = FixtureState.Started;
+        }
+
+        public void Apply(FixtureFinishedEvent @event)
+        {
+            this.State = FixtureState.Finished;
         }
 
         public void AddMatch(Guid homeTeam, Guid awayTeam)
@@ -95,6 +109,16 @@ namespace FL.Domain.Aggregates.FixtureAggregate
             }
 
             this.ApplyChange(new MatchPostponedEvent(this.Id.Value, matchId));
+        }
+
+        public void Start()
+        {
+            this.ApplyChange(new FixtureStartedEvent(this.Id.Value));
+        }
+
+        public void Finish()
+        {
+            this.ApplyChange(new FixtureFinishedEvent(this.Id.Value));
         }
     }
 }
