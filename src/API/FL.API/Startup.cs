@@ -60,7 +60,7 @@ namespace FL.API
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "FL League API V1");
             });
 
-            app.UseMiddleware<ExceptionMiddlewareExtensions>();
+            app.UseExceptionMiddleware();
 
             app.UseMvc();
 
