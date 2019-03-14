@@ -6,7 +6,7 @@ const routes: Routes =
   [{
     path: 'fixture',
     component: FixtureComponent
-  }]
+  }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

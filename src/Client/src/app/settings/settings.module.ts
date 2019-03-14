@@ -22,7 +22,7 @@ import { StartSeasonComponent } from './pages/start-season/start-season.componen
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    DragDropModule
+    DragDropModule,
   ],
   declarations: [
     NewSeasonComponent,

@@ -1,12 +1,11 @@
-﻿using System.Threading.Tasks;
-using FL.Application.CommandHandlers.Division;
-using FL.API.Infrastructure.SignalRHubs;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
-
-namespace FL.API.Controllers
+﻿namespace FL.API.Controllers
 {
+    using System.Threading.Tasks;
+    using FL.API.Infrastructure.SignalRHubs;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.SignalR;
+
     [Route("api/[controller]")]
     [ApiController]
     public class RoomOccupation : ControllerBase
