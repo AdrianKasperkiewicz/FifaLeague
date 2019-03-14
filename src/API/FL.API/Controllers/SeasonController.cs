@@ -1,12 +1,13 @@
-﻿using System.Threading.Tasks;
-using FL.API.Queries.QueryHandlers;
-using FL.Application.CommandHandlers.Seasons;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace FL.API.Controllers
+﻿namespace FL.API.Controllers
 {
+    using System;
+    using System.Threading.Tasks;
+    using FL.API.Queries.QueryHandlers.Seasons;
+    using FL.Application.CommandHandlers.Seasons;
+    using MediatR;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+
     [Route("api/[controller]")]
     [ApiController]
     public class SeasonController : ControllerBase
@@ -27,12 +28,12 @@ namespace FL.API.Controllers
                     .Send(command));
         }
 
-        [HttpPost("start")]
+        [HttpPost("start/{id}")]
         [AllowAnonymous]
-        public async Task<ActionResult> StartSeason([FromBody]StartSeasonCommand command)
+        public async Task<ActionResult> StartSeason(Guid id)
         {
             return this.Ok(
-                await this.mediator.Send(command));
+                await this.mediator.Send(new StartSeasonCommand(id)));
         }
 
         [HttpGet]

@@ -1,9 +1,8 @@
-﻿using FL.API.Queries.ViewModels;
-using FL.Application;
-using Microsoft.EntityFrameworkCore;
-
-namespace FL.API.Queries.Database
+﻿namespace FL.API.Queries.Database
 {
+    using Microsoft.EntityFrameworkCore;
+    using ViewModels;
+
     public class LeagueReadModelContext : DbContext
     {
         public LeagueReadModelContext(DbContextOptions<LeagueReadModelContext> options)
@@ -18,5 +17,9 @@ namespace FL.API.Queries.Database
         public DbSet<TeamViewModel> Teams { get; set; }
 
         public DbSet<DivisionTeamViewModel> DivisionTeams { get; set; }
+
+        public DbSet<FixtureViewModel> Fixtures { get; set; }
+
+        public DbSet<FixtureMatchViewModel> FixtureMatches { get; set; }
     }
 }

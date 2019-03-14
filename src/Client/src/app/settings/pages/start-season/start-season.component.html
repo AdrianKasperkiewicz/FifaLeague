@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>Lista Sezonów</mat-card-title>
+    <mat-card-subtitle>sezony sezony sezony</mat-card-subtitle>
+    <mat-accordion *ngIf="seasons | async">
+      <mat-expansion-panel *ngFor="let season of seasons | async">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Season {{ season.number }}</mat-panel-title>
+          <mat-panel-description> Data pierwszego meczu : {{ season.startDate }}
+            <button mat-raised-button color="primary" *ngIf="!season.isRunning" (click)="start(season.id)">Rozpocznij</button>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        Data rozpoczecia: {{ season.startDate }}
+        W trakcie trwania: {{ season.isRunning }}
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+</mat-card>

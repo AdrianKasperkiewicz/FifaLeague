@@ -1,24 +1,124 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+
+using FL.Domain.Aggregates.FixtureAggregate.Events;
+using FL.Domain.Aggregates.FixtureAggregate.StateEnumeration;
+using FL.Domain.BaseObjects;
 
 namespace FL.Domain.Aggregates.FixtureAggregate
 {
-    public class WeekFixture
+    public class WeekFixture : AggregateRoot
     {
-        public DateTime StartDate { get; set; }
+        private List<Match> matches;
 
-        public DateTime EndDate { get; set; }
-
-        public List<Match> Matches { get; set; }
-
-        public void AddScore()
+        public WeekFixture()
         {
-            throw new NotImplementedException();
         }
 
-        public void Reschedule(Guid matchId)
+        public WeekFixture(Guid seasonId, Guid divisionId, DateTime startDate, DateTime endDate, int fixtureWeekNumber)
         {
-            throw new NotImplementedException();
+            if (endDate <= startDate.Date)
+            {
+                throw new ArgumentException("Fixture start date should be greater than end date");
+            }
+
+            this.ApplyChange(new WeekFixtureCreatedEvent(Guid.NewGuid(), seasonId, divisionId, startDate, endDate, fixtureWeekNumber));
+        }
+
+        public Guid SeasonId { get; private set; }
+
+        public Guid DivisionId { get; private set; }
+
+        public DateTime StartDate { get; private set; }
+
+        public DateTime EndDate { get; private set; }
+
+        public IReadOnlyList<Match> Matches => this.matches.AsReadOnly();
+
+        public int FixtureWeekNumber { get; private set; }
+
+        public FixtureState State { get; set; }
+
+        public void Apply(WeekFixtureCreatedEvent @event)
+        {
+            base.Id = new Identity(@event.FixtureId);
+            this.SeasonId = @event.SeasonId;
+            this.DivisionId = @event.DivisionId;
+            this.StartDate = @event.StartDate;
+            this.EndDate = @event.EndDate;
+            this.FixtureWeekNumber = @event.FixtureWeekNumber;
+            this.matches = new List<Match>();
+            this.State = FixtureState.Ready;
+        }
+
+        public void Apply(FixtureMatchAddedEvent @event)
+        {
+            this.matches.Add(new Match(@event.MatchId, @event.HomeTeamId, @event.AwayTeamId));
+        }
+
+        public void Apply(MatchPostponedEvent @event)
+        {
+            this.matches.First(x => x.Id.Value == @event.MatchId).Postpone();
+        }
+
+        public void Apply(MatchRescheduledEvent @event)
+        {
+            var rescheduledMatch = new Match(@event.MatchId, @event.HomeTeamId, @event.AwayTeamId, isRescheduled: true);
+            this.matches.Add(rescheduledMatch);
+        }
+
+        public void Apply(FixtureStartedEvent @event)
+        {
+            this.State = FixtureState.Started;
+        }
+
+        public void Apply(FixtureFinishedEvent @event)
+        {
+            this.State = FixtureState.Finished;
+        }
+
+        public void AddMatch(Guid homeTeam, Guid awayTeam)
+        {
+            if (homeTeam == Guid.Empty || awayTeam == Guid.Empty)
+            {
+                throw new ArgumentException("Incorrect team Id was provided");
+            }
+
+            this.ApplyChange(new FixtureMatchAddedEvent(Guid.NewGuid(), this.Id.Value, homeTeam, awayTeam));
+        }
+
+        public void Reschedule(Guid homeTeam, Guid awayTeam)
+        {
+            if (homeTeam == Guid.Empty || awayTeam == Guid.Empty)
+            {
+                throw new ArgumentException("Incorrect team Id was provided");
+            }
+
+            var abc = new MatchRescheduledEvent(
+                Guid.NewGuid(), this.Id.Value, homeTeam, awayTeam);
+
+            this.ApplyChange(abc);
+        }
+
+        public void PostponeMatch(Guid matchId)
+        {
+            if (this.matches.All(x => x.Id.Value != matchId))
+            {
+                throw new ArgumentException($"Match {matchId} not exist in fixture {this.Id.Value}");
+            }
+
+            this.ApplyChange(new MatchPostponedEvent(this.Id.Value, matchId));
+        }
+
+        public void Start()
+        {
+            this.ApplyChange(new FixtureStartedEvent(this.Id.Value));
+        }
+
+        public void Finish()
+        {
+            this.ApplyChange(new FixtureFinishedEvent(this.Id.Value));
         }
     }
 }

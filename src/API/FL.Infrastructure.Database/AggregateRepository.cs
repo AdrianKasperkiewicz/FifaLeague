@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 using FL.Domain;
 using FL.Domain.BaseObjects;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
@@ -52,6 +51,11 @@ namespace FL.Infrastructure.Database
             var domainEvents = await serializedEvents
                 .Select(x => JsonConvert.DeserializeObject(x.Event, Type.GetType(x.EventType)) as DomainEvent)
                 .ToListAsync();
+
+            if (domainEvents == null || !domainEvents.Any())
+            {
+                throw new AggregateException("Aggregate not exist");
+            }
 
             aggregate.LoadsFromHistory(domainEvents);
 

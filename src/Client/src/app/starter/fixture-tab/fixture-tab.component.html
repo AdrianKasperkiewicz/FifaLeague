@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Najbliższe mecze</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <!-- Row -->
+    <div fxLayout="row" fxLayoutWrap="wrap">
+      <!-- column -->
+      <div fxFlex.gt-sm="50" fxFlex.gt-xs="50">
+        <div *ngIf="(currentFixtures | async)?.length == 0">
+          Nie na zaplanowanych spotkań
+        </div>
+        <div *ngFor="let fixture of currentFixtures | async">
+          {{ fixture?.homeTeam }} vs. {{fixture?.awayTeam}}
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

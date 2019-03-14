@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\FL.Domain\FL.Domain.csproj" />
+    <ProjectReference Include="..\..\Shared\FL.Shared.Mediator\FL.Shared.Mediator.csproj" />
   </ItemGroup>
 
   <ItemGroup>

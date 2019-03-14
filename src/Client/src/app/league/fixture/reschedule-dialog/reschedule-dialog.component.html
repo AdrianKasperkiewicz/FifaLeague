@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>zmień termin</h1>
+<div mat-dialog-content>
+  <div *ngFor= "let fixture of availableFixtures | async">
+      <button mat-raised-button color="primary" (click)="reschedule(fixture.fixtureId)">kolejka nr: {{fixture.weekNumber}}</button>
+  </div>
+  <!-- <form [formGroup]="teamForm">
+    <mat-form-field>
+      <input type="text" placeholder="Wybierz" aria-label="Number" matInput formControlName="teamId" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.id">
+          {{option.firstName}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form> -->
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onSubmit()"  tabindex="2">Zapisz</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Anuluj</button>
+</div>

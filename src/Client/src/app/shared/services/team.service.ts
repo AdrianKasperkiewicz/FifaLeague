@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ITeam } from '../models/team.viewmodel';
-import { IDivisionTeam } from '../models/DivisionTeam.viewmodel';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,7 @@ export class TeamService {
 
   readonly baseUrl = environment.api;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   add(teamForm: any): Observable<string> {
     const registerUrl = this.baseUrl + 'team';

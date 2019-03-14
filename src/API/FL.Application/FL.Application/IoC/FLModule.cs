@@ -8,7 +8,7 @@ namespace FL.Application.IoC
 {
     public static class FlModule
     {
-        public static void RegisterFLModule(this IServiceCollection services)
+        public static void RegisterFifaLeagueModule(this IServiceCollection services)
         {
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CommandValidationBehavior<,>));
             services.AddTransient<IValidator<CreateSeasonCommand>, CreateSeasonCommandValidator>();
