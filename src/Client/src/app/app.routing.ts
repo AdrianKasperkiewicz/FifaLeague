@@ -28,6 +28,10 @@ export const AppRoutes: Routes = [
       {
         path: 'league',
         loadChildren: './league/league.module#LeagueModule'
+      },
+      {
+        path: 'matches',
+        loadChildren: './matches/matches.module#MatchesModule'
       }
     ]
   },

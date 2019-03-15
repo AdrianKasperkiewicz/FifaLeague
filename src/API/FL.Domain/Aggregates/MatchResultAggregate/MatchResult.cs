@@ -1,13 +1,16 @@
 ﻿namespace FL.Domain.Aggregates.MatchAggregate
 {
     using System;
+
     using FL.Domain.Aggregates.MatchAggregate.Events;
     using FL.Domain.Aggregates.MatchResultAggregate.MatchTypeEnumeration;
     using FL.Domain.BaseObjects;
 
     public class MatchResult : AggregateRoot
     {
-        public MatchResult() { }
+        public MatchResult()
+        {
+        }
 
         public MatchResult(Guid homeTeamId, Guid awayTeamId, int homeGoals, int awayGoals)
         {
