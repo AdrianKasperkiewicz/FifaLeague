@@ -1,0 +1,34 @@
+<div>
+  <mat-card>
+    <form [formGroup]="teamScore">
+      <mat-card-content>
+        <!-- Row -->
+        <div class="d-flex no-block">
+          <!-- column -->
+          <div class="m-r-10 no-shrink">
+            <button mat-fab mat-card-icon class="shadow-none bg-inverse  bg-success">
+              <mat-icon>home</mat-icon>
+            </button>
+          </div>
+          <!-- column -->
+          <div>
+            <mat-form-field>
+              <input type="text" placeholder="Wybierz" aria-label="Number" matInput formControlName="teamId"
+                [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let team of teams | async" [value]="team.id">
+                  {{team.firstName}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <input type="number" matInput placeholder="Wynik">
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+    </form>
+  </mat-card>
+</div>

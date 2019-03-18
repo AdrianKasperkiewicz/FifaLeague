@@ -34,37 +34,7 @@
 <!-- ============================================================== -->
 <div fxLayout="row wrap">
   <!-- column -->
-  <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
-    <mat-card>
-      <mat-card-content>
-        <!-- Row -->
-        <div class="d-flex no-block">
-          <!-- column -->
-          <div class="m-r-10 no-shrink">
-            <button mat-fab mat-card-icon class="shadow-none bg-inverse  bg-success">
-              <mat-icon>home</mat-icon>
-            </button>
-          </div>
-          <!-- column -->
-          <div>
-            <mat-form-field>
-              <mat-select placeholder="Gospodarz">
-                <mat-option [value]="1">
-                  Manchester United
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-
-          </div>
-          <div>
-            <mat-form-field>
-              <input type="number" matInput placeholder="Wynik">
-            </mat-form-field>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
+<app-score fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100"></app-score>
   <!-- column -->
   <!-- column -->
   <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
