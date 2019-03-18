@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TeamService } from '../../../../shared/services/team.service';
 import { ITeam } from '../../../../shared/models/team.viewmodel';
 import { Observable } from 'rxjs';
 import { FormBuilder, Form, FormGroup } from '@angular/forms';
-import { startWith, flatMap } from 'rxjs/operators';
+import { startWith, flatMap, mergeMap, skip } from 'rxjs/operators';
 
 @Component({
   selector: 'app-score',
@@ -11,23 +11,34 @@ import { startWith, flatMap } from 'rxjs/operators';
   styleUrls: ['./score.component.css']
 })
 export class ScoreComponent implements OnInit {
-  teams: Observable<ITeam[]>;
-  teamScore: FormGroup;
+  @Input() teamScore: FormGroup;
+
+  teams: ITeam[];
   constructor(private teamService: TeamService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.teams = this.teamService.getTopFive();
+    this.teamService.getTopFive().subscribe(x => this.teams = x);
 
     this.teamScore = this.formBuilder.group({
       teamId: '',
       goals: ''
     });
 
-    this.teams = this.teamScore.controls['teamId'].valueChanges
+    this.teamScore.controls['teamId'].valueChanges
       .pipe(
         startWith(''),
         flatMap(x => this.teamService.filterByName(x))
-      );
+      ).subscribe(x => this.teams = x);
 
   }
+
+  displayTeam() {
+    return (val) => {
+      if (val) {
+        return this.teams.filter(x => x.id === val)[0].firstName;
+      }
+      return undefined;
+    };
+  }
+
 }

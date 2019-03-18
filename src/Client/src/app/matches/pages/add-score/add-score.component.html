@@ -1,73 +1,76 @@
 <!-- ============================================================== -->
 <!-- row -->
 <!-- ============================================================== -->
-<div fxLayout="row" fxLayoutWrap="wrap">
-  <!-- Card column -->
-  <div fxFlex.gt-sm="100%" fxFlex="100">
-    <mat-card>
-      <mat-card-content>
-        <mat-card-title>Nowy Mecz</mat-card-title>
-
-        <div>
-          <mat-form-field>
-            <input matInput [matDatepicker]="picker" placeholder="data rozegrania">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field>
-            <mat-select placeholder="Typ spotkania">
-              <mat-option [value]="1">
-                Towarzyski
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-</div>
-
-<!-- ============================================================== -->
-<!-- Simple four boxes Row -->
-<!-- ============================================================== -->
-<div fxLayout="row wrap">
-  <!-- column -->
-<app-score fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100"></app-score>
-  <!-- column -->
-  <!-- column -->
-  <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
-    <mat-card>
-      <mat-card-content>
-        <!-- Row -->
-        <div class="d-flex no-block">
-          <!-- column -->
-          <div class="m-r-10 no-shrink">
-            <button mat-fab color="warn" mat-card-icon class="shadow-none  bg-warning">
-              <mat-icon>flight_land</mat-icon>
-            </button>
-          </div>
-          <!-- column -->
+<form [formGroup]="scoreForm">
+  <div fxLayout="row" fxLayoutWrap="wrap">
+    <!-- Card column -->
+    <div fxFlex.gt-sm="100%" fxFlex="100">
+      <mat-card>
+        <mat-card-content>
+          <mat-card-title>Nowy Mecz</mat-card-title>
           <div>
             <mat-form-field>
-              <mat-select placeholder="Gość">
-                <mat-option [value]="2">
-                  Liverpool
+              <input matInput [matDatepicker]="picker" placeholder="data rozegrania" formControlName="date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-select placeholder="Typ spotkania" formControlName="matchType">
+                <mat-option [value]="1">
+                  Towarzyski
                 </mat-option>
               </mat-select>
             </mat-form-field>
-
           </div>
-          <div>
-            <mat-form-field>
-              <input type="number" matInput placeholder="Wynik">
-            </mat-form-field>
-          </div>
-
-        </div>
-      </mat-card-content>
-    </mat-card>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
-  <!-- column -->
-</div>
+
+  <!-- ============================================================== -->
+  <!-- Simple four boxes Row -->
+  <!-- ============================================================== -->
+  <div fxLayout="row wrap">
+    <!-- column -->
+    <app-score fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100" [teamScore]="scoreForm.controls['teamscore'].controls[0]"></app-score>
+    <!-- column -->
+    <!-- column -->
+    <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
+      <mat-card>
+        <mat-card-content>
+          <!-- Row -->
+          <div class="d-flex no-block">
+            <!-- column -->
+            <div class="m-r-10 no-shrink">
+              <button mat-fab color="warn" mat-card-icon class="shadow-none  bg-warning">
+                <mat-icon>flight_land</mat-icon>
+              </button>
+            </div>
+            <!-- column -->
+            <div>
+              <mat-form-field>
+                <mat-select placeholder="Gość">
+                  <mat-option [value]="2">
+                    Liverpool
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </div>
+            <div>
+              <mat-form-field>
+                <input type="number" matInput placeholder="Wynik">
+              </mat-form-field>
+            </div>
+
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- column -->
+  </div>
+
+  <button (click)="onSubmit()"></button>
+</form>

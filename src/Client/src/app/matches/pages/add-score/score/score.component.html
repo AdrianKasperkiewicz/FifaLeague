@@ -1,6 +1,5 @@
 <div>
   <mat-card>
-    <form [formGroup]="teamScore">
       <mat-card-content>
         <!-- Row -->
         <div class="d-flex no-block">
@@ -13,10 +12,10 @@
           <!-- column -->
           <div>
             <mat-form-field>
-              <input type="text" placeholder="Wybierz" aria-label="Number" matInput formControlName="teamId"
+              <input type="text" placeholder="Wybierz" aria-label="Number" matInput
                 [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let team of teams | async" [value]="team.id">
+              <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayTeam()">
+                <mat-option *ngFor="let team of teams" [value]="team.id">
                   {{team.firstName}}
                 </mat-option>
               </mat-autocomplete>
@@ -29,6 +28,5 @@
           </div>
         </div>
       </mat-card-content>
-    </form>
   </mat-card>
 </div>
