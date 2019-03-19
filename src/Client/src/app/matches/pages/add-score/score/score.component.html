@@ -1,19 +1,20 @@
-<div>
-  <mat-card>
+<form [formGroup]="scoreForm" fxFlex.gt-sm="100%" fxFlex="100">
+  <div [formGroupName]="fgName">
+    <mat-card>
       <mat-card-content>
-        <!-- Row -->
         <div class="d-flex no-block">
-          <!-- column -->
           <div class="m-r-10 no-shrink">
-            <button mat-fab mat-card-icon class="shadow-none bg-inverse  bg-success">
+            <button *ngIf="fgName == 'homeTeam'" mat-fab mat-card-icon class="shadow-none bg-inverse  bg-success">
               <mat-icon>home</mat-icon>
             </button>
+            <button *ngIf="fgName == 'awayTeam'" mat-fab color="warn" mat-card-icon class="shadow-none  bg-warning">
+              <mat-icon>flight_land</mat-icon>
+            </button>
           </div>
-          <!-- column -->
           <div>
             <mat-form-field>
-              <input type="text" placeholder="Wybierz" aria-label="Number" matInput
-                [matAutocomplete]="auto">
+              <input type="text" placeholder="Wybierz" aria-label="Zespoł" matInput [matAutocomplete]="auto"
+                formControlName="teamId">
               <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayTeam()">
                 <mat-option *ngFor="let team of teams" [value]="team.id">
                   {{team.firstName}}
@@ -23,10 +24,12 @@
           </div>
           <div>
             <mat-form-field>
-              <input type="number" matInput placeholder="Wynik">
+              <input type="number" matInput placeholder="Wynik" formControlName="goals">
             </mat-form-field>
           </div>
         </div>
+        <button *ngIf="teams?.length == 0" mat-raised-button color="primary" [disabled]="">Nowy</button>
       </mat-card-content>
-  </mat-card>
-</div>
+    </mat-card>
+  </div>
+</form>

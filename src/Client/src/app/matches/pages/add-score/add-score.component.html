@@ -1,76 +1,9 @@
-<!-- ============================================================== -->
-<!-- row -->
-<!-- ============================================================== -->
 <form [formGroup]="scoreForm">
-  <div fxLayout="row" fxLayoutWrap="wrap">
-    <!-- Card column -->
-    <div fxFlex.gt-sm="100%" fxFlex="100">
-      <mat-card>
-        <mat-card-content>
-          <mat-card-title>Nowy Mecz</mat-card-title>
-          <div>
-            <mat-form-field>
-              <input matInput [matDatepicker]="picker" placeholder="data rozegrania" formControlName="date">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field>
-              <mat-select placeholder="Typ spotkania" formControlName="matchType">
-                <mat-option [value]="1">
-                  Towarzyski
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
-
-  <!-- ============================================================== -->
-  <!-- Simple four boxes Row -->
-  <!-- ============================================================== -->
+  <app-basic-info [scoreForm]="scoreForm" fxLayout="row" fxLayoutWrap="wrap"></app-basic-info>
   <div fxLayout="row wrap">
-    <!-- column -->
-    <app-score fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100" [teamScore]="scoreForm.controls['teamscore'].controls[0]"></app-score>
-    <!-- column -->
-    <!-- column -->
-    <div fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100">
-      <mat-card>
-        <mat-card-content>
-          <!-- Row -->
-          <div class="d-flex no-block">
-            <!-- column -->
-            <div class="m-r-10 no-shrink">
-              <button mat-fab color="warn" mat-card-icon class="shadow-none  bg-warning">
-                <mat-icon>flight_land</mat-icon>
-              </button>
-            </div>
-            <!-- column -->
-            <div>
-              <mat-form-field>
-                <mat-select placeholder="Gość">
-                  <mat-option [value]="2">
-                    Liverpool
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-
-            </div>
-            <div>
-              <mat-form-field>
-                <input type="number" matInput placeholder="Wynik">
-              </mat-form-field>
-            </div>
-
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
-    <!-- column -->
+    <app-score [scoreForm]="scoreForm" [fgName]="'homeTeam'" fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100"></app-score>
+    <app-score [scoreForm]="scoreForm" [fgName]="'awayTeam'" fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100"></app-score>
   </div>
-
-  <button (click)="onSubmit()"></button>
+  <app-statistic [scoreForm]="scoreForm" [fgName]="'awayTeam'" fxLayout="row" fxLayoutWrap="wrap"></app-statistic>
+  <button mat-raised-button color="primary" [disabled]="!scoreForm.valid" (click)='onSubmit()'>Zapisz</button>
 </form>

@@ -25,8 +25,6 @@ export class DialogNewTeamComponent implements OnInit {
     });
   }
 
-
-
   onCancel(): void {
     this.dialogRef.close();
   }

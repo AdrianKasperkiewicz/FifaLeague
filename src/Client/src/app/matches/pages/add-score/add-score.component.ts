@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatchService } from '../../../shared/services/match.service';
 
 @Component({
   selector: 'app-add-score',
@@ -9,20 +10,25 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddScoreComponent implements OnInit {
   scoreForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private matchService: MatchService) { }
   ngOnInit() {
     this.scoreForm = this.formBuilder.group({
       matchType: ['', Validators.required],
       date: ['', Validators.required],
-      teamscore: this.formBuilder.array([
-        this.preapereTeamScoreFormGroup(),
-        this.preapereTeamScoreFormGroup()
-      ])
+      homeTeam: this.preapereTeamScoreFormGroup(),
+      awayTeam: this.preapereTeamScoreFormGroup(),
+      statistic: this.preapereStatisticFormGroup()
+    });
+  }
+  preapereStatisticFormGroup(): FormGroup {
+    return this.formBuilder.group({
+      imgId: ['']
     });
   }
 
   onSubmit() {
     console.log(this.scoreForm.value);
+    this.matchService.add(this.scoreForm.value).subscribe();
   }
 
   private preapereTeamScoreFormGroup(): FormGroup {

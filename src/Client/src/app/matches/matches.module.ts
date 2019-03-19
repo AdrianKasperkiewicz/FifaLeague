@@ -8,9 +8,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ScoreComponent } from './pages/add-score/score/score.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { StatisticComponent } from './pages/add-score/statistic/statistic.component';
+import { BasicInfoComponent } from './pages/add-score/basic-info/basic-info.component';
 
 @NgModule({
-  declarations: [AddScoreComponent, ScoreComponent],
+  declarations: [AddScoreComponent, ScoreComponent, StatisticComponent, BasicInfoComponent],
   imports: [
     CommonModule,
     MatchesRoutingModule,

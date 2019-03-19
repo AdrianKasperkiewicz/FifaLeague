@@ -3,6 +3,7 @@
 namespace FL.API.Controllers
 {
     using System.Threading.Tasks;
+    using FL.API.Queries.QueryHandlers.Matches;
     using FL.Application.CommandHandlers.Matches;
     using MediatR;
     using Microsoft.AspNetCore.Authorization;
@@ -26,9 +27,9 @@ namespace FL.API.Controllers
             return this.Ok(await this.mediator.Send(command));
         }
 
-        [HttpPost("friendly")]
+        [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> PostFriendlyMatch([FromBody]AddFriendlyMatchResultCommand command)
+        public async Task<ActionResult> PostFriendlyMatch([FromBody]AddMatchResultCommand command)
         {
             return this.Ok(await this.mediator.Send(command));
         }
@@ -38,6 +39,13 @@ namespace FL.API.Controllers
         public async Task<ActionResult> GetFixture()
         {
             return this.Ok(await this.mediator.Send(new GetAllFixtureMatchesQuery()));
+        }
+
+        [HttpGet("last/{number}")]
+        [AllowAnonymous]
+        public async Task<ActionResult> GetLastMatches(int? number)
+        {
+            return this.Ok(await this.mediator.Send(new GetLastMatchesQuery(number)));
         }
     }
 }
