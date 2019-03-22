@@ -1,7 +1,7 @@
 export interface IMatchViewModel {
   date: Date;
-  HomeTeam: string;
-  AwayTeam: string;
-  HomeGoals: number;
-  AwayGoals: number;
+  homeTeam: string;
+  awayTeam: string;
+  homeGoals: number;
+  awayGoals: number;
 }

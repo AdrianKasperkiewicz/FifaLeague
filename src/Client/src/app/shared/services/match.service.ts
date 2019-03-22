@@ -19,9 +19,9 @@ export class MatchService {
     return this.httpClient.post<string>(registerUrl, matchForm);
   }
 
-  getLastMatches(numberOfMatches: number) : Observable<IMatchViewModel> {
-    const url = this.baseUrl + 'match/' + numberOfMatches;
+  getLastMatches(numberOfMatches: number): Observable<IMatchViewModel[]> {
+    const url = this.baseUrl + 'match/last/' + numberOfMatches;
 
-    return this.httpClient.get<IMatchViewModel>(url);
+    return this.httpClient.get<IMatchViewModel[]>(url);
   }
 }
