@@ -23,6 +23,11 @@ namespace FL.API.Queries.QueryHandlers.Matches
         {
             var fixture = this.GetCurrentOrNextFixture();
 
+            if (fixture == null)
+            {
+                return new List<FixtureMatchViewModel>();
+            }
+
             var query = this.dbContext.FixtureMatches
                 .Where(x => x.FixtureId == fixture.FixtureId)
                 .Where(x => !x.Posponed);
