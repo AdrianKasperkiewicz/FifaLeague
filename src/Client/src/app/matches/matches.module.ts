@@ -10,9 +10,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StatisticComponent } from './pages/add-score/statistic/statistic.component';
 import { BasicInfoComponent } from './pages/add-score/basic-info/basic-info.component';
+import { AddGoalScorerComponent } from './pages/add-score/add-goal-scorer/add-goal-scorer.component';
 
 @NgModule({
-  declarations: [AddScoreComponent, ScoreComponent, StatisticComponent, BasicInfoComponent],
+  declarations: [
+    AddScoreComponent,
+    ScoreComponent,
+    StatisticComponent,
+    BasicInfoComponent,
+    AddGoalScorerComponent],
   imports: [
     CommonModule,
     MatchesRoutingModule,

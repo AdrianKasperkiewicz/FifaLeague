@@ -23,13 +23,15 @@
         {
             var result = (await this.futHeadAPI.SearchPlayer(name))
                 .Where(x => x.revision_type == "NIF")
+                .GroupBy(x => x.player_id, (key, group) => group.First())
                 .Select(x => new FootballPlayerDTO
                 {
                     Id = x.id,
                     FirstName = x.first_name,
                     LastName = x.last_name,
                     FullName = x.full_name,
-                    ImageUrl = x.image
+                    ImageUrl = x.image,
+                    Club = x.club_name
                 })
                 .ToList();
 
@@ -48,7 +50,7 @@
         private void AddToDabase(IList<FootballPlayerDTO> footballPlayers)
         {
             footballPlayers
-                .Except(this.database.FootballPlayers)
+                .Where(x => !this.database.FootballPlayers.Any(y => y.Id == x.Id))
                 .ToList()
                 .ForEach(x => this.database.FootballPlayers.Add(x));
 
