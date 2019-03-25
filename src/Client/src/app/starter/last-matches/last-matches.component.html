@@ -1,16 +1,18 @@
-<div fxLayout="row wrap">
-  <!-- Card column -->
-  <div fxFlex.gt-lg="50" fxFlex.gt-md="50" fxFlex.gt-xs="100" fxFlex="100">
+<div fxLayout="row">
+  <div fxFlex.gt-sm="100%">
     <mat-card>
       <mat-card-content>
-        <mat-card-title>Ostatnie Mecze</mat-card-title>
-        <mat-card-subtitle>Ostatnie rozegrane spotkania</mat-card-subtitle>
-
-        <div *ngFor="let match of matches | async">
-
-          <h5>{{ match.homeTeam }} vs. {{ match.awayTeam }} {{ match.homeGoals }}:{{ match.awayGoals }}</h5>
-          <p>Towarzyski, rozegrany: {{ match.date}} </p>
-          <mat-divider></mat-divider>
-        </div>
+        <mat-card-title>Ostatnie mecze</mat-card-title>
+        <mat-card-subtitle>Ostatnio rozegrane spotkania</mat-card-subtitle>
+        <mat-list>
+          <mat-list-item *ngFor="let match of matches | async">
+            <img mat-list-avatar src="assets/images/users/1.jpg">
+            <h3 matLine>{{match.homeTeam}} : {{match.awayTeam}} {{match.homeGoals}} : {{match.awayGoals}}</h3>
+            <p matLine class="text-muted">
+              Towarzyski, {{match.date | date: 'shortDate'}}
+            </p>
+          </mat-list-item>
+        </mat-list>
       </mat-card-content>
     </mat-card>
+  </div>
