@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, } from '@angular/core';
 import { TeamService } from '../../../../shared/services/team.service';
 import { ITeam } from '../../../../shared/models/team.viewmodel';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { startWith, flatMap} from 'rxjs/operators';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { startWith, flatMap } from 'rxjs/operators';
+import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 
 @Component({
   selector: 'app-score',
@@ -29,6 +30,11 @@ export class ScoreComponent implements OnInit {
       ).subscribe(x => this.teams = x);
   }
 
+  get scorersForm(): FormArray {
+    const formGroup = <FormGroup>this.scoreForm.controls[this.fgName];
+    return <FormArray>formGroup.controls['scorers'];
+  }
+
   displayTeam() {
     return (val: string) => {
       if (val) {
@@ -36,5 +42,12 @@ export class ScoreComponent implements OnInit {
       }
       return undefined;
     };
+  }
+
+  addPlayerScore() {
+    const formGroup = <FormGroup>this.scoreForm.controls[this.fgName];
+    (<FormArray>formGroup.controls['scorers']).push(this.formBuilder.group({
+      playerId: ['']
+    }));
   }
 }

@@ -15,6 +15,10 @@ export class FootballPlayerService {
   constructor(private httpClient: HttpClient) { }
 
   find(name: any): Observable<IPlayerViewModel[]> {
+    if (!name) {
+      name = 'a';
+    }
+
     const url = this.baseUrl + 'footballplayer/search/' + name;
 
     return this.httpClient.get<IPlayerViewModel[]>(url);

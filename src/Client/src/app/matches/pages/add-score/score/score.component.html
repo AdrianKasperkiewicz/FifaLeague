@@ -28,8 +28,18 @@
             </mat-form-field>
           </div>
         </div>
-        <app-add-goal-scorer></app-add-goal-scorer>
-        <button *ngIf="teams?.length == 0" mat-raised-button color="primary" [disabled]="">Nowy</button>
+        <button *ngIf="teams?.length == 0" mat-raised-button color="primary">Nowy</button>
+        <button mat-raised-button color="primary" (click)="addPlayerScore()">Dodaj strzelca</button>
+        <div formArrayName="scorers">
+          <div *ngFor="let scorers of scorersForm.controls; let i=index">
+            <div [formGroupName]="i">
+
+              <app-add-goal-scorer [goalScorerForm]="scorersForm.controls[i]"></app-add-goal-scorer>
+              <!-- <input type="number" matInput placeholder="playerId" formControlName="playerId"> -->
+            </div>
+          </div>
+        </div>
+        <!-- <app-add-goal-scorer></app-add-goal-scorer> -->
       </mat-card-content>
     </mat-card>
   </div>

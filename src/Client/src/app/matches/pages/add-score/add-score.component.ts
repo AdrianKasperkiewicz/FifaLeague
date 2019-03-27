@@ -34,7 +34,8 @@ export class AddScoreComponent implements OnInit {
   private preapereTeamScoreFormGroup(): FormGroup {
     return this.formBuilder.group({
       teamId: ['', Validators.required],
-      goals: ['', Validators.required]
+      goals: ['', Validators.required],
+      scorers: this.formBuilder.array([])
     });
   }
 }
