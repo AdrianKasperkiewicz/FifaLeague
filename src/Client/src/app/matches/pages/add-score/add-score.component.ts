@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatchService } from '../../../shared/services/match.service';
+import { CustomValidators } from '../../../shared/validators/guid.validator';
 
 @Component({
   selector: 'app-add-score',
@@ -33,7 +34,7 @@ export class AddScoreComponent implements OnInit {
 
   private preapereTeamScoreFormGroup(): FormGroup {
     return this.formBuilder.group({
-      teamId: ['', Validators.required],
+      teamId: ['', [Validators.required, CustomValidators.GUID]],
       goals: ['', Validators.required],
       scorers: this.formBuilder.array([])
     });

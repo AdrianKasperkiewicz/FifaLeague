@@ -28,7 +28,6 @@
             </mat-form-field>
           </div>
         </div>
-        <button *ngIf="teams?.length == 0" mat-raised-button color="primary">Nowy</button>
         <button mat-raised-button color="primary" (click)="addPlayerScore()">Dodaj strzelca</button>
         <div formArrayName="scorers">
           <div *ngFor="let scorers of scorersForm.controls; let i=index">
