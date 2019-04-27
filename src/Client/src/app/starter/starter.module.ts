@@ -6,6 +6,7 @@ import { StarterComponent } from './starter.component';
 import { StarterRoutes } from './starter.routing';
 import { MaterialModule } from '../shared/modules/material-module';
 import { FixtureTabComponent } from './fixture-tab/fixture-tab.component';
+import { LastMatchesComponent } from './last-matches/last-matches.component';
 
 @NgModule({
   imports: [
@@ -14,6 +15,6 @@ import { FixtureTabComponent } from './fixture-tab/fixture-tab.component';
     FlexLayoutModule,
     RouterModule.forChild(StarterRoutes)
   ],
-  declarations: [StarterComponent, FixtureTabComponent]
+  declarations: [StarterComponent, FixtureTabComponent, LastMatchesComponent]
 })
 export class StarterModule {}

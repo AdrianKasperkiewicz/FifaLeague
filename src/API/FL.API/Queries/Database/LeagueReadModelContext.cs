@@ -21,5 +21,7 @@
         public DbSet<FixtureViewModel> Fixtures { get; set; }
 
         public DbSet<FixtureMatchViewModel> FixtureMatches { get; set; }
+
+        public DbSet<MatchViewModel> Matches { get; set; }
     }
 }

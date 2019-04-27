@@ -11,7 +11,7 @@ namespace FL.Shared.Mediator
             this.mediator = mediator;
         }
 
-        public void Send(string serializedRequest)
+        internal void Send(string serializedRequest)
         {
             var request = serializedRequest.Deserialize();
 

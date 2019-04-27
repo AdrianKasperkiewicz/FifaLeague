@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FL.API.Queries.Database;
+
 using FL.API.Queries.ViewModels;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,11 @@ namespace FL.API.Queries.QueryHandlers.Matches
         public async Task<IList<FixtureMatchViewModel>> Handle(GetCurrentFixtureQuery request, CancellationToken cancellationToken)
         {
             var fixture = this.GetCurrentOrNextFixture();
+
+            if (fixture == null)
+            {
+                return new List<FixtureMatchViewModel>();
+            }
 
             var query = this.dbContext.FixtureMatches
                 .Where(x => x.FixtureId == fixture.FixtureId)

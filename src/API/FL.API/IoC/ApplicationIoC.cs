@@ -2,6 +2,7 @@
 using FL.Application.IoC;
 using FL.Domain;
 using FL.Infrastructure.Database;
+using FL.Services.FootballPlayers.IoC;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +26,7 @@ namespace FL.API.IoC
             services.AddEntityFrameworkInMemoryDatabase();
 
             services.RegisterFifaLeagueModule();
+            services.RegisterPlayerServiceModule();
         }
     }
 }

@@ -6,16 +6,17 @@
 
     public class FriendlyMatchResultAddedEvent : DomainEvent
     {
-        public FriendlyMatchResultAddedEvent(Guid guid, Guid homeTeamId, Guid awayTeamId, int homeGoals, int awayGoals)
+        public FriendlyMatchResultAddedEvent(Guid matchId, Guid homeTeamId, Guid awayTeamId, int homeGoals, int awayGoals, DateTime date)
         {
-            this.Guid = guid;
+            this.MatchId = matchId;
             this.HomeTeamId = homeTeamId;
             this.AwayTeamId = awayTeamId;
             this.HomeGoals = homeGoals;
             this.AwayGoals = awayGoals;
+            this.Date = date;
         }
 
-        public Guid Guid { get; }
+        public Guid MatchId { get; }
 
         public Guid HomeTeamId { get; }
 
@@ -24,5 +25,7 @@
         public int HomeGoals { get; }
 
         public int AwayGoals { get; }
+
+        public DateTime Date { get; }
     }
 }

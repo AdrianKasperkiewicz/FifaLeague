@@ -19,5 +19,10 @@ namespace FL.API.Queries.ViewModels
         public string FirstName { get; private set; }
 
         public string LastName { get; private set; }
+
+        public string GetFullName()
+        {
+            return $"{this.FirstName} {this.LastName}";
+        }
     }
 }

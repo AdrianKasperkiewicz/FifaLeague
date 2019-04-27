@@ -12,9 +12,9 @@
         {
         }
 
-        public MatchResult(Guid homeTeamId, Guid awayTeamId, int homeGoals, int awayGoals)
+        public MatchResult(Guid homeTeamId, Guid awayTeamId, int homeGoals, int awayGoals, DateTime date)
         {
-            this.ApplyChange(new FriendlyMatchResultAddedEvent(Guid.NewGuid(), homeTeamId, awayTeamId, homeGoals, awayGoals));
+            this.ApplyChange(new FriendlyMatchResultAddedEvent(Guid.NewGuid(), homeTeamId, awayTeamId, homeGoals, awayGoals, date));
         }
 
         public MatchResult(Guid fixtureId, Guid homeTeamId, Guid awayTeamId, int homeGoals, int awayGoals)
@@ -34,17 +34,22 @@
 
         public Guid? FixtureId { get; private set; }
 
+        public DateTime Date { get; private set; }
+
         public void Apply(FriendlyMatchResultAddedEvent @event)
         {
+            this.Id = new Identity(@event.MatchId);
             this.HomeTeamId = @event.HomeTeamId;
             this.AwayTeamId = @event.AwayTeamId;
             this.HomeGoals = @event.HomeGoals;
             this.AwayGoals = @event.AwayGoals;
             this.MatchType = MatchResultType.Friendly;
+            this.Date = @event.Date;
         }
 
         public void Apply(LeagueMatchResultAddedEvent @event)
         {
+            this.Id = new Identity(@event.MatchResultId);
             this.HomeTeamId = @event.HomeTeamId;
             this.AwayTeamId = @event.AwayTeamId;
             this.HomeGoals = @event.HomeGoals;

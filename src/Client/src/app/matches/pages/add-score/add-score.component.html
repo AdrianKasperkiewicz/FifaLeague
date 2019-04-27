@@ -1,15 +1,9 @@
-<!-- ============================================================== -->
-<!-- row -->
-<!-- ============================================================== -->
-<div fxLayout="row" fxLayoutWrap="wrap">
-  <!-- Card column -->
-  <div fxFlex.gt-sm="100%" fxFlex="100">
-      <mat-card>
-          <mat-card-content>
-              <mat-card-title>Dodaj wynik</mat-card-title>
-              <mat-card-subtitle>subtitle</mat-card-subtitle>
-              asdadasd
-          </mat-card-content>
-      </mat-card>
+<form [formGroup]="scoreForm">
+  <app-basic-info [scoreForm]="scoreForm" fxLayout="row" fxLayoutWrap="wrap"></app-basic-info>
+  <div fxLayout="row wrap">
+    <app-score [scoreForm]="scoreForm" [fgName]="'homeTeam'" fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100"></app-score>
+    <app-score [scoreForm]="scoreForm" [fgName]="'awayTeam'" fxFlex.gt-sm="50" fxFlex.gt-xs="100" fxFlex="100"></app-score>
   </div>
-</div>
+  <app-statistic [scoreForm]="scoreForm" [fgName]="'awayTeam'" fxLayout="row" fxLayoutWrap="wrap"></app-statistic>
+  <button mat-raised-button color="primary" [disabled]="!scoreForm.valid" (click)='onSubmit()'>Zapisz</button>
+</form>

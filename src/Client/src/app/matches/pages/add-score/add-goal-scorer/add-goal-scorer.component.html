@@ -1,0 +1,11 @@
+<mat-form-field class="example-full-width" [formGroup]="goalScorerForm">
+  <input matInput placeholder="Strzelec bramki" aria-label="strzelec" [matAutocomplete]="auto"
+    formControlName="playerId">
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let player of players" [value]="player.id">
+      <img class="example-option-img" aria-hidden [src]="player.imageUrl" height="25">
+      <span>{{player.fullName}}</span> |
+      <small>{{player.club}}</small>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
